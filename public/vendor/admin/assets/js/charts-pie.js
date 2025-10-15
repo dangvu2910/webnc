@@ -6,16 +6,16 @@ const pieConfig = {
   data: {
     datasets: [
       {
-        data: [33, 33, 33],
+        data: [38, 32, 30],
         /**
          * These colors come from Tailwind CSS palette
          * https://tailwindcss.com/docs/customizing-colors/#default-color-palette
          */
-        backgroundColor: ['#0694a2', '#1c64f2', '#7e3af2'],
-        label: 'Dataset 1',
+        backgroundColor: ['#1c64f2', '#0694a2', '#7e3af2'],
+        label: 'Doanh thu (triệu VNĐ)',
       },
     ],
-    labels: ['Shoes', 'Shirts', 'Bags'],
+    labels: ['Nike', 'Adidas', 'Puma'],
   },
   options: {
     responsive: true,

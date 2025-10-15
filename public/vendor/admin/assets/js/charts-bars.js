@@ -4,21 +4,28 @@
 const barConfig = {
   type: 'bar',
   data: {
-    labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+    labels: ['Tháng 1', 'Tháng 2', 'Tháng 3', 'Tháng 4', 'Tháng 5', 'Tháng 6', 'Tháng 7'],
     datasets: [
       {
-        label: 'Shoes',
-        backgroundColor: '#0694a2',
+        label: 'Nike',
+        backgroundColor: '#1c64f2',
         // borderColor: window.chartColors.red,
         borderWidth: 1,
-        data: [-3, 14, 52, 74, 33, 90, 70],
+        data: [45, 68, 82, 94, 103, 120, 135],
       },
       {
-        label: 'Bags',
+        label: 'Adidas',
+        backgroundColor: '#0694a2',
+        // borderColor: window.chartColors.blue,
+        borderWidth: 1,
+        data: [38, 52, 63, 72, 84, 95, 108],
+      },
+      {
+        label: 'Puma',
         backgroundColor: '#7e3af2',
         // borderColor: window.chartColors.blue,
         borderWidth: 1,
-        data: [66, 33, 43, 12, 54, 62, 84],
+        data: [32, 45, 58, 68, 75, 88, 98],
       },
     ],
   },

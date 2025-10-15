@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Bảng điều khiển - Windmill</title>
+  <title>Quản Lý Cửa Hàng Giày - Admin Dashboard</title>
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
@@ -39,7 +39,7 @@
             class="ml-6 text-lg font-bold text-gray-800 dark:text-gray-200"
             href="#"
           >
-            Windmill
+            🥾 Shoe Shop Admin
           </a>
           <ul class="mt-6">
             <li class="relative px-6 py-3">
@@ -65,11 +65,179 @@
                     d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
                   ></path>
                 </svg>
-                <span class="ml-4">Bảng điều khiển</span>
+                <span class="ml-4">Trang chủ</span>
               </a>
             </li>
           </ul>
           <ul>
+            <!-- Products Menu with Dropdown -->
+            <li class="relative px-6 py-3">
+              <button
+                class="inline-flex items-center justify-between w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
+                @click="toggleProductsMenu"
+                aria-haspopup="true"
+              >
+                <span class="inline-flex items-center">
+                  <svg
+                    class="w-5 h-5"
+                    aria-hidden="true"
+                    fill="none"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path>
+                  </svg>
+                  <span class="ml-4">Sản phẩm giày</span>
+                </span>
+                <svg
+                  class="w-4 h-4"
+                  aria-hidden="true"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                    clip-rule="evenodd"
+                  ></path>
+                </svg>
+              </button>
+              <template x-if="isProductsMenuOpen">
+                <ul
+                  class="p-2 mt-2 space-y-2 overflow-hidden text-sm font-medium text-gray-500 rounded-md shadow-inner bg-gray-50 dark:text-gray-400 dark:bg-gray-900"
+                >
+                  <li class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200">
+                    <a class="w-full cursor-pointer" @click="currentTab = 'products-list'; isProductsMenuOpen = false">Danh sách giày</a>
+                  </li>
+                  <li class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200">
+                    <a class="w-full cursor-pointer" @click="currentTab = 'products-add'; isProductsMenuOpen = false">Thêm giày mới</a>
+                  </li>
+                </ul>
+              </template>
+            </li>
+
+            <!-- Categories Menu with Dropdown -->
+            <li class="relative px-6 py-3">
+              <button
+                class="inline-flex items-center justify-between w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
+                @click="toggleCategoriesMenu"
+                aria-haspopup="true"
+              >
+                <span class="inline-flex items-center">
+                  <svg
+                    class="w-5 h-5"
+                    aria-hidden="true"
+                    fill="none"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"></path>
+                  </svg>
+                  <span class="ml-4">Danh mục giày</span>
+                </span>
+                <svg
+                  class="w-4 h-4"
+                  aria-hidden="true"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                    clip-rule="evenodd"
+                  ></path>
+                </svg>
+              </button>
+              <template x-if="isCategoriesMenuOpen">
+                <ul
+                  class="p-2 mt-2 space-y-2 overflow-hidden text-sm font-medium text-gray-500 rounded-md shadow-inner bg-gray-50 dark:text-gray-400 dark:bg-gray-900"
+                >
+                  <li class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200">
+                    <a class="w-full cursor-pointer" @click="currentTab = 'categories-list'; isCategoriesMenuOpen = false">Loại giày</a>
+                  </li>
+                  <li class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200">
+                    <a class="w-full cursor-pointer" @click="currentTab = 'categories-add'; isCategoriesMenuOpen = false">Thêm loại giày</a>
+                  </li>
+                </ul>
+              </template>
+            </li>
+
+            <!-- Users Menu with Dropdown -->
+            <li class="relative px-6 py-3">
+              <button
+                class="inline-flex items-center justify-between w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
+                @click="toggleUsersMenu"
+                aria-haspopup="true"
+              >
+                <span class="inline-flex items-center">
+                  <svg
+                    class="w-5 h-5"
+                    aria-hidden="true"
+                    fill="none"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"></path>
+                  </svg>
+                  <span class="ml-4">Người dùng</span>
+                </span>
+                <svg
+                  class="w-4 h-4"
+                  aria-hidden="true"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                    clip-rule="evenodd"
+                  ></path>
+                </svg>
+              </button>
+              <template x-if="isUsersMenuOpen">
+                <ul
+                  class="p-2 mt-2 space-y-2 overflow-hidden text-sm font-medium text-gray-500 rounded-md shadow-inner bg-gray-50 dark:text-gray-400 dark:bg-gray-900"
+                >
+                  <li class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200">
+                    <a class="w-full cursor-pointer" @click="currentTab = 'users-list'; isUsersMenuOpen = false">Danh sách người dùng</a>
+                  </li>
+                  <li class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200">
+                    <a class="w-full cursor-pointer" @click="currentTab = 'users-add'; isUsersMenuOpen = false">Thêm người dùng</a>
+                  </li>
+                </ul>
+              </template>
+            </li>
+
+            <!-- Orders Menu (no dropdown) -->
+            <li class="relative px-6 py-3">
+              <a
+                class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 cursor-pointer"
+                @click="currentTab = 'orders-list'"
+              >
+                <svg
+                  class="w-5 h-5"
+                  aria-hidden="true"
+                  fill="none"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                </svg>
+                <span class="ml-4">Đơn hàng</span>
+              </a>
+            </li>
             <li class="relative px-6 py-3">
               <a
                 class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
@@ -95,28 +263,6 @@
             <li class="relative px-6 py-3">
               <a
                 class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
-                href="{{ url('admin/cards') }}"
-              >
-                <svg
-                  class="w-5 h-5"
-                  aria-hidden="true"
-                  fill="none"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"
-                  ></path>
-                </svg>
-                <span class="ml-4">Thẻ</span>
-              </a>
-            </li>
-            <li class="relative px-6 py-3">
-              <a
-                class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
                 href="{{ url('admin/charts') }}"
               >
                 <svg
@@ -135,50 +281,6 @@
                   <path d="M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z"></path>
                 </svg>
                 <span class="ml-4">Biểu đồ</span>
-              </a>
-            </li>
-            <li class="relative px-6 py-3">
-              <a
-                class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
-                href="{{ url('admin/buttons') }}"
-              >
-                <svg
-                  class="w-5 h-5"
-                  aria-hidden="true"
-                  fill="none"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5M7.188 2.239l.777 2.897M5.136 7.965l-2.898-.777M13.95 4.05l-2.122 2.122m-5.657 5.656l-2.12 2.122"
-                  ></path>
-                </svg>
-                <span class="ml-4">Nút</span>
-              </a>
-            </li>
-            <li class="relative px-6 py-3">
-              <a
-                class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
-                href="{{ url('admin/modals') }}"
-              >
-                <svg
-                  class="w-5 h-5"
-                  aria-hidden="true"
-                  fill="none"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"
-                  ></path>
-                </svg>
-                <span class="ml-4">Hộp thoại</span>
               </a>
             </li>
             <li class="relative px-6 py-3">
@@ -347,6 +449,88 @@
             </li>
           </ul>
           <ul>
+            <!-- Menu quản lý mobile -->
+            <li class="relative px-6 py-3">
+              <a
+                class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
+                href="{{ route('admin.products.index') }}"
+              >
+                <svg
+                  class="w-5 h-5"
+                  aria-hidden="true"
+                  fill="none"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path>
+                </svg>
+                <span class="ml-4">Sản phẩm</span>
+              </a>
+            </li>
+            <li class="relative px-6 py-3">
+              <a
+                class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
+                href="{{ route('admin.categories.index') }}"
+              >
+                <svg
+                  class="w-5 h-5"
+                  aria-hidden="true"
+                  fill="none"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"></path>
+                </svg>
+                <span class="ml-4">Danh mục</span>
+              </a>
+            </li>
+            <li class="relative px-6 py-3">
+              <a
+                class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
+                href="{{ route('admin.users.index') }}"
+              >
+                <svg
+                  class="w-5 h-5"
+                  aria-hidden="true"
+                  fill="none"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"></path>
+                </svg>
+                <span class="ml-4">Người dùng</span>
+              </a>
+            </li>
+            <li class="relative px-6 py-3">
+              <a
+                class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
+                href="{{ route('admin.orders.index') }}"
+              >
+                <svg
+                  class="w-5 h-5"
+                  aria-hidden="true"
+                  fill="none"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                </svg>
+                <span class="ml-4">Đơn hàng</span>
+              </a>
+            </li>
+          <ul>
             <li class="relative px-6 py-3">
               <a
                 class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
@@ -372,28 +556,6 @@
             <li class="relative px-6 py-3">
               <a
                 class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
-                href="{{ url('admin/cards') }}"
-              >
-                <svg
-                  class="w-5 h-5"
-                  aria-hidden="true"
-                  fill="none"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"
-                  ></path>
-                </svg>
-                <span class="ml-4">Thẻ</span>
-              </a>
-            </li>
-            <li class="relative px-6 py-3">
-              <a
-                class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
                 href="{{ url('admin/charts') }}"
               >
                 <svg
@@ -412,50 +574,6 @@
                   <path d="M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z"></path>
                 </svg>
                 <span class="ml-4">Biểu đồ</span>
-              </a>
-            </li>
-            <li class="relative px-6 py-3">
-              <a
-                class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
-                href="{{ url('admin/buttons') }}"
-              >
-                <svg
-                  class="w-5 h-5"
-                  aria-hidden="true"
-                  fill="none"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5M7.188 2.239l.777 2.897M5.136 7.965l-2.898-.777M13.95 4.05l-2.122 2.122m-5.657 5.656l-2.12 2.122"
-                  ></path>
-                </svg>
-                <span class="ml-4">Nút</span>
-              </a>
-            </li>
-            <li class="relative px-6 py-3">
-              <a
-                class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
-                href="{{ url('admin/modals') }}"
-              >
-                <svg
-                  class="w-5 h-5"
-                  aria-hidden="true"
-                  fill="none"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"
-                  ></path>
-                </svg>
-                <span class="ml-4">Hộp thoại</span>
               </a>
             </li>
             <li class="relative px-6 py-3">
@@ -827,30 +945,12 @@
         </header>
         <main class="h-full overflow-y-auto">
           <div class="container px-6 mx-auto grid">
-            <h2
-              class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200"
-            >
-              Dashboard
-            </h2>
-            <!-- CTA -->
-            <a
-              class="flex items-center justify-between p-4 mb-8 text-sm font-semibold text-purple-100 bg-purple-600 rounded-lg shadow-md focus:outline-none focus:shadow-outline-purple"
-              href="https://github.com/estevanmaito/windmill-dashboard"
-            >
-              <div class="flex items-center">
-                <svg
-                  class="w-5 h-5 mr-2"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                >
-                  <path
-                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
-                  ></path>
-                </svg>
-                <span>Gắn sao dự án này trên GitHub</span>
-              </div>
-              <span>Xem thêm &RightArrow;</span>
-            </a>
+            
+            <!-- Dashboard Tab -->
+            <div x-show="currentTab === 'dashboard'">
+              <h2 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
+                🥾 Tổng quan cửa hàng giày
+              </h2>
             <!-- Cards -->
             <div class="grid gap-6 mb-8 md:grid-cols-2 xl:grid-cols-4">
               <!-- Card -->
@@ -875,7 +975,7 @@
                   <p
                     class="text-lg font-semibold text-gray-700 dark:text-gray-200"
                   >
-                    6389
+                    2,847
                   </p>
                 </div>
               </div>
@@ -898,12 +998,12 @@
                   <p
                     class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400"
                   >
-                    Số dư tài khoản
+                    Doanh thu tháng này
                   </p>
                   <p
                     class="text-lg font-semibold text-gray-700 dark:text-gray-200"
                   >
-                    $ 46,760.89
+                    ₫ 245,350,000
                   </p>
                 </div>
               </div>
@@ -924,12 +1024,12 @@
                   <p
                     class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400"
                   >
-                    Đơn mới
+                    Đơn hàng mới
                   </p>
                   <p
                     class="text-lg font-semibold text-gray-700 dark:text-gray-200"
                   >
-                    376
+                    123
                   </p>
                 </div>
               </div>
@@ -938,33 +1038,29 @@
                 class="flex items-center p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800"
               >
                 <div
-                  class="p-3 mr-4 text-teal-500 bg-teal-100 rounded-full dark:text-teal-100 dark:bg-teal-500"
+                  class="p-3 mr-4 text-purple-500 bg-purple-100 rounded-full dark:text-purple-100 dark:bg-purple-500"
                 >
                   <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                    <path
-                      fill-rule="evenodd"
-                      d="M18 5v8a2 2 0 01-2 2h-5l-5 4v-4H4a2 2 0 01-2-2V5a2 2 0 012-2h12a2 2 0 012 2zM7 8H5v2h2V8zm2 0h2v2H9V8zm6 0h-2v2h2V8z"
-                      clip-rule="evenodd"
-                    ></path>
+                    <path d="M3 1a1 1 0 000 2h1.22l.305 1.222a.997.997 0 00.01.042l1.358 5.43-.893.892C3.74 11.846 4.632 14 6.414 14H15a1 1 0 000-2H6.414l1-1H14a1 1 0 00.894-.553l3-6A1 1 0 0017 3H6.28l-.31-1.243A1 1 0 005 1H3zM16 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM6.5 18a1.5 1.5 0 100-3 1.5 1.5 0 000 3z"></path>
                   </svg>
                 </div>
                 <div>
                   <p
                     class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400"
                   >
-                    Liên hệ chờ xử lý
+                    Sản phẩm giày
                   </p>
                   <p
                     class="text-lg font-semibold text-gray-700 dark:text-gray-200"
                   >
-                    35
+                    458
                   </p>
                 </div>
               </div>
             </div>
 
             <!-- New Table -->
-            <div class="w-full overflow-hidden rounded-lg shadow-xs">
+            <div class="w-full mb-8 overflow-hidden rounded-lg shadow-xs">
               <div class="w-full overflow-x-auto">
                 <table class="w-full whitespace-no-wrap">
                   <thead>
@@ -972,6 +1068,7 @@
                       class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800"
                     >
                       <th class="px-4 py-3">Khách hàng</th>
+                      <th class="px-4 py-3">Sản phẩm giày</th>
                       <th class="px-4 py-3">Số tiền</th>
                       <th class="px-4 py-3">Trạng thái</th>
                       <th class="px-4 py-3">Ngày</th>
@@ -999,25 +1096,28 @@
                             ></div>
                           </div>
                           <div>
-                            <p class="font-semibold">Hans Burger</p>
+                            <p class="font-semibold">Nguyễn Văn An</p>
                             <p class="text-xs text-gray-600 dark:text-gray-400">
-                              10x Developer
+                              TP. Hồ Chí Minh
                             </p>
                           </div>
                         </div>
                       </td>
                       <td class="px-4 py-3 text-sm">
-                        $ 863.45
+                        Nike Air Max 2024
+                      </td>
+                      <td class="px-4 py-3 text-sm">
+                        ₫ 3,500,000
                       </td>
                       <td class="px-4 py-3 text-xs">
                         <span
                           class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100"
                         >
-                          Đã duyệt
+                          Đã giao
                         </span>
                       </td>
                       <td class="px-4 py-3 text-sm">
-                        6/10/2020
+                        15/10/2025
                       </td>
                     </tr>
 
@@ -1040,25 +1140,28 @@
                             ></div>
                           </div>
                           <div>
-                            <p class="font-semibold">Jolina Angelie</p>
+                            <p class="font-semibold">Trần Thị Bình</p>
                             <p class="text-xs text-gray-600 dark:text-gray-400">
-                              Unemployed
+                              Hà Nội
                             </p>
                           </div>
                         </div>
                       </td>
                       <td class="px-4 py-3 text-sm">
-                        $ 369.95
+                        Adidas Ultraboost
+                      </td>
+                      <td class="px-4 py-3 text-sm">
+                        ₫ 2,850,000
                       </td>
                       <td class="px-4 py-3 text-xs">
                         <span
                           class="px-2 py-1 font-semibold leading-tight text-orange-700 bg-orange-100 rounded-full dark:text-white dark:bg-orange-600"
                         >
-                          Đang chờ
+                          Đang giao
                         </span>
                       </td>
                       <td class="px-4 py-3 text-sm">
-                        6/10/2020
+                        14/10/2025
                       </td>
                     </tr>
 
@@ -1081,25 +1184,28 @@
                             ></div>
                           </div>
                           <div>
-                            <p class="font-semibold">Sarah Curry</p>
+                            <p class="font-semibold">Lê Minh Cường</p>
                             <p class="text-xs text-gray-600 dark:text-gray-400">
-                              Designer
+                              Đà Nẵng
                             </p>
                           </div>
                         </div>
                       </td>
                       <td class="px-4 py-3 text-sm">
-                        $ 86.00
+                        Puma RS-X
+                      </td>
+                      <td class="px-4 py-3 text-sm">
+                        ₫ 1,950,000
                       </td>
                       <td class="px-4 py-3 text-xs">
                         <span
-                          class="px-2 py-1 font-semibold leading-tight text-red-700 bg-red-100 rounded-full dark:text-red-100 dark:bg-red-700"
+                          class="px-2 py-1 font-semibold leading-tight text-blue-700 bg-blue-100 rounded-full dark:text-blue-100 dark:bg-blue-700"
                         >
-                          Từ chối
+                          Đã xác nhận
                         </span>
                       </td>
                       <td class="px-4 py-3 text-sm">
-                        6/10/2020
+                        13/10/2025
                       </td>
                     </tr>
 
@@ -1122,25 +1228,28 @@
                             ></div>
                           </div>
                           <div>
-                            <p class="font-semibold">Rulia Joberts</p>
+                            <p class="font-semibold">Phan Thị Lan</p>
                             <p class="text-xs text-gray-600 dark:text-gray-400">
-                              Actress
+                              Huế
                             </p>
                           </div>
                         </div>
                       </td>
                       <td class="px-4 py-3 text-sm">
-                        $ 1276.45
+                        New Balance 574
+                      </td>
+                      <td class="px-4 py-3 text-sm">
+                        ₫ 2,350,000
                       </td>
                       <td class="px-4 py-3 text-xs">
                         <span
                           class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100"
                         >
-                          Đã duyệt
+                          Đã giao
                         </span>
                       </td>
                       <td class="px-4 py-3 text-sm">
-                        6/10/2020
+                        07/10/2025
                       </td>
                     </tr>
 
@@ -1163,25 +1272,28 @@
                             ></div>
                           </div>
                           <div>
-                            <p class="font-semibold">Wenzel Dashington</p>
+                            <p class="font-semibold">Vũ Quang Hải</p>
                             <p class="text-xs text-gray-600 dark:text-gray-400">
-                              Actor
+                              Vũng Tàu
                             </p>
                           </div>
                         </div>
                       </td>
                       <td class="px-4 py-3 text-sm">
-                        $ 863.45
+                        Vans Old Skool
+                      </td>
+                      <td class="px-4 py-3 text-sm">
+                        ₫ 1,650,000
                       </td>
                       <td class="px-4 py-3 text-xs">
                         <span
                           class="px-2 py-1 font-semibold leading-tight text-gray-700 bg-gray-100 rounded-full dark:text-gray-100 dark:bg-gray-700"
                         >
-                          Hết hạn
+                          Đã hủy
                         </span>
                       </td>
                       <td class="px-4 py-3 text-sm">
-                        6/10/2020
+                        10/10/2025
                       </td>
                     </tr>
 
@@ -1204,25 +1316,28 @@
                             ></div>
                           </div>
                           <div>
-                            <p class="font-semibold">Dave Li</p>
+                            <p class="font-semibold">Đặng Thị Giang</p>
                             <p class="text-xs text-gray-600 dark:text-gray-400">
-                              Influencer
+                              Nha Trang
                             </p>
                           </div>
                         </div>
                       </td>
                       <td class="px-4 py-3 text-sm">
-                        $ 863.45
+                        Reebok Classic
+                      </td>
+                      <td class="px-4 py-3 text-sm">
+                        ₫ 1,450,000
                       </td>
                       <td class="px-4 py-3 text-xs">
                         <span
                           class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100"
                         >
-                          Đã duyệt
+                          Đã giao
                         </span>
                       </td>
                       <td class="px-4 py-3 text-sm">
-                        6/10/2020
+                        09/10/2025
                       </td>
                     </tr>
 
@@ -1245,25 +1360,28 @@
                             ></div>
                           </div>
                           <div>
-                            <p class="font-semibold">Maria Ramovic</p>
+                            <p class="font-semibold">Bùi Thị Hoa</p>
                             <p class="text-xs text-gray-600 dark:text-gray-400">
-                              Runner
+                              Cần Thơ
                             </p>
                           </div>
                         </div>
                       </td>
                       <td class="px-4 py-3 text-sm">
-                        $ 863.45
+                        Adidas Superstar
+                      </td>
+                      <td class="px-4 py-3 text-sm">
+                        ₫ 2,100,000
                       </td>
                       <td class="px-4 py-3 text-xs">
                         <span
                           class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100"
                         >
-                          Đã duyệt
+                          Đã giao
                         </span>
                       </td>
                       <td class="px-4 py-3 text-sm">
-                        6/10/2020
+                        08/10/2025
                       </td>
                     </tr>
 
@@ -1286,25 +1404,28 @@
                             ></div>
                           </div>
                           <div>
-                            <p class="font-semibold">Hitney Wouston</p>
+                            <p class="font-semibold">Hoàng Thị Em</p>
                             <p class="text-xs text-gray-600 dark:text-gray-400">
-                              Singer
+                              Hải Phòng
                             </p>
                           </div>
                         </div>
                       </td>
                       <td class="px-4 py-3 text-sm">
-                        $ 863.45
+                        Converse Chuck Taylor
+                      </td>
+                      <td class="px-4 py-3 text-sm">
+                        ₫ 1,200,000
                       </td>
                       <td class="px-4 py-3 text-xs">
                         <span
                           class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100"
                         >
-                          Đã duyệt
+                          Đã giao
                         </span>
                       </td>
                       <td class="px-4 py-3 text-sm">
-                        6/10/2020
+                        11/10/2025
                       </td>
                     </tr>
 
@@ -1327,25 +1448,28 @@
                             ></div>
                           </div>
                           <div>
-                            <p class="font-semibold">Hans Burger</p>
+                            <p class="font-semibold">Phạm Văn Đức</p>
                             <p class="text-xs text-gray-600 dark:text-gray-400">
-                              10x Developer
+                              Cần Thơ
                             </p>
                           </div>
                         </div>
                       </td>
                       <td class="px-4 py-3 text-sm">
-                        $ 863.45
+                        Nike Revolution
+                      </td>
+                      <td class="px-4 py-3 text-sm">
+                        ₫ 1,750,000
                       </td>
                       <td class="px-4 py-3 text-xs">
                         <span
                           class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100"
                         >
-                          Approved
+                          Đã giao
                         </span>
                       </td>
                       <td class="px-4 py-3 text-sm">
-                        6/10/2020
+                        12/10/2025
                       </td>
                     </tr>
                   </tbody>
@@ -1453,14 +1577,14 @@
             <h2
               class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200"
             >
-              Charts
+              📊 Biểu đồ doanh thu giày
             </h2>
             <div class="grid gap-6 mb-8 md:grid-cols-2">
               <div
                 class="min-w-0 p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800"
               >
                 <h4 class="mb-4 font-semibold text-gray-800 dark:text-gray-300">
-                  Revenue
+                  Doanh thu theo thương hiệu giày
                 </h4>
                 <canvas id="pie"></canvas>
                 <div
@@ -1471,19 +1595,19 @@
                     <span
                       class="inline-block w-3 h-3 mr-1 bg-blue-500 rounded-full"
                     ></span>
-                    <span>Shirts</span>
+                    <span>Nike</span>
                   </div>
                   <div class="flex items-center">
                     <span
                       class="inline-block w-3 h-3 mr-1 bg-teal-600 rounded-full"
                     ></span>
-                    <span>Shoes</span>
+                    <span>Adidas</span>
                   </div>
                   <div class="flex items-center">
                     <span
                       class="inline-block w-3 h-3 mr-1 bg-purple-600 rounded-full"
                     ></span>
-                    <span>Bags</span>
+                    <span>Puma</span>
                   </div>
                 </div>
               </div>
@@ -1491,7 +1615,7 @@
                 class="min-w-0 p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800"
               >
                 <h4 class="mb-4 font-semibold text-gray-800 dark:text-gray-300">
-                  Traffic
+                  Số lượng giày bán ra theo tháng
                 </h4>
                 <canvas id="line"></canvas>
                 <div
@@ -1500,19 +1624,320 @@
                   <!-- Chart legend -->
                   <div class="flex items-center">
                     <span
+                      class="inline-block w-3 h-3 mr-1 bg-blue-500 rounded-full"
+                    ></span>
+                    <span>Nike</span>
+                  </div>
+                  <div class="flex items-center">
+                    <span
                       class="inline-block w-3 h-3 mr-1 bg-teal-600 rounded-full"
                     ></span>
-                    <span>Organic</span>
+                    <span>Adidas</span>
                   </div>
                   <div class="flex items-center">
                     <span
                       class="inline-block w-3 h-3 mr-1 bg-purple-600 rounded-full"
                     ></span>
-                    <span>Paid</span>
+                    <span>Puma</span>
                   </div>
                 </div>
               </div>
             </div>
+            </div>
+            <!-- End Dashboard Tab -->
+
+            <!-- Products List Tab -->
+            <div x-show="currentTab === 'products-list'">
+              <div class="flex justify-between items-center my-6">
+                <h2 class="text-2xl font-semibold text-gray-700 dark:text-gray-200">
+                  🥾 Danh sách Giày
+                </h2>
+                <button @click="currentTab = 'products-add'" class="flex items-center justify-between px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">
+                  <svg class="w-4 h-4 mr-2 -ml-1" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"></path>
+                  </svg>
+                  <span>Thêm giày mới</span>
+                </button>
+              </div>
+              
+              <div class="w-full overflow-hidden rounded-lg shadow-xs">
+                <div class="w-full overflow-x-auto">
+                  <table class="w-full whitespace-no-wrap">
+                    <thead>
+                      <tr class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800">
+                        <th class="px-4 py-3">TÊN GIÀY</th>
+                        <th class="px-4 py-3">LOẠI GIÀY</th>
+                        <th class="px-4 py-3">SIZE</th>
+                        <th class="px-4 py-3">GIÁ</th>
+                        <th class="px-4 py-3">TỒN KHO</th>
+                        <th class="px-4 py-3">TRẠNG THÁI</th>
+                        <th class="px-4 py-3">THAO TÁC</th>
+                      </tr>
+                    </thead>
+                    <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
+                      <tr class="text-gray-700 dark:text-gray-400">
+                        <td colspan="7" class="px-4 py-8 text-center">
+                          <p class="text-gray-500 dark:text-gray-400">Chưa có giày nào. <a href="#" @click.prevent="currentTab = 'products-add'" class="text-purple-600 hover:underline">Thêm đôi giày đầu tiên</a></p>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+
+            <!-- Add Product Tab -->
+            <div x-show="currentTab === 'products-add'">
+              <div class="flex justify-between items-center my-6">
+                <h2 class="text-2xl font-semibold text-gray-700 dark:text-gray-200">
+                  👟 Thêm giày mới
+                </h2>
+                <button @click="currentTab = 'products-list'" class="px-4 py-2 text-sm font-medium leading-5 text-gray-700 transition-colors duration-150 border border-gray-300 rounded-lg dark:text-gray-400 active:bg-transparent hover:border-gray-500 focus:border-gray-500 active:text-gray-500 focus:outline-none focus:shadow-outline-gray">
+                  ← Quay lại
+                </button>
+              </div>
+              
+              <div class="px-4 py-3 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-800">
+                <form>
+                  <label class="block text-sm">
+                    <span class="text-gray-700 dark:text-gray-400">Tên giày</span>
+                    <input class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input" placeholder="VD: Nike Air Max 2024" />
+                  </label>
+
+                  <div class="grid grid-cols-2 gap-4 mt-4">
+                    <label class="block text-sm">
+                      <span class="text-gray-700 dark:text-gray-400">Loại giày</span>
+                      <select class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray">
+                        <option>Chọn loại giày</option>
+                        <option>Giày thể thao</option>
+                        <option>Giày cao gót</option>
+                        <option>Giày sandal</option>
+                        <option>Giày boot</option>
+                        <option>Giày tây</option>
+                      </select>
+                    </label>
+
+                    <label class="block text-sm">
+                      <span class="text-gray-700 dark:text-gray-400">Thương hiệu</span>
+                      <input class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input" placeholder="VD: Nike, Adidas, Puma" />
+                    </label>
+                  </div>
+
+                  <div class="grid grid-cols-3 gap-4 mt-4">
+                    <label class="block text-sm">
+                      <span class="text-gray-700 dark:text-gray-400">Size</span>
+                      <input class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input" placeholder="VD: 38, 39, 40" />
+                    </label>
+
+                    <label class="block text-sm">
+                      <span class="text-gray-700 dark:text-gray-400">Giá (VNĐ)</span>
+                      <input type="number" class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input" placeholder="1,500,000" />
+                    </label>
+
+                    <label class="block text-sm">
+                      <span class="text-gray-700 dark:text-gray-400">Tồn kho</span>
+                      <input type="number" class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input" placeholder="50" />
+                    </label>
+                  </div>
+
+                  <label class="block mt-4 text-sm">
+                    <span class="text-gray-700 dark:text-gray-400">Mô tả giày</span>
+                    <textarea class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-textarea focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray" rows="3" placeholder="Nhập mô tả chi tiết về đôi giày (chất liệu, màu sắc, xuất xứ...)"></textarea>
+                  </label>
+
+                  <div class="flex mt-6 space-x-2">
+                    <button type="submit" class="px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">
+                      Thêm giày
+                    </button>
+                    <button type="button" @click="currentTab = 'products-list'" class="px-4 py-2 text-sm font-medium leading-5 text-gray-700 transition-colors duration-150 border border-gray-300 rounded-lg dark:text-gray-400 active:bg-transparent hover:border-gray-500 focus:border-gray-500 active:text-gray-500 focus:outline-none focus:shadow-outline-gray">
+                      Hủy
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+
+            <!-- Categories List Tab -->
+            <div x-show="currentTab === 'categories-list'">
+              <div class="flex justify-between items-center my-6">
+                <h2 class="text-2xl font-semibold text-gray-700 dark:text-gray-200">
+                  📂 Danh sách Loại giày
+                </h2>
+                <button @click="currentTab = 'categories-add'" class="flex items-center justify-between px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">
+                  <svg class="w-4 h-4 mr-2 -ml-1" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"></path>
+                  </svg>
+                  <span>Thêm loại giày mới</span>
+                </button>
+              </div>
+              
+              <div class="w-full overflow-hidden rounded-lg shadow-xs">
+                <div class="w-full overflow-x-auto">
+                  <table class="w-full whitespace-no-wrap">
+                    <thead>
+                      <tr class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800">
+                        <th class="px-4 py-3">LOẠI GIÀY</th>
+                        <th class="px-4 py-3">MÔ TẢ</th>
+                        <th class="px-4 py-3">SỐ SẢN PHẨM</th>
+                        <th class="px-4 py-3">THAO TÁC</th>
+                      </tr>
+                    </thead>
+                    <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
+                      <tr class="text-gray-700 dark:text-gray-400">
+                        <td colspan="4" class="px-4 py-8 text-center">
+                          <p class="text-gray-500 dark:text-gray-400">Chưa có loại giày nào. <a href="#" @click.prevent="currentTab = 'categories-add'" class="text-purple-600 hover:underline">Thêm loại giày đầu tiên</a></p>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+
+            <!-- Add Category Tab -->
+            <div x-show="currentTab === 'categories-add'">
+              <div class="flex justify-between items-center my-6">
+                <h2 class="text-2xl font-semibold text-gray-700 dark:text-gray-200">
+                  Thêm danh mục mới
+                </h2>
+                <button @click="currentTab = 'categories-list'" class="px-4 py-2 text-sm font-medium leading-5 text-gray-700 transition-colors duration-150 border border-gray-300 rounded-lg dark:text-gray-400 active:bg-transparent hover:border-gray-500 focus:border-gray-500 active:text-gray-500 focus:outline-none focus:shadow-outline-gray">
+                  ← Quay lại
+                </button>
+              </div>
+              
+              <div class="px-4 py-3 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-800">
+                <form>
+                  <label class="block text-sm">
+                    <span class="text-gray-700 dark:text-gray-400">Tên danh mục</span>
+                    <input class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input" placeholder="Nhập tên danh mục" />
+                  </label>
+
+                  <label class="block mt-4 text-sm">
+                    <span class="text-gray-700 dark:text-gray-400">Mô tả</span>
+                    <textarea class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-textarea focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray" rows="3" placeholder="Nhập mô tả danh mục"></textarea>
+                  </label>
+
+                  <div class="flex mt-6 space-x-2">
+                    <button type="submit" class="px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">
+                      Thêm danh mục
+                    </button>
+                    <button type="button" @click="currentTab = 'categories-list'" class="px-4 py-2 text-sm font-medium leading-5 text-gray-700 transition-colors duration-150 border border-gray-300 rounded-lg dark:text-gray-400 active:bg-transparent hover:border-gray-500 focus:border-gray-500 active:text-gray-500 focus:outline-none focus:shadow-outline-gray">
+                      Hủy
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+
+            <!-- Users List Tab -->
+            <div x-show="currentTab === 'users-list'">
+              <div class="flex justify-between items-center my-6">
+                <h2 class="text-2xl font-semibold text-gray-700 dark:text-gray-200">
+                  Danh sách Người dùng
+                </h2>
+                <button @click="currentTab = 'users-add'" class="flex items-center justify-between px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">
+                  <svg class="w-4 h-4 mr-2 -ml-1" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"></path>
+                  </svg>
+                  <span>Thêm người dùng mới</span>
+                </button>
+              </div>
+              
+              <div class="w-full overflow-hidden rounded-lg shadow-xs">
+                <div class="w-full overflow-x-auto">
+                  <table class="w-full whitespace-no-wrap">
+                    <thead>
+                      <tr class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800">
+                        <th class="px-4 py-3">TÊN</th>
+                        <th class="px-4 py-3">EMAIL</th>
+                        <th class="px-4 py-3">VAI TRÒ</th>
+                        <th class="px-4 py-3">NGÀY TẠO</th>
+                        <th class="px-4 py-3">THAO TÁC</th>
+                      </tr>
+                    </thead>
+                    <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
+                      <tr class="text-gray-700 dark:text-gray-400">
+                        <td colspan="5" class="px-4 py-8 text-center">
+                          <p class="text-gray-500 dark:text-gray-400">Chưa có người dùng nào. <a href="#" @click.prevent="currentTab = 'users-add'" class="text-purple-600 hover:underline">Thêm người dùng đầu tiên</a></p>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+
+            <!-- Add User Tab -->
+            <div x-show="currentTab === 'users-add'">
+              <div class="flex justify-between items-center my-6">
+                <h2 class="text-2xl font-semibold text-gray-700 dark:text-gray-200">
+                  Thêm người dùng mới
+                </h2>
+                <button @click="currentTab = 'users-list'" class="px-4 py-2 text-sm font-medium leading-5 text-gray-700 transition-colors duration-150 border border-gray-300 rounded-lg dark:text-gray-400 active:bg-transparent hover:border-gray-500 focus:border-gray-500 active:text-gray-500 focus:outline-none focus:shadow-outline-gray">
+                  ← Quay lại
+                </button>
+              </div>
+              
+              <div class="px-4 py-3 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-800">
+                <form>
+                  <label class="block text-sm">
+                    <span class="text-gray-700 dark:text-gray-400">Tên</span>
+                    <input class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input" placeholder="Nhập tên người dùng" />
+                  </label>
+
+                  <label class="block mt-4 text-sm">
+                    <span class="text-gray-700 dark:text-gray-400">Email</span>
+                    <input type="email" class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input" placeholder="example@email.com" />
+                  </label>
+
+                  <label class="block mt-4 text-sm">
+                    <span class="text-gray-700 dark:text-gray-400">Mật khẩu</span>
+                    <input type="password" class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input" placeholder="******" />
+                  </label>
+
+                  <div class="flex mt-6 space-x-2">
+                    <button type="submit" class="px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">
+                      Thêm người dùng
+                    </button>
+                    <button type="button" @click="currentTab = 'users-list'" class="px-4 py-2 text-sm font-medium leading-5 text-gray-700 transition-colors duration-150 border border-gray-300 rounded-lg dark:text-gray-400 active:bg-transparent hover:border-gray-500 focus:border-gray-500 active:text-gray-500 focus:outline-none focus:shadow-outline-gray">
+                      Hủy
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+
+            <!-- Orders List Tab -->
+            <div x-show="currentTab === 'orders-list'">
+              <h2 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
+                Danh sách Đơn hàng
+              </h2>
+              
+              <div class="w-full overflow-hidden rounded-lg shadow-xs">
+                <div class="w-full overflow-x-auto">
+                  <table class="w-full whitespace-no-wrap">
+                    <thead>
+                      <tr class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800">
+                        <th class="px-4 py-3">MÃ ĐƠN</th>
+                        <th class="px-4 py-3">KHÁCH HÀNG</th>
+                        <th class="px-4 py-3">TỔNG TIỀN</th>
+                        <th class="px-4 py-3">TRẠNG THÁI</th>
+                        <th class="px-4 py-3">NGÀY</th>
+                        <th class="px-4 py-3">THAO TÁC</th>
+                      </tr>
+                    </thead>
+                    <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
+                      <tr class="text-gray-700 dark:text-gray-400">
+                        <td colspan="6" class="px-4 py-8 text-center">
+                          <p class="text-gray-500 dark:text-gray-400">Chưa có đơn hàng nào.</p>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+
           </div>
         </main>
       </div>

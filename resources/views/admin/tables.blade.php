@@ -56,10 +56,91 @@
             </li>
           </ul>
           <ul>
+            <!-- Menu quản lý -->
             <li class="relative px-6 py-3">
               <a
                 class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
-                href="{{ url('admin/pages/forms') }}"
+                href="{{ route('admin.products.index') }}"
+              >
+                <svg
+                  class="w-5 h-5"
+                  aria-hidden="true"
+                  fill="none"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path>
+                </svg>
+                <span class="ml-4">Sản phẩm</span>
+              </a>
+            </li>
+            <li class="relative px-6 py-3">
+              <a
+                class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
+                href="{{ route('admin.categories.index') }}"
+              >
+                <svg
+                  class="w-5 h-5"
+                  aria-hidden="true"
+                  fill="none"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"></path>
+                </svg>
+                <span class="ml-4">Danh mục</span>
+              </a>
+            </li>
+            <li class="relative px-6 py-3">
+              <a
+                class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
+                href="{{ route('admin.users.index') }}"
+              >
+                <svg
+                  class="w-5 h-5"
+                  aria-hidden="true"
+                  fill="none"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"></path>
+                </svg>
+                <span class="ml-4">Người dùng</span>
+              </a>
+            </li>
+            <li class="relative px-6 py-3">
+              <a
+                class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
+                href="{{ route('admin.orders.index') }}"
+              >
+                <svg
+                  class="w-5 h-5"
+                  aria-hidden="true"
+                  fill="none"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                </svg>
+                <span class="ml-4">Đơn hàng</span>
+              </a>
+            </li>
+            <li class="relative px-6 py-3">
+              <a
+                class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
+                href="{{ url('admin/forms') }}"
               >
                 <svg
                   class="w-5 h-5"
@@ -75,29 +156,7 @@
                     d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"
                   ></path>
                 </svg>
-                <span class="ml-4">Forms</span>
-              </a>
-            </li>
-            <li class="relative px-6 py-3">
-              <a
-                class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
-                href="{{ url('admin/pages/cards') }}"
-              >
-                <svg
-                  class="w-5 h-5"
-                  aria-hidden="true"
-                  fill="none"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"
-                  ></path>
-                </svg>
-                <span class="ml-4">Cards</span>
+                <span class="ml-4">Biểu mẫu</span>
               </a>
             </li>
             <li class="relative px-6 py-3">
@@ -120,51 +179,7 @@
                   ></path>
                   <path d="M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z"></path>
                 </svg>
-                <span class="ml-4">Charts</span>
-              </a>
-            </li>
-            <li class="relative px-6 py-3">
-              <a
-                class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
-                href="{{ url('admin/buttons') }}"
-              >
-                <svg
-                  class="w-5 h-5"
-                  aria-hidden="true"
-                  fill="none"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5M7.188 2.239l.777 2.897M5.136 7.965l-2.898-.777M13.95 4.05l-2.122 2.122m-5.657 5.656l-2.12 2.122"
-                  ></path>
-                </svg>
-                <span class="ml-4">Buttons</span>
-              </a>
-            </li>
-            <li class="relative px-6 py-3">
-              <a
-                class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
-                href="{{ url('admin/modals') }}"
-              >
-                <svg
-                  class="w-5 h-5"
-                  aria-hidden="true"
-                  fill="none"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"
-                  ></path>
-                </svg>
-                <span class="ml-4">Modals</span>
+                <span class="ml-4">Biểu đồ</span>
               </a>
             </li>
             <li class="relative px-6 py-3">
@@ -823,25 +838,6 @@
             >
               Tables
             </h2>
-            <!-- CTA -->
-            <a
-              class="flex items-center justify-between p-4 mb-8 text-sm font-semibold text-purple-100 bg-purple-600 rounded-lg shadow-md focus:outline-none focus:shadow-outline-purple"
-              href="https://github.com/estevanmaito/windmill-dashboard"
-            >
-              <div class="flex items-center">
-                <svg
-                  class="w-5 h-5 mr-2"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                >
-                  <path
-                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
-                  ></path>
-                </svg>
-                <span>Star this project on GitHub</span>
-              </div>
-              <span>View more &RightArrow;</span>
-            </a>
 
             <!-- With avatar -->
             <h4
@@ -857,6 +853,7 @@
                       class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800"
                     >
                       <th class="px-4 py-3">Khách hàng</th>
+                      <th class="px-4 py-3">Sản phẩm giày</th>
                       <th class="px-4 py-3">Số tiền</th>
                       <th class="px-4 py-3">Trạng thái</th>
                       <th class="px-4 py-3">Ngày</th>
@@ -884,25 +881,28 @@
                             ></div>
                           </div>
                           <div>
-                            <p class="font-semibold">Hans Burger</p>
+                            <p class="font-semibold">Nguyễn Văn An</p>
                             <p class="text-xs text-gray-600 dark:text-gray-400">
-                              10x Developer
+                              TP. Hồ Chí Minh
                             </p>
                           </div>
                         </div>
                       </td>
                       <td class="px-4 py-3 text-sm">
-                        $ 863.45
+                        Nike Air Max 2024
+                      </td>
+                      <td class="px-4 py-3 text-sm">
+                        ₫ 3,500,000
                       </td>
                       <td class="px-4 py-3 text-xs">
                         <span
                           class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100"
                         >
-                          Đã duyệt
+                          Đã giao
                         </span>
                       </td>
                       <td class="px-4 py-3 text-sm">
-                        6/10/2020
+                        15/10/2025
                       </td>
                     </tr>
 
@@ -925,25 +925,28 @@
                             ></div>
                           </div>
                           <div>
-                            <p class="font-semibold">Jolina Angelie</p>
+                            <p class="font-semibold">Nguyễn Thị Mai</p>
                             <p class="text-xs text-gray-600 dark:text-gray-400">
-                              Unemployed
+                              Bắc Ninh
                             </p>
                           </div>
                         </div>
                       </td>
                       <td class="px-4 py-3 text-sm">
-                        $ 369.95
+                        Nike Cortez
+                      </td>
+                      <td class="px-4 py-3 text-sm">
+                        ₫ 2,250,000
                       </td>
                       <td class="px-4 py-3 text-xs">
                         <span
-                          class="px-2 py-1 font-semibold leading-tight text-orange-700 bg-orange-100 rounded-full dark:text-white dark:bg-orange-600"
+                          class="px-2 py-1 font-semibold leading-tight text-orange-700 bg-orange-100 rounded-full dark:text-orange-100 dark:bg-orange-600"
                         >
                           Đang chờ
                         </span>
                       </td>
                       <td class="px-4 py-3 text-sm">
-                        6/10/2020
+                        16/10/2025
                       </td>
                     </tr>
 
@@ -966,15 +969,18 @@
                             ></div>
                           </div>
                           <div>
-                            <p class="font-semibold">Sarah Curry</p>
+                            <p class="font-semibold">Lương Văn Tài</p>
                             <p class="text-xs text-gray-600 dark:text-gray-400">
-                              Designer
+                              Thanh Hóa
                             </p>
                           </div>
                         </div>
                       </td>
                       <td class="px-4 py-3 text-sm">
-                        $ 86.00
+                        Adidas NMD R1
+                      </td>
+                      <td class="px-4 py-3 text-sm">
+                        ₫ 2,600,000
                       </td>
                       <td class="px-4 py-3 text-xs">
                         <span
@@ -984,7 +990,7 @@
                         </span>
                       </td>
                       <td class="px-4 py-3 text-sm">
-                        6/10/2020
+                        17/10/2025
                       </td>
                     </tr>
 
@@ -1007,25 +1013,28 @@
                             ></div>
                           </div>
                           <div>
-                            <p class="font-semibold">Rulia Joberts</p>
+                            <p class="font-semibold">Phan Thị Lan</p>
                             <p class="text-xs text-gray-600 dark:text-gray-400">
-                              Actress
+                              Huế
                             </p>
                           </div>
                         </div>
                       </td>
                       <td class="px-4 py-3 text-sm">
-                        $ 1276.45
+                        New Balance 574
+                      </td>
+                      <td class="px-4 py-3 text-sm">
+                        ₫ 2,350,000
                       </td>
                       <td class="px-4 py-3 text-xs">
                         <span
                           class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100"
                         >
-                          Đã duyệt
+                          Đã giao
                         </span>
                       </td>
                       <td class="px-4 py-3 text-sm">
-                        6/10/2020
+                        07/10/2025
                       </td>
                     </tr>
 
@@ -1048,25 +1057,28 @@
                             ></div>
                           </div>
                           <div>
-                            <p class="font-semibold">Wenzel Dashington</p>
+                            <p class="font-semibold">Đỗ Văn Nam</p>
                             <p class="text-xs text-gray-600 dark:text-gray-400">
-                              Actor
+                              Quy Nhơn
                             </p>
                           </div>
                         </div>
                       </td>
                       <td class="px-4 py-3 text-sm">
-                        $ 863.45
+                        Asics Gel-Kayano
+                      </td>
+                      <td class="px-4 py-3 text-sm">
+                        ₫ 3,200,000
                       </td>
                       <td class="px-4 py-3 text-xs">
                         <span
                           class="px-2 py-1 font-semibold leading-tight text-gray-700 bg-gray-100 rounded-full dark:text-gray-100 dark:bg-gray-700"
                         >
-                          Hết hạn
+                          Đã hủy
                         </span>
                       </td>
                       <td class="px-4 py-3 text-sm">
-                        6/10/2020
+                        06/10/2025
                       </td>
                     </tr>
 
@@ -1089,25 +1101,28 @@
                             ></div>
                           </div>
                           <div>
-                            <p class="font-semibold">Dave Li</p>
+                            <p class="font-semibold">Cao Thị Oanh</p>
                             <p class="text-xs text-gray-600 dark:text-gray-400">
-                              Influencer
+                              Biên Hòa
                             </p>
                           </div>
                         </div>
                       </td>
                       <td class="px-4 py-3 text-sm">
-                        $ 863.45
+                        Skechers D'Lites
+                      </td>
+                      <td class="px-4 py-3 text-sm">
+                        ₫ 1,850,000
                       </td>
                       <td class="px-4 py-3 text-xs">
                         <span
                           class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100"
                         >
-                          Đã duyệt
+                          Đang giao
                         </span>
                       </td>
                       <td class="px-4 py-3 text-sm">
-                        6/10/2020
+                        05/10/2025
                       </td>
                     </tr>
 
@@ -1130,25 +1145,28 @@
                             ></div>
                           </div>
                           <div>
-                            <p class="font-semibold">Maria Ramovic</p>
+                            <p class="font-semibold">Ngô Minh Phương</p>
                             <p class="text-xs text-gray-600 dark:text-gray-400">
-                              Runner
+                              Thủ Đức
                             </p>
                           </div>
                         </div>
                       </td>
                       <td class="px-4 py-3 text-sm">
-                        $ 863.45
+                        Fila Disruptor
+                      </td>
+                      <td class="px-4 py-3 text-sm">
+                        ₫ 1,550,000
                       </td>
                       <td class="px-4 py-3 text-xs">
                         <span
                           class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100"
                         >
-                          Approved
+                          Đã giao
                         </span>
                       </td>
                       <td class="px-4 py-3 text-sm">
-                        6/10/2020
+                        04/10/2025
                       </td>
                     </tr>
 
@@ -1171,25 +1189,28 @@
                             ></div>
                           </div>
                           <div>
-                            <p class="font-semibold">Hitney Wouston</p>
+                            <p class="font-semibold">Lý Thanh Tùng</p>
                             <p class="text-xs text-gray-600 dark:text-gray-400">
-                              Singer
+                              Bình Dương
                             </p>
                           </div>
                         </div>
                       </td>
                       <td class="px-4 py-3 text-sm">
-                        $ 863.45
+                        Under Armour HOVR
+                      </td>
+                      <td class="px-4 py-3 text-sm">
+                        ₫ 2,650,000
                       </td>
                       <td class="px-4 py-3 text-xs">
                         <span
                           class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100"
                         >
-                          Approved
+                          Đã xác nhận
                         </span>
                       </td>
                       <td class="px-4 py-3 text-sm">
-                        6/10/2020
+                        03/10/2025
                       </td>
                     </tr>
 
@@ -1212,25 +1233,28 @@
                             ></div>
                           </div>
                           <div>
-                            <p class="font-semibold">Hans Burger</p>
+                            <p class="font-semibold">Trần Thị Bình</p>
                             <p class="text-xs text-gray-600 dark:text-gray-400">
-                              10x Developer
+                              Hà Nội
                             </p>
                           </div>
                         </div>
                       </td>
                       <td class="px-4 py-3 text-sm">
-                        $ 863.45
+                        Adidas Ultraboost
+                      </td>
+                      <td class="px-4 py-3 text-sm">
+                        ₫ 2,850,000
                       </td>
                       <td class="px-4 py-3 text-xs">
                         <span
                           class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100"
                         >
-                          Approved
+                          Đang giao
                         </span>
                       </td>
                       <td class="px-4 py-3 text-sm">
-                        6/10/2020
+                        14/10/2025
                       </td>
                     </tr>
                   </tbody>
@@ -1347,11 +1371,12 @@
                     <tr
                       class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800"
                     >
-                      <th class="px-4 py-3">Client</th>
-                      <th class="px-4 py-3">Amount</th>
-                      <th class="px-4 py-3">Status</th>
-                      <th class="px-4 py-3">Date</th>
-                      <th class="px-4 py-3">Actions</th>
+                      <th class="px-4 py-3">Khách hàng</th>
+                      <th class="px-4 py-3">Sản phẩm giày</th>
+                      <th class="px-4 py-3">Số tiền</th>
+                      <th class="px-4 py-3">Trạng thái</th>
+                      <th class="px-4 py-3">Ngày</th>
+                      <th class="px-4 py-3">Thao tác</th>
                     </tr>
                   </thead>
                   <tbody
@@ -1376,25 +1401,28 @@
                             ></div>
                           </div>
                           <div>
-                            <p class="font-semibold">Hans Burger</p>
+                            <p class="font-semibold">Lê Minh Cường</p>
                             <p class="text-xs text-gray-600 dark:text-gray-400">
-                              10x Developer
+                              Đà Nẵng
                             </p>
                           </div>
                         </div>
                       </td>
                       <td class="px-4 py-3 text-sm">
-                        $ 863.45
+                        Puma RS-X
+                      </td>
+                      <td class="px-4 py-3 text-sm">
+                        ₫ 1,950,000
                       </td>
                       <td class="px-4 py-3 text-xs">
                         <span
                           class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100"
                         >
-                          Approved
+                          Đã xác nhận
                         </span>
                       </td>
                       <td class="px-4 py-3 text-sm">
-                        6/10/2020
+                        13/10/2025
                       </td>
                       <td class="px-4 py-3">
                         <div class="flex items-center space-x-4 text-sm">
@@ -1453,25 +1481,28 @@
                             ></div>
                           </div>
                           <div>
-                            <p class="font-semibold">Jolina Angelie</p>
+                            <p class="font-semibold">Nguyễn Thị Mai</p>
                             <p class="text-xs text-gray-600 dark:text-gray-400">
-                              Unemployed
+                              Bắc Ninh
                             </p>
                           </div>
                         </div>
                       </td>
                       <td class="px-4 py-3 text-sm">
-                        $ 369.95
+                        Nike Cortez
+                      </td>
+                      <td class="px-4 py-3 text-sm">
+                        ₫ 2,250,000
                       </td>
                       <td class="px-4 py-3 text-xs">
                         <span
-                          class="px-2 py-1 font-semibold leading-tight text-orange-700 bg-orange-100 rounded-full dark:text-white dark:bg-orange-600"
+                          class="px-2 py-1 font-semibold leading-tight text-orange-700 bg-orange-100 rounded-full dark:text-orange-100 dark:bg-orange-600"
                         >
-                          Pending
+                          Đang chờ
                         </span>
                       </td>
                       <td class="px-4 py-3 text-sm">
-                        6/10/2020
+                        16/10/2025
                       </td>
                       <td class="px-4 py-3">
                         <div class="flex items-center space-x-4 text-sm">
@@ -1530,25 +1561,28 @@
                             ></div>
                           </div>
                           <div>
-                            <p class="font-semibold">Sarah Curry</p>
+                            <p class="font-semibold">Lương Văn Tài</p>
                             <p class="text-xs text-gray-600 dark:text-gray-400">
-                              Designer
+                              Thanh Hóa
                             </p>
                           </div>
                         </div>
                       </td>
                       <td class="px-4 py-3 text-sm">
-                        $ 86.00
+                        Adidas NMD R1
+                      </td>
+                      <td class="px-4 py-3 text-sm">
+                        ₫ 2,600,000
                       </td>
                       <td class="px-4 py-3 text-xs">
                         <span
                           class="px-2 py-1 font-semibold leading-tight text-red-700 bg-red-100 rounded-full dark:text-red-100 dark:bg-red-700"
                         >
-                          Denied
+                          Từ chối
                         </span>
                       </td>
                       <td class="px-4 py-3 text-sm">
-                        6/10/2020
+                        17/10/2025
                       </td>
                       <td class="px-4 py-3">
                         <div class="flex items-center space-x-4 text-sm">
@@ -1607,25 +1641,28 @@
                             ></div>
                           </div>
                           <div>
-                            <p class="font-semibold">Rulia Joberts</p>
+                            <p class="font-semibold">Mai Thị Kim</p>
                             <p class="text-xs text-gray-600 dark:text-gray-400">
-                              Actress
+                              Long Xuyên
                             </p>
                           </div>
                         </div>
                       </td>
                       <td class="px-4 py-3 text-sm">
-                        $ 1276.45
+                        Jordan Air 1
+                      </td>
+                      <td class="px-4 py-3 text-sm">
+                        ₫ 4,200,000
                       </td>
                       <td class="px-4 py-3 text-xs">
                         <span
                           class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100"
                         >
-                          Approved
+                          Đã giao
                         </span>
                       </td>
                       <td class="px-4 py-3 text-sm">
-                        6/10/2020
+                        02/10/2025
                       </td>
                       <td class="px-4 py-3">
                         <div class="flex items-center space-x-4 text-sm">
@@ -1684,25 +1721,28 @@
                             ></div>
                           </div>
                           <div>
-                            <p class="font-semibold">Wenzel Dashington</p>
+                            <p class="font-semibold">Trịnh Văn Quân</p>
                             <p class="text-xs text-gray-600 dark:text-gray-400">
-                              Actor
+                              Rạch Giá
                             </p>
                           </div>
                         </div>
                       </td>
                       <td class="px-4 py-3 text-sm">
-                        $ 863.45
+                        Mizuno Wave Rider
+                      </td>
+                      <td class="px-4 py-3 text-sm">
+                        ₫ 2,750,000
                       </td>
                       <td class="px-4 py-3 text-xs">
                         <span
                           class="px-2 py-1 font-semibold leading-tight text-gray-700 bg-gray-100 rounded-full dark:text-gray-100 dark:bg-gray-700"
                         >
-                          Expired
+                          Đã hủy
                         </span>
                       </td>
                       <td class="px-4 py-3 text-sm">
-                        6/10/2020
+                        01/10/2025
                       </td>
                       <td class="px-4 py-3">
                         <div class="flex items-center space-x-4 text-sm">
@@ -1761,25 +1801,28 @@
                             ></div>
                           </div>
                           <div>
-                            <p class="font-semibold">Dave Li</p>
+                            <p class="font-semibold">Đinh Thị Hương</p>
                             <p class="text-xs text-gray-600 dark:text-gray-400">
-                              Influencer
+                              Mỹ Tho
                             </p>
                           </div>
                         </div>
                       </td>
                       <td class="px-4 py-3 text-sm">
-                        $ 863.45
+                        Adidas Stan Smith
+                      </td>
+                      <td class="px-4 py-3 text-sm">
+                        ₫ 2,450,000
                       </td>
                       <td class="px-4 py-3 text-xs">
                         <span
                           class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100"
                         >
-                          Approved
+                          Đang giao
                         </span>
                       </td>
                       <td class="px-4 py-3 text-sm">
-                        6/10/2020
+                        30/09/2025
                       </td>
                       <td class="px-4 py-3">
                         <div class="flex items-center space-x-4 text-sm">
@@ -1838,25 +1881,28 @@
                             ></div>
                           </div>
                           <div>
-                            <p class="font-semibold">Maria Ramovic</p>
+                            <p class="font-semibold">Hồ Văn Sơn</p>
                             <p class="text-xs text-gray-600 dark:text-gray-400">
-                              Runner
+                              Pleiku
                             </p>
                           </div>
                         </div>
                       </td>
                       <td class="px-4 py-3 text-sm">
-                        $ 863.45
+                        Nike ZoomX
+                      </td>
+                      <td class="px-4 py-3 text-sm">
+                        ₫ 3,850,000
                       </td>
                       <td class="px-4 py-3 text-xs">
                         <span
                           class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100"
                         >
-                          Approved
+                          Đã giao
                         </span>
                       </td>
                       <td class="px-4 py-3 text-sm">
-                        6/10/2020
+                        29/09/2025
                       </td>
                       <td class="px-4 py-3">
                         <div class="flex items-center space-x-4 text-sm">
@@ -1915,25 +1961,28 @@
                             ></div>
                           </div>
                           <div>
-                            <p class="font-semibold">Hitney Wouston</p>
+                            <p class="font-semibold">Phạm Thị Thanh</p>
                             <p class="text-xs text-gray-600 dark:text-gray-400">
-                              Singer
+                              Buôn Ma Thuột
                             </p>
                           </div>
                         </div>
                       </td>
                       <td class="px-4 py-3 text-sm">
-                        $ 863.45
+                        Puma Suede Classic
+                      </td>
+                      <td class="px-4 py-3 text-sm">
+                        ₫ 1,950,000
                       </td>
                       <td class="px-4 py-3 text-xs">
                         <span
                           class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100"
                         >
-                          Approved
+                          Đã xác nhận
                         </span>
                       </td>
                       <td class="px-4 py-3 text-sm">
-                        6/10/2020
+                        28/09/2025
                       </td>
                       <td class="px-4 py-3">
                         <div class="flex items-center space-x-4 text-sm">
@@ -1992,25 +2041,28 @@
                             ></div>
                           </div>
                           <div>
-                            <p class="font-semibold">Hans Burger</p>
+                            <p class="font-semibold">Vũ Quang Hải</p>
                             <p class="text-xs text-gray-600 dark:text-gray-400">
-                              10x Developer
+                              Vũng Tàu
                             </p>
                           </div>
                         </div>
                       </td>
                       <td class="px-4 py-3 text-sm">
-                        $ 863.45
+                        Vans Old Skool
+                      </td>
+                      <td class="px-4 py-3 text-sm">
+                        ₫ 1,650,000
                       </td>
                       <td class="px-4 py-3 text-xs">
                         <span
                           class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100"
                         >
-                          Approved
+                          Đã giao
                         </span>
                       </td>
                       <td class="px-4 py-3 text-sm">
-                        6/10/2020
+                        12/10/2025
                       </td>
                       <td class="px-4 py-3">
                         <div class="flex items-center space-x-4 text-sm">

@@ -47,6 +47,23 @@ function data() {
     togglePagesMenu() {
       this.isPagesMenuOpen = !this.isPagesMenuOpen
     },
+    isProductsMenuOpen: false,
+    toggleProductsMenu() {
+      this.isProductsMenuOpen = !this.isProductsMenuOpen
+    },
+    isCategoriesMenuOpen: false,
+    toggleCategoriesMenu() {
+      this.isCategoriesMenuOpen = !this.isCategoriesMenuOpen
+    },
+    isUsersMenuOpen: false,
+    toggleUsersMenu() {
+      this.isUsersMenuOpen = !this.isUsersMenuOpen
+    },
+    // Tabs for single page admin
+    currentTab: 'dashboard',
+    switchTab(tab) {
+      this.currentTab = tab
+    },
     // Modal
     isModalOpen: false,
     trapCleanup: null,
