@@ -93,5 +93,5 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('pages/{page}', [AdminPageController::class, 'show'])->where('page', '.*')->name('pages.show');
 });
 
-
+////sdfghjk
 
