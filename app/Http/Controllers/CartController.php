@@ -40,6 +40,15 @@ class CartController extends Controller
 
         session(['cart' => $cart]);
 
+        // If AJAX/Fetch request, return JSON
+        if ($request->wantsJson() || $request->ajax() || $request->header('Accept') === 'application/json') {
+            return response()->json([
+                'status' => 'success',
+                'message' => 'Đã thêm vào giỏ hàng',
+                'cart_count' => array_sum(array_column($cart, 'qty')),
+            ]);
+        }
+
         return back()->with('status', 'Đã thêm vào giỏ hàng');
     }
 

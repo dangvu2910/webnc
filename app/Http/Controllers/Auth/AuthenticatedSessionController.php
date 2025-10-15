@@ -15,19 +15,33 @@ class AuthenticatedSessionController extends Controller
 
     public function store(Request $request)
     {
-        $credentials = $request->validate([
-            'email' => ['required', 'email'],
+        $data = $request->validate([
+            'login' => ['required', 'string'], // username or email
             'password' => ['required'],
         ]);
 
+        $login = $data['login'];
+
+        // Determine whether login is email or username
+        $field = filter_var($login, FILTER_VALIDATE_EMAIL) ? 'email' : 'username';
+
+        $credentials = [$field => $login, 'password' => $data['password']];
+
         if (Auth::attempt($credentials, $request->filled('remember'))) {
             $request->session()->regenerate();
+            $user = Auth::user();
+            // Redirect admins to admin dashboard
+            if ($user && $user->is_admin) {
+                return redirect()->intended('/admin');
+            }
+
+            // Redirect regular users to homepage so they can continue shopping
             return redirect()->intended('/');
         }
 
         return back()->withErrors([
-            'email' => 'Thông tin đăng nhập không đúng.',
-        ])->onlyInput('email');
+            'login' => 'Thông tin đăng nhập không đúng.',
+        ])->onlyInput('login');
     }
 
     public function destroy(Request $request)

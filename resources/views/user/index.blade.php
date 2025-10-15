@@ -8,6 +8,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="format-detection" content="telephone=no">
   <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="csrf-token" content="{{ csrf_token() }}">
   <meta name="author" content="TemplatesJungle">
   <meta name="keywords" content="Cửa hàng trực tuyến, giày dép">
   <meta name="description" content="Stylish - Mẫu cửa hàng giày trực tuyến">
@@ -168,146 +169,49 @@
       </div>
       <div class="product-content padding-small">
         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-5">
-          <div class="col mb-4">
-            <div class="product-card position-relative">
-              <div class="card-img">
-                <img src="{{ asset('user/images/card-item1.jpg') }}"" alt="product-item" class="product-image img-fluid">
-                <div class="cart-concern position-absolute d-flex justify-content-center">
-                  <div class="cart-button d-flex gap-2 justify-content-center align-items-center">
-                    <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#modallong">
-                      <svg class="shopping-carriage">
-                        <use xlink:href="#shopping-carriage"></use>
-                      </svg>
-                    </button>
-                    <button type="button" class="btn btn-light" data-bs-target="#modaltoggle" data-bs-toggle="modal">
-                      <svg class="quick-view">
-                        <use xlink:href="#quick-view"></use>
-                      </svg>
-                    </button>
+          @php
+            // Accept either a collection keyed by numeric id or associative array (legacy)
+            $list = $products ?? (isset($products) ? $products : null);
+          @endphp
+          @if(isset($products) && count($products))
+            @foreach($products as $product)
+              @php
+                $id = $product->sku ?? $product->id;
+                $title = $product->name ?? 'Sản phẩm';
+                $price = $product->price ?? 0;
+                $image = $product->image ?? 'user/images/card-item1.jpg';
+              @endphp
+              <div class="col mb-4">
+                <div class="product-card position-relative">
+                  <div class="card-img">
+                    <a href="{{ url('/product/'.$id) }}">
+                      <img src="{{ asset($image) }}" alt="product-item" class="product-image img-fluid">
+                    </a>
+                    <div class="cart-concern position-absolute d-flex justify-content-center">
+                      <div class="cart-button d-flex gap-2 justify-content-center align-items-center">
+                        <a href="#" data-sku="{{ $id }}" data-name="{{ e($title) }}" data-price="{{ $price }}" class="btn btn-light ajax-add-cart">
+                          <svg class="shopping-carriage"><use xlink:href="#shopping-carriage"></use></svg>
+                        </a>
+                        <a href="{{ url('/product/'.$id) }}" class="btn btn-light">
+                          <svg class="quick-view"><use xlink:href="#quick-view"></use></svg>
+                        </a>
+                      </div>
+                    </div>
+                    <!-- cart-concern -->
+                  </div>
+                  <div class="card-detail d-flex justify-content-between align-items-center mt-3">
+                    <h3 class="card-title fs-6 fw-normal m-0">
+                      <a href="{{ url('/product/'.$id) }}">{{ $title }}</a>
+                    </h3>
+                    <span class="card-price fw-bold">${{ number_format($price, 2) }}</span>
                   </div>
                 </div>
-                <!-- cart-concern -->
               </div>
-              <div class="card-detail d-flex justify-content-between align-items-center mt-3">
-                <h3 class="card-title fs-6 fw-normal m-0">
-                  <a href="index.html">Giày chạy bộ nam</a>
-                </h3>
-                <span class="card-price fw-bold">$99</span>
-              </div>
-            </div>
-          </div>
-          <div class="col mb-4">
-            <div class="product-card position-relative">
-              <div class="card-img">
-                <img src="{{ asset('user/images/card-item2.jpg') }}"" alt="product-item" class="product-image img-fluid">
-                <div class="cart-concern position-absolute d-flex justify-content-center">
-                  <div class="cart-button d-flex gap-2 justify-content-center align-items-center">
-                    <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#modallong">
-                      <svg class="shopping-carriage">
-                        <use xlink:href="#shopping-carriage"></use>
-                      </svg>
-                    </button>
-                    <button type="button" class="btn btn-light" data-bs-target="#modaltoggle" data-bs-toggle="modal">
-                      <svg class="quick-view">
-                        <use xlink:href="#quick-view"></use>
-                      </svg>
-                    </button>
-                  </div>
-                </div>
-                <!-- cart-concern -->
-              </div>
-              <div class="card-detail d-flex justify-content-between align-items-center mt-3">
-                <h3 class="card-title fs-6 fw-normal m-0">
-                  <a href="index.html">Giày chạy bộ nam</a>
-                </h3>
-                <span class="card-price fw-bold">$99</span>
-              </div>
-            </div>
-          </div>
-          <div class="col mb-4">
-            <div class="product-card position-relative">
-              <div class="card-img">
-                <img src="{{ asset('user/images/card-item3.jpg') }}"" alt="product-item" class="product-image img-fluid">
-                <div class="cart-concern position-absolute d-flex justify-content-center">
-                  <div class="cart-button d-flex gap-2 justify-content-center align-items-center">
-                    <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#modallong">
-                      <svg class="shopping-carriage">
-                        <use xlink:href="#shopping-carriage"></use>
-                      </svg>
-                    </button>
-                    <button type="button" class="btn btn-light" data-bs-target="#modaltoggle" data-bs-toggle="modal">
-                      <svg class="quick-view">
-                        <use xlink:href="#quick-view"></use>
-                      </svg>
-                    </button>
-                  </div>
-                </div>
-                <!-- cart-concern -->
-              </div>
-              <div class="card-detail d-flex justify-content-between align-items-center mt-3">
-                <h3 class="card-title fs-6 fw-normal m-0">
-                  <a href="index.html">Giày chạy bộ nam</a>
-                </h3>
-                <span class="card-price fw-bold">$99</span>
-              </div>
-            </div>
-          </div>
-          <div class="col mb-4">
-            <div class="product-card position-relative">
-              <div class="card-img">
-                <img src="{{ asset('user/images/card-item4.jpg') }}"" alt="product-item" class="product-image img-fluid">
-                <div class="cart-concern position-absolute d-flex justify-content-center">
-                  <div class="cart-button d-flex gap-2 justify-content-center align-items-center">
-                    <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#modallong">
-                      <svg class="shopping-carriage">
-                        <use xlink:href="#shopping-carriage"></use>
-                      </svg>
-                    </button>
-                    <button type="button" class="btn btn-light" data-bs-target="#modaltoggle" data-bs-toggle="modal">
-                      <svg class="quick-view">
-                        <use xlink:href="#quick-view"></use>
-                      </svg>
-                    </button>
-                  </div>
-                </div>
-                <!-- cart-concern -->
-              </div>
-              <div class="card-detail d-flex justify-content-between align-items-center mt-3">
-                <h3 class="card-title fs-6 fw-normal m-0">
-                  <a href="index.html">Giày chạy bộ nam</a>
-                </h3>
-                <span class="card-price fw-bold">$99</span>
-              </div>
-            </div>
-          </div>
-          <div class="col mb-4">
-            <div class="product-card position-relative">
-              <div class="card-img">
-                <img src="{{ asset('user/images/card-item5.jpg') }}"" alt="product-item" class="product-image img-fluid">
-                <div class="cart-concern position-absolute d-flex justify-content-center">
-                  <div class="cart-button d-flex gap-2 justify-content-center align-items-center">
-                    <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#modallong">
-                      <svg class="shopping-carriage">
-                        <use xlink:href="#shopping-carriage"></use>
-                      </svg>
-                    </button>
-                    <button type="button" class="btn btn-light" data-bs-target="#modaltoggle" data-bs-toggle="modal">
-                      <svg class="quick-view">
-                        <use xlink:href="#quick-view"></use>
-                      </svg>
-                    </button>
-                  </div>
-                </div>
-                <!-- cart-concern -->
-              </div>
-              <div class="card-detail d-flex justify-content-between align-items-center mt-3">
-                <h3 class="card-title fs-6 fw-normal m-0">
-                  <a href="index.html">Giày chạy bộ nam</a>
-                </h3>
-                <span class="card-price fw-bold">$99</span>
-              </div>
-            </div>
-          </div>
+            @endforeach
+          @else
+            {{-- fallback: keep static items if DB not seeded --}}
+            <div class="col mb-4">No products available.</div>
+          @endif
         </div>
       </div>
     </div>
@@ -353,26 +257,28 @@
           <div class="col mb-4 mb-3">
             <div class="product-card position-relative">
               <div class="card-img">
-                <img src="{{ asset('user/images/card-item6.jpg') }}"" alt="product-item" class="product-image img-fluid">
+                <a href="{{ url('/product/p6') }}">
+                  <img src="{{ asset('user/images/card-item6.jpg') }}" alt="product-item" class="product-image img-fluid">
+                </a>
                 <div class="cart-concern position-absolute d-flex justify-content-center">
                   <div class="cart-button d-flex gap-2 justify-content-center align-items-center">
-                    <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#modallong">
+                    <a href="{{ url('/product/p6') }}" class="btn btn-light">
                       <svg class="shopping-carriage">
                         <use xlink:href="#shopping-carriage"></use>
                       </svg>
-                    </button>
-                    <button type="button" class="btn btn-light" data-bs-target="#modaltoggle" data-bs-toggle="modal">
+                    </a>
+                    <a href="{{ url('/product/p6') }}" class="btn btn-light">
                       <svg class="quick-view">
                         <use xlink:href="#quick-view"></use>
                       </svg>
-                    </button>
+                    </a>
                   </div>
                 </div>
                 <!-- cart-concern -->
               </div>
               <div class="card-detail d-flex justify-content-between align-items-center mt-3">
                 <h3 class="card-title fs-6 fw-normal m-0">
-                  <a href="index.html">Giày chạy bộ nam</a>
+                  <a href="{{ url('/product/p6') }}">Giày chạy bộ nam</a>
                 </h3>
                 <span class="card-price fw-bold">$99</span>
               </div>
@@ -381,26 +287,28 @@
           <div class="col mb-4 mb-3">
             <div class="product-card position-relative">
               <div class="card-img">
-                <img src="{{ asset('user/images/card-item7.jpg') }}"" alt="product-item" class="product-image img-fluid">
+                <a href="{{ url('/product/p7') }}">
+                  <img src="{{ asset('user/images/card-item7.jpg') }}" alt="product-item" class="product-image img-fluid">
+                </a>
                 <div class="cart-concern position-absolute d-flex justify-content-center">
                   <div class="cart-button d-flex gap-2 justify-content-center align-items-center">
-                    <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#modallong">
+                    <a href="{{ url('/product/p7') }}" class="btn btn-light">
                       <svg class="shopping-carriage">
                         <use xlink:href="#shopping-carriage"></use>
                       </svg>
-                    </button>
-                    <button type="button" class="btn btn-light" data-bs-target="#modaltoggle" data-bs-toggle="modal">
+                    </a>
+                    <a href="{{ url('/product/p7') }}" class="btn btn-light">
                       <svg class="quick-view">
                         <use xlink:href="#quick-view"></use>
                       </svg>
-                    </button>
+                    </a>
                   </div>
                 </div>
                 <!-- cart-concern -->
               </div>
               <div class="card-detail d-flex justify-content-between align-items-center mt-3">
                 <h3 class="card-title fs-6 fw-normal m-0">
-                  <a href="index.html">Giày chạy bộ nam</a>
+                  <a href="{{ url('/product/p7') }}">Giày chạy bộ nam</a>
                 </h3>
                 <span class="card-price fw-bold">$99</span>
               </div>
@@ -409,26 +317,28 @@
           <div class="col mb-4 mb-3">
             <div class="product-card position-relative">
               <div class="card-img">
-                <img src="{{ asset('user/images/card-item8.jpg') }}"" alt="product-item" class="product-image img-fluid">
+                <a href="{{ url('/product/p8') }}">
+                  <img src="{{ asset('user/images/card-item8.jpg') }}" alt="product-item" class="product-image img-fluid">
+                </a>
                 <div class="cart-concern position-absolute d-flex justify-content-center">
                   <div class="cart-button d-flex gap-2 justify-content-center align-items-center">
-                    <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#modallong">
+                    <a href="{{ url('/product/p8') }}" class="btn btn-light">
                       <svg class="shopping-carriage">
                         <use xlink:href="#shopping-carriage"></use>
                       </svg>
-                    </button>
-                    <button type="button" class="btn btn-light" data-bs-target="#modaltoggle" data-bs-toggle="modal">
+                    </a>
+                    <a href="{{ url('/product/p8') }}" class="btn btn-light">
                       <svg class="quick-view">
                         <use xlink:href="#quick-view"></use>
                       </svg>
-                    </button>
+                    </a>
                   </div>
                 </div>
                 <!-- cart-concern -->
               </div>
               <div class="card-detail d-flex justify-content-between align-items-center mt-3">
                 <h3 class="card-title fs-6 fw-normal m-0">
-                  <a href="index.html">Giày chạy bộ nam</a>
+                  <a href="{{ url('/product/p8') }}">Giày chạy bộ nam</a>
                 </h3>
                 <span class="card-price fw-bold">$99</span>
               </div>
@@ -437,26 +347,28 @@
           <div class="col mb-4 mb-3">
             <div class="product-card position-relative">
               <div class="card-img">
-                <img src="{{ asset('user/images/card-item9.jpg') }}"" alt="product-item" class="product-image img-fluid">
+                <a href="{{ url('/product/p9') }}">
+                  <img src="{{ asset('user/images/card-item9.jpg') }}" alt="product-item" class="product-image img-fluid">
+                </a>
                 <div class="cart-concern position-absolute d-flex justify-content-center">
                   <div class="cart-button d-flex gap-2 justify-content-center align-items-center">
-                    <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#modallong">
+                    <a href="{{ url('/product/p9') }}" class="btn btn-light">
                       <svg class="shopping-carriage">
                         <use xlink:href="#shopping-carriage"></use>
                       </svg>
-                    </button>
-                    <button type="button" class="btn btn-light" data-bs-target="#modaltoggle" data-bs-toggle="modal">
+                    </a>
+                    <a href="{{ url('/product/p9') }}" class="btn btn-light">
                       <svg class="quick-view">
                         <use xlink:href="#quick-view"></use>
                       </svg>
-                    </button>
+                    </a>
                   </div>
                 </div>
                 <!-- cart-concern -->
               </div>
               <div class="card-detail d-flex justify-content-between align-items-center mt-3">
                 <h3 class="card-title fs-6 fw-normal m-0">
-                  <a href="index.html">Giày chạy bộ nam</a>
+                  <a href="{{ url('/product/p9') }}">Giày chạy bộ nam</a>
                 </h3>
                 <span class="card-price fw-bold">$99</span>
               </div>
@@ -465,26 +377,28 @@
           <div class="col mb-4 mb-3">
             <div class="product-card position-relative">
               <div class="card-img">
-                <img src="{{ asset('user/images/card-item10.jpg') }}"" alt="product-item" class="product-image img-fluid">
+                <a href="{{ url('/product/p10') }}">
+                  <img src="{{ asset('user/images/card-item10.jpg') }}" alt="product-item" class="product-image img-fluid">
+                </a>
                 <div class="cart-concern position-absolute d-flex justify-content-center">
                   <div class="cart-button d-flex gap-2 justify-content-center align-items-center">
-                    <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#modallong">
+                    <a href="{{ url('/product/p10') }}" class="btn btn-light">
                       <svg class="shopping-carriage">
                         <use xlink:href="#shopping-carriage"></use>
                       </svg>
-                    </button>
-                    <button type="button" class="btn btn-light" data-bs-target="#modaltoggle" data-bs-toggle="modal">
+                    </a>
+                    <a href="{{ url('/product/p10') }}" class="btn btn-light">
                       <svg class="quick-view">
                         <use xlink:href="#quick-view"></use>
                       </svg>
-                    </button>
+                    </a>
                   </div>
                 </div>
                 <!-- cart-concern -->
               </div>
               <div class="card-detail d-flex justify-content-between align-items-center mt-3">
                 <h3 class="card-title fs-6 fw-normal m-0">
-                  <a href="index.html">Giày chạy bộ nam</a>
+                  <a href="{{ url('/product/p10') }}">Giày chạy bộ nam</a>
                 </h3>
                 <span class="card-price fw-bold">$99</span>
               </div>
@@ -693,6 +607,52 @@
         t.style.display = 'flex';
         setTimeout(function(){ t.style.display = 'none'; }, 3500);
       }
+    })();
+  </script>
+  <script>
+    // AJAX add-to-cart handler for product cards
+    (function(){
+      function showToast(message){
+        var t = document.getElementById('addToast');
+        if (!t) return;
+        t.querySelector('.msg').textContent = message;
+        t.style.display = 'flex';
+        setTimeout(function(){ t.style.display = 'none'; }, 3000);
+      }
+
+      function postJson(url, data) {
+        var token = document.querySelector('meta[name="csrf-token"]') ? document.querySelector('meta[name="csrf-token"]').getAttribute('content') : null;
+        var headers = {'Content-Type': 'application/json'};
+        if (token) headers['X-CSRF-TOKEN'] = token;
+        return fetch(url, {
+          method: 'POST',
+          credentials: 'same-origin',
+          headers: headers,
+          body: JSON.stringify(data)
+        }).then(function(r){ return r.json(); });
+      }
+
+      document.addEventListener('click', function(e){
+        var el = e.target.closest && e.target.closest('.ajax-add-cart');
+        if (!el) return;
+        e.preventDefault();
+        var sku = el.getAttribute('data-sku');
+        var name = el.getAttribute('data-name');
+        var price = el.getAttribute('data-price');
+
+  postJson("{{ url('/cart/add') }}", { id: sku, name: name, price: price, qty: 1 })
+          .then(function(json){
+            if (json && json.status === 'success') {
+              showToast(json.message || 'Đã thêm vào giỏ hàng');
+            } else if (json && json.message) {
+              showToast(json.message);
+            } else {
+              showToast('Đã có lỗi, vui lòng thử lại');
+            }
+          }).catch(function(){
+            showToast('Lỗi mạng, không thể thêm vào giỏ');
+          });
+      });
     })();
   </script>
   {{-- login modal moved to header partial --}}

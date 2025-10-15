@@ -43,7 +43,7 @@
 
             <div class="d-flex gap-2">
               <button type="submit" class="btn btn-black">Đặt hàng (demo)</button>
-              <a href="{{ url('/index') }}" class="btn btn-outline-gray">Quay về trang chủ</a>
+              <a href="{{ url('/') }}" class="btn btn-outline-gray">Quay về trang chủ</a>
             </div>
           </form>
         </div>

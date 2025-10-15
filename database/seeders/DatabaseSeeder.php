@@ -22,5 +22,6 @@ class DatabaseSeeder extends Seeder
 
         // Create admin user (credentials from .env or defaults)
         $this->call(\Database\Seeders\AdminUserSeeder::class);
+        $this->call(\Database\Seeders\ProductsTableSeeder::class);
     }
 }

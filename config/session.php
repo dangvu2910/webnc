@@ -18,7 +18,11 @@ return [
     |
     */
 
-    'driver' => env('SESSION_DRIVER', 'database'),
+    // For local development we prefer the file driver to avoid requiring
+    // a sessions table and to prevent session-loss when cookies/domains
+    // don't match (localhost vs 127.0.0.1). In production the default
+    // remains 'database' unless overridden in .env.
+    'driver' => env('SESSION_DRIVER', env('APP_ENV') === 'local' ? 'file' : 'database'),
 
     /*
     |--------------------------------------------------------------------------
