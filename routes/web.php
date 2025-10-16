@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Http\Request;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 
@@ -8,13 +9,16 @@ Route::get('/test-admin', function () {
     return 'Laravel is working! Server time: ' . now();
 });
 
-Route::get('/', function () {
-    return view('user.index');
-});
+use App\Http\Controllers\ProductController;
 
-Route::get('/index', function () {
-    return view('user.index');
-});
+Route::get('/', [ProductController::class, 'index']);
+Route::get('/index', [ProductController::class, 'index']);
+// Product detail
+Route::get('/product/{id}', [ProductController::class, 'show'])->name('product.show');
+// User account page
+Route::get('/account', function () {
+    return view('user.account');
+})->middleware('auth')->name('account');
 Route::get('/register', [RegisteredUserController::class, 'create'])->name('register');
 Route::post('/register', [RegisteredUserController::class, 'store']);
 Route::get('/login', [AuthenticatedSessionController::class, 'create'])->name('login');
@@ -51,7 +55,11 @@ use App\Http\Controllers\Admin\UserController as AdminUserController;
 use App\Http\Controllers\Admin\OrderController as AdminOrderController;
 use App\Http\Controllers\Admin\AdminDashboardController;
 
-Route::prefix('admin')->name('admin.')->group(function () {
+// Provide a stable named route `admin` used by some templates/packages that
+// expect a route named `admin`. Redirect it to the dashboard route.
+Route::redirect('/admin', '/admin/dashboard')->name('admin');
+
+Route::prefix('admin')->name('admin.')->middleware(['auth','is_admin'])->group(function () {
     // Dashboard - Connected to Database
     Route::get('/', [AdminDashboardController::class, 'index'])->name('dashboard');
     Route::get('/dashboard', [AdminDashboardController::class, 'index']);
@@ -93,4 +101,39 @@ Route::prefix('admin')->name('admin.')->group(function () {
     // Pages submenu (catch-all at the end)
     Route::get('pages/{page}', [AdminPageController::class, 'show'])->where('page', '.*')->name('pages.show');
 });
+
+// Local-only debug route to inspect authentication/session state when
+// troubleshooting admin access. Only enabled in the local environment.
+if (app()->environment('local')) {
+    Route::get('/admin/debug', function (Request $request) {
+        $user = auth()->user();
+        return response()->json([
+            'auth_check' => auth()->check(),
+            'user_id' => auth()->id(),
+            'user' => $user ? [
+                'id' => $user->id,
+                'email' => $user->email ?? null,
+                'username' => $user->username ?? null,
+                'is_admin' => (bool) ($user->is_admin ?? false),
+            ] : null,
+            'session_cookie_name' => config('session.cookie'),
+            'session_cookie_value' => $request->cookie(config('session.cookie')),
+            'server_session_id' => session()->getId(),
+        ]);
+    });
+
+    // Local-only helper: impersonate the seeded admin user so you can verify
+    // the admin UI. This will log in the user with email from .env or default
+    // and redirect to /admin. Only available in local environment.
+    Route::get('/admin/impersonate-admin', function () {
+        $email = env('APP_ADMIN_EMAIL', 'admin@example.com');
+        $user = \App\Models\User::where('email', $email)->first();
+        if (! $user) {
+            return response('Admin user not found: ' . $email, 404);
+        }
+        auth()->loginUsingId($user->id);
+        session()->regenerate();
+        return redirect('/admin');
+    });
+}
 

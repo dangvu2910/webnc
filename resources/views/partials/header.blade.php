@@ -122,9 +122,24 @@
             <li>
               <a href="#">Giỏ hàng</a>
             </li>
-            <li>
-              <a href="{{ url('login') }}">Đăng nhập</a>
-            </li>
+            @if(auth()->check())
+              <li>
+                <a href="{{ url('account') }}">Tài khoản</a>
+              </li>
+              <li>
+                <form method="POST" action="{{ route('logout') }}" style="display:inline">
+                  @csrf
+                  <button type="submit" class="btn btn-link p-0 align-baseline">Đăng xuất</button>
+                </form>
+              </li>
+            @else
+              <li>
+                <a href="{{ url('login') }}">Đăng nhập</a>
+              </li>
+              <li>
+                <a href="{{ url('register') }}">Đăng ký</a>
+              </li>
+            @endif
           </ul>
         </div>
       </div>
@@ -152,7 +167,7 @@
         <div class="offcanvas-body">
           <ul id="navbar" class="navbar-nav fw-bold justify-content-end align-items-center flex-grow-1">
             <li class="nav-item dropdown">
-              <a class="nav-link me-5 active dropdown-toggle border-0" href="#" data-bs-toggle="dropdown"
+              <a class="nav-link me-5 active dropdown-toggle border-0" href="{{ url('/') }}" data-bs-toggle="dropdown"
                 aria-expanded="false">Trang chủ</a>
               <ul class="dropdown-menu fw-bold">
                 <li>
@@ -174,25 +189,25 @@
                 aria-expanded="false">Trang</a>
               <ul class="dropdown-menu fw-bold">
                 <li>
-                  <a href="#" class="dropdown-item">Về chúng tôi</a>
+                  <a href="{{ url('/about') }}" class="dropdown-item">Về chúng tôi</a>
                 </li>
                 <li>
-                  <a class="dropdown-item" href="#">Cửa hàng</a>
+                  <a class="dropdown-item" href="{{ url('/') }}">Cửa hàng</a>
                 </li>
                 <li>
-                  <a class="dropdown-item" href="#">Blog</a>
+                  <a class="dropdown-item" href="{{ url('/blog') }}">Blog</a>
                 </li>
                 <li>
-                  <a class="dropdown-item" href="#">Sản phẩm</a>
+                  <a class="dropdown-item" href="{{ url('/products') }}">Sản phẩm</a>
                 </li>
                 <li>
-                  <a class="dropdown-item" href="#">Bài viết</a>
+                  <a class="dropdown-item" href="{{ url('/posts') }}">Bài viết</a>
                 </li>
                 <li>
                   <a class="dropdown-item" href="#">Kiểu dáng</a>
                 </li>
                 <li>
-                  <a href="#" data-bs-toggle="modal" data-bs-target="#modallong" class="dropdown-item">Giỏ hàng</a>
+                  <a href="{{ url('/cart') }}" class="dropdown-item">Giỏ hàng</a>
                 </li>
                 <li>
                   <a href="{{ url('login') }}" class="dropdown-item">Đăng nhập</a>
@@ -200,7 +215,7 @@
               </ul>
             </li>
             <li class="nav-item">
-              <a class="nav-link me-5" href="#">Cửa hàng</a>
+              <a class="nav-link me-5" href="{{ url('/') }}">Cửa hàng</a>
             </li>
             <li class="nav-item">
               <a class="nav-link me-5" href="#">Giảm giá</a>
@@ -209,9 +224,13 @@
         </div>
       </div>
       <div class="user-items ps-0 ps-md-5">
-        <ul class="d-flex justify-content-end list-unstyled align-item-center m-0">
+          <ul class="d-flex justify-content-end list-unstyled align-item-center m-0">
           <li class="pe-3">
-            <a href="{{ url('login') }}" class="border-0">
+            @if(auth()->check())
+              <a href="{{ url('account') }}" class="border-0">
+            @else
+              <a href="{{ url('login') }}" class="border-0">
+            @endif
               <svg class="user" width="24" height="24">
                 <use xlink:href="#user"></use>
               </svg>
@@ -225,7 +244,7 @@
               @php
                 $cart = session('cart', []);
                 $cartCount = 0;
-                foreach ($cart as $item) { $cartCount += isset($item['quantity']) ? (int)$item['quantity'] : 1; }
+                foreach ($cart as $item) { $cartCount += isset($item['qty']) ? (int)$item['qty'] : (isset($item['quantity']) ? (int)$item['quantity'] : 1); }
               @endphp
               @if ($cartCount > 0)
                 <span class="cart-badge" style="position:absolute;top:-6px;right:-6px;background:#ff5252;color:#fff;border-radius:50%;padding:2px 6px;font-size:12px;font-weight:700;">{{ $cartCount }}</span>

@@ -18,8 +18,8 @@
     @endif
 
     <div>
-        <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
-        <input id="email" name="email" type="email" value="{{ old('email') }}" required autofocus
+        <label for="login" class="block text-sm font-medium text-gray-700">Tên đăng nhập hoặc Email</label>
+        <input id="login" name="login" type="text" value="{{ old('login') }}" required autofocus
                class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500">
     </div>
 
