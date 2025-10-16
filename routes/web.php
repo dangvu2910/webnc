@@ -49,11 +49,12 @@ use App\Http\Controllers\Admin\ProductController as AdminProductController;
 use App\Http\Controllers\Admin\CategoryController as AdminCategoryController;
 use App\Http\Controllers\Admin\UserController as AdminUserController;
 use App\Http\Controllers\Admin\OrderController as AdminOrderController;
+use App\Http\Controllers\Admin\AdminDashboardController;
 
 Route::prefix('admin')->name('admin.')->group(function () {
-    // Dashboard - Original View
-    Route::view('/', 'admin.index')->name('dashboard');
-    Route::view('/dashboard', 'admin.index');
+    // Dashboard - Connected to Database
+    Route::get('/', [AdminDashboardController::class, 'index'])->name('dashboard');
+    Route::get('/dashboard', [AdminDashboardController::class, 'index']);
     
     // Products Management
     Route::get('products', [AdminProductController::class, 'index'])->name('products.index');
