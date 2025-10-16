@@ -217,7 +217,7 @@
                         @endif
                       </td>
                       <td class="px-4 py-3 text-sm">
-                        ₫ {{ number_format($order->total_amount) }}
+                        ₫ {{ number_format($order->total) }}
                       </td>
                       <td class="px-4 py-3 text-xs">
                         @if($order->status == 'completed')
