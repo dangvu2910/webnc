@@ -115,32 +115,7 @@
           </p>
         </div>
         <div class="col">
-          <ul class="d-flex justify-content-end gap-3 list-unstyled m-0">
-            <li>
-              <a href="#">Liên hệ</a>
-            </li>
-            <li>
-              <a href="#">Giỏ hàng</a>
-            </li>
-            @if(auth()->check())
-              <li>
-                <a href="{{ url('account') }}">Tài khoản</a>
-              </li>
-              <li>
-                <form method="POST" action="{{ route('logout') }}" style="display:inline">
-                  @csrf
-                  <button type="submit" class="btn btn-link p-0 align-baseline">Đăng xuất</button>
-                </form>
-              </li>
-            @else
-              <li>
-                <a href="{{ url('login') }}">Đăng nhập</a>
-              </li>
-              <li>
-                <a href="{{ url('register') }}">Đăng ký</a>
-              </li>
-            @endif
-          </ul>
+          <!-- Removed: Liên hệ, Giỏ hàng, Đăng nhập, Đăng ký - Available in footer logo section -->
         </div>
       </div>
     </div>
