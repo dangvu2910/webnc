@@ -1,75 +1,147 @@
-<!doctype html>
-<html lang="vi">
+<!DOCTYPE html>
+<html lang="en">
+
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Đăng ký tài khoản</title>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng ký - Stylish Online Store</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="{{ asset('user/css/auth/register.css') }}">
+
 </head>
-<body class="bg-gray-100 min-h-screen flex items-center justify-center">
-    <div class="w-full max-w-md bg-white rounded-lg shadow p-6">
-        <h1 class="text-2xl font-semibold mb-4">Tạo tài khoản mới</h1>
 
-        @if ($errors->any())
-            <div class="mb-4 p-3 bg-red-50 border border-red-100 text-red-700 rounded">
-                <ul class="list-disc pl-5">
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-        @endif
+<body>
+    <div class="auth-wrapper">
+        <!-- Background Pattern -->
+        <div class="bg-pattern"></div>
 
-        <form method="POST" action="{{ route('register') }}" class="space-y-4">
-            @csrf
-
-            <div>
-                <label for="name" class="block text-sm font-medium text-gray-700">Họ và tên</label>
-                <input id="name" name="name" type="text" value="{{ old('name') }}" required autofocus
-                       class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500">
-                @error('name')
-                    <p class="text-sm text-red-600 mt-1">{{ $message }}</p>
-                @enderror
-            </div>
-
-            <div>
-                <label for="username" class="block text-sm font-medium text-gray-700">Tên đăng nhập</label>
-                <input id="username" name="username" type="text" value="{{ old('username') }}" required
-                       class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500">
-                @error('username')
-                    <p class="text-sm text-red-600 mt-1">{{ $message }}</p>
-                @enderror
+        <!-- Main Container -->
+        <div class="auth-container">
+            <!-- Left Side - Branding -->
+            <div class="auth-branding">
+                <div class="brand-content">
+                    <div class="brand-logo">
+                        <i class="fas fa-user-plus"></i>
+                    </div>
+                    <h1 class="brand-title">Stylish Online Store</h1>
+                    <div class="brand-features">
+                        <div class="feature-item">
+                        </div>
+                        <div class="feature-item">
+                        </div>
+                        <div class="feature-item">
+                        </div>
+                    </div>
+                </div>
             </div>
 
-            <div>
-                <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
-                <input id="email" name="email" type="email" value="{{ old('email') }}" required
-                       class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500">
-                @error('email')
-                    <p class="text-sm text-red-600 mt-1">{{ $message }}</p>
-                @enderror
-            </div>
+            <!-- Right Side - Register Form -->
+            <div class="auth-form-container">
+                <div class="form-header">
+                    <h2>Tạo tài khoản mới</h2>
+                </div>
 
-            <div>
-                <label for="password" class="block text-sm font-medium text-gray-700">Mật khẩu</label>
-                <input id="password" name="password" type="password" required
-                       class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500">
-                @error('password')
-                    <p class="text-sm text-red-600 mt-1">{{ $message }}</p>
-                @enderror
-            </div>
+                <form method="POST" action="/register" class="auth-form">
+                    @csrf
 
-            <div>
-                <label for="password_confirmation" class="block text-sm font-medium text-gray-700">Xác nhận mật khẩu</label>
-                <input id="password_confirmation" name="password_confirmation" type="password" required
-                       class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500">
-            </div>
+                    <div class="form-group">
+                        <label for="name" class="form-label">Họ và tên</label>
+                        <div class="input-wrapper">
+                            <i class="fas fa-user input-icon"></i>
+                            <input type="text" id="name" name="name" class="form-input @error('name') error @enderror"
+                                placeholder="Nhập họ và tên của bạn" value="{{ old('name') }}" required
+                                autocomplete="name">
+                        </div>
+                        @error('name')
+                            <span class="error-message">{{ $message }}</span>
+                        @enderror
+                    </div>
 
-            <div class="flex items-center justify-between">
-                <button type="submit" class="px-4 py-2 bg-indigo-600 text-white rounded hover:bg-indigo-700">Đăng ký</button>
-                <a href="{{ route('login') }}" class="text-sm text-indigo-600 hover:underline">Đã có tài khoản? Đăng nhập</a>
+                    <div class="form-group">
+                        <label for="email" class="form-label">Email</label>
+                        <div class="input-wrapper">
+                            <i class="fas fa-envelope input-icon"></i>
+                            <input type="email" id="email" name="email"
+                                class="form-input @error('email') error @enderror" placeholder="Nhập email của bạn"
+                                required autocomplete="email">
+                        </div>
+                        @error('email')
+                            <span class="error-message">{{ $message }}</span>
+                        @enderror
+                    </div>
+                    <div class="form-group">
+                        <label for="email" class="form-label">Tên đăng nhập</label>
+                        <div class="input-wrapper">
+                            <i class="fas fa-envelope input-icon"></i>
+                            <input type="text" id="username" name="username"
+                                class="form-input @error('username') error @enderror" placeholder="Nhập tên đăng nhập của bạn"
+                                value="{{ old('username') }}" required autocomplete="username">
+                        </div>
+                        @error('username')
+                            <span class="error-message">{{ $message }}</span>
+                        @enderror
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password" class="form-label">Mật khẩu</label>
+                        <div class="input-wrapper">
+                            <i class="fas fa-lock input-icon"></i>
+                            <input type="password" id="password" name="password"
+                                class="form-input @error('password') error @enderror" placeholder="Tạo mật khẩu"
+                                required autocomplete="new-password">
+                            <button type="button" class="password-toggle" onclick="togglePassword('password')">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                        @error('password')
+                            <span class="error-message">{{ $message }}</span>
+                        @enderror
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password_confirmation" class="form-label">Xác nhận mật khẩu</label>
+                        <div class="input-wrapper">
+                            <i class="fas fa-lock input-icon"></i>
+                            <input type="password" id="password_confirmation" name="password_confirmation"
+                                class="form-input" placeholder="Nhập lại mật khẩu" required autocomplete="new-password">
+                            <button type="button" class="password-toggle"
+                                onclick="togglePassword('password_confirmation')">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @error('role')
+                            <span class="error-message">{{ $message }}</span>
+                        @enderror
+                    </div>
+
+                    <div class="terms-checkbox">
+                        <label class="checkbox-wrapper">
+                            <input type="checkbox" name="terms" id="terms" required>
+                            <span class="checkmark"></span>
+                            <span class="checkbox-label">
+                                Tôi đồng ý với <a href="#" class="terms-link">Điều khoản sử dụng</a> và <a href="#"
+                                    class="terms-link">Chính sách bảo mật</a>
+                            </span>
+                        </label>
+                    </div>
+
+                    <button type="submit" class="submit-btn">
+                        <span>Tạo tài khoản</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </button>
+                    </div>
+                    <div class="auth-switch">
+                        <p>Đã có tài khoản? <a href="/login" class="switch-link">Đăng nhập</a></p>
+                    </div>
+                </form>
             </div>
-        </form>
+        </div>
     </div>
+
+    
 </body>
+
 </html>

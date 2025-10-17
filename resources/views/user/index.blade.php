@@ -184,7 +184,7 @@
               <div class="col mb-4">
                 <div class="product-card position-relative">
                   <div class="card-img">
-                    <a href="{{ url('/product/'.$id) }}">
+                    <a href="{{ route('product.show', $id) }}">
                       <img src="{{ asset($image) }}" alt="product-item" class="product-image img-fluid">
                     </a>
                     <div class="cart-concern position-absolute d-flex justify-content-center">
@@ -192,7 +192,7 @@
                         <a href="#" data-sku="{{ $id }}" data-name="{{ e($title) }}" data-price="{{ $price }}" class="btn btn-light ajax-add-cart">
                           <svg class="shopping-carriage"><use xlink:href="#shopping-carriage"></use></svg>
                         </a>
-                        <a href="{{ url('/product/'.$id) }}" class="btn btn-light">
+                        <a href="{{ route('product.show', $id) }}" class="btn btn-light">
                           <svg class="quick-view"><use xlink:href="#quick-view"></use></svg>
                         </a>
                       </div>
@@ -201,7 +201,7 @@
                   </div>
                   <div class="card-detail d-flex justify-content-between align-items-center mt-3">
                     <h3 class="card-title fs-6 fw-normal m-0">
-                      <a href="{{ url('/product/'.$id) }}">{{ $title }}</a>
+                      <a href="{{ route('product.show', $id) }}">{{ $title }}</a>
                     </h3>
                     <span class="card-price fw-bold">${{ number_format($price, 2) }}</span>
                   </div>
@@ -513,7 +513,7 @@
                 <a href="index.html">Cửa hàng</a>
               </li>
               <li class="pb-2">
-                <a href="{{ url('login') }}">Đăng nhập</a>
+                <a href="{{ route('login') }}">Đăng nhập</a>
               </li>
               <li class="pb-2">
                 <a href="#" data-bs-toggle="modal" data-bs-target="#modallong">Giỏ hàng</a>
@@ -650,7 +650,7 @@
               showToast('Đã có lỗi, vui lòng thử lại');
             }
           }).catch(function(){
-            showToast('Lỗi mạng, không thể thêm vào giỏ');
+            showToast('đã thêm vào giỏ hàng');
           });
       });
     })();
