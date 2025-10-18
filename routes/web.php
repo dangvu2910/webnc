@@ -4,7 +4,6 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 
 // Auth
-use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 
 // Front controllers
@@ -14,7 +13,6 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\SearchController;
 
 // Admin controllers
-use App\Http\Controllers\Admin\AdminPageController;
 use App\Http\Controllers\Admin\ProductController as AdminProductController;
 use App\Http\Controllers\Admin\CategoryController as AdminCategoryController;
 use App\Http\Controllers\Admin\UserController as AdminUserController;
@@ -42,9 +40,6 @@ Route::get('/product/{id}', [ProductController::class, 'show'])->name('product.s
 Route::get('/account', function () {
     return view('user.account');
 })->middleware('auth')->name('account');
-
-Route::get('/register', [RegisteredUserController::class, 'create'])->name('register');
-Route::post('/register', [RegisteredUserController::class, 'store']);
 
 Route::get('/login', [AuthenticatedSessionController::class, 'create'])->name('login');
 Route::post('/login', [AuthenticatedSessionController::class, 'store']);
@@ -110,14 +105,8 @@ Route::prefix('admin')->name('admin.')->middleware(['auth','is_admin'])->group(f
     Route::post('orders/{order}/status', [AdminOrderController::class, 'updateStatus'])->name('orders.update-status');
 
     // Static pages / samples
-    Route::view('forms', 'admin.forms')->name('forms');
     Route::view('charts', 'admin.charts');
     Route::view('tables', 'admin.tables');
-
-    // Pages submenu (catch-all cuối)
-    Route::get('pages/{page}', [AdminPageController::class, 'show'])
-        ->where('page', '.*')
-        ->name('pages.show');
 });
 
 /*
