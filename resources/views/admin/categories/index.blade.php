@@ -1,42 +1,23 @@
-<!DOCTYPE html>
-<html :class="{ 'theme-dark': dark }" x-data="data()" lang="vi">
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Quản lý Danh mục - Stylish Admin</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="{{ asset('vendor/admin/assets/css/tailwind.output.css') }}" />
-    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
-    <script src="{{ asset('vendor/admin/assets/js/init-alpine.js') }}"></script>
-</head>
-<body>
-    <div class="flex h-screen bg-gray-50 dark:bg-gray-900" :class="{ 'overflow-hidden': isSideMenuOpen }">
-        @include('partials.admin-sidebar')
-        
-        <div class="flex flex-col flex-1 w-full">
-            <header class="z-10 py-4 bg-white shadow-md dark:bg-gray-800">
-                <div class="container flex items-center justify-between h-full px-6 mx-auto">
-                    <h1 class="text-2xl font-semibold text-gray-700 dark:text-gray-200">Quản lý Danh mục</h1>
-                </div>
-            </header>
+@extends('layouts.admin')
 
-            <main class="h-full pb-16 overflow-y-auto">
-                <div class="container px-6 mx-auto grid">
-                    <div class="flex justify-between items-center my-6">
-                        <h2 class="text-2xl font-semibold text-gray-700 dark:text-gray-200">Danh sách Danh mục</h2>
-                        <a href="{{ route('admin.categories.create') }}" class="px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">
-                            <svg class="w-4 h-4 inline-block mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
-                            </svg>
-                            Thêm danh mục mới
-                        </a>
-                    </div>
+@section('title', 'Quản lý Danh mục')
 
-                    @if(session('success'))
-                    <div class="mb-4 px-4 py-3 rounded-lg bg-green-100 border border-green-200 text-green-700">
-                        {{ session('success') }}
-                    </div>
-                    @endif
+@section('content')
+    <div class="flex justify-between items-center my-6">
+        <h2 class="text-2xl font-semibold text-gray-700 dark:text-gray-200">Danh sách Danh mục</h2>
+        <a href="{{ route('admin.categories.create') }}" class="px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">
+            <svg class="w-4 h-4 inline-block mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+            </svg>
+            Thêm danh mục mới
+        </a>
+    </div>
+
+    @if(session('success'))
+    <div class="mb-4 px-4 py-3 rounded-lg bg-green-100 border border-green-200 text-green-700">
+        {{ session('success') }}
+    </div>
+    @endif
 
                     <div class="w-full overflow-hidden rounded-lg shadow-xs">
                         <div class="w-full overflow-x-auto">
@@ -101,9 +82,4 @@
                             {{ $categories->links() }}
                         </div>
                     </div>
-                </div>
-            </main>
-        </div>
-    </div>
-</body>
-</html>
+@endsection

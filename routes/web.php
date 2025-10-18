@@ -5,6 +5,7 @@ use Illuminate\Http\Request;
 
 // Auth
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\Auth\RegisteredUserController;
 
 // Front controllers
 use App\Http\Controllers\ProductController;
@@ -60,13 +61,14 @@ Route::view('/women', 'user.women');
 
 Route::get('/search', [SearchController::class, 'index'])->name('search');
 
+// Register
+Route::get('/register', [RegisteredUserController::class, 'create'])->name('register');
+Route::post('/register', [RegisteredUserController::class, 'store']);
+
 /*
 |--------------------------------------------------------------------------
-| Admin
+| Admin routes
 |--------------------------------------------------------------------------
-|
-| Một số template mong đợi route tên 'admin' nên mình giữ alias này trỏ
-| về dashboard.
 */
 Route::redirect('/admin', '/admin/dashboard')->name('admin');
 

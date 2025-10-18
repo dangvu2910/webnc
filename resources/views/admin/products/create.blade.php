@@ -1,43 +1,24 @@
-<!DOCTYPE html>
-<html :class="{ 'theme-dark': dark }" x-data="data()" lang="vi">
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Thêm Sản phẩm - Stylish Admin</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="{{ asset('vendor/admin/assets/css/tailwind.output.css') }}" />
-    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
-    <script src="{{ asset('vendor/admin/assets/js/init-alpine.js') }}"></script>
-</head>
-<body>
-    <div class="flex h-screen bg-gray-50 dark:bg-gray-900" :class="{ 'overflow-hidden': isSideMenuOpen }">
-        @include('partials.admin-sidebar')
-        
-        <div class="flex flex-col flex-1 w-full">
-            <header class="z-10 py-4 bg-white shadow-md dark:bg-gray-800">
-                <div class="container flex items-center justify-between h-full px-6 mx-auto">
-                    <h1 class="text-2xl font-semibold text-gray-700 dark:text-gray-200">Thêm Sản phẩm mới</h1>
-                </div>
-            </header>
+@extends('layouts.admin')
 
-            <main class="h-full pb-16 overflow-y-auto">
-                <div class="container px-6 mx-auto grid">
-                    <div class="my-6">
-                        <a href="{{ route('admin.products.index') }}" class="text-purple-600 hover:underline">
-                            ← Quay lại danh sách
-                        </a>
-                    </div>
+@section('title', 'Thêm Sản phẩm')
 
-                    <div class="px-4 py-3 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-800">
-                        <form action="{{ route('admin.products.store') }}" method="POST" enctype="multipart/form-data">
-                            @csrf
-                            
-                            <label class="block text-sm mt-4">
-                                <span class="text-gray-700 dark:text-gray-400">Tên sản phẩm <span class="text-red-600">*</span></span>
-                                <input type="text" name="name" value="{{ old('name') }}" required
-                                    class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
-                                    placeholder="VD: Giày Nike Air Max 2024" />
-                                @error('name')
+@section('content')
+    <div class="my-6">
+        <a href="{{ route('admin.products.index') }}" class="text-purple-600 hover:underline">
+            ← Quay lại danh sách
+        </a>
+    </div>
+
+    <div class="px-4 py-3 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-800">
+        <form action="{{ route('admin.products.store') }}" method="POST" enctype="multipart/form-data">
+            @csrf
+            
+            <label class="block text-sm mt-4">
+                <span class="text-gray-700 dark:text-gray-400">Tên sản phẩm <span class="text-red-600">*</span></span>
+                <input type="text" name="name" value="{{ old('name') }}" required
+                    class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
+                    placeholder="VD: Giày Nike Air Max 2024" />
+                @error('name')
                                     <span class="text-xs text-red-600">{{ $message }}</span>
                                 @enderror
                             </label>
@@ -158,9 +139,4 @@
                             </div>
                         </form>
                     </div>
-                </div>
-            </main>
-        </div>
-    </div>
-</body>
-</html>
+@endsection

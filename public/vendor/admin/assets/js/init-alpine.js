@@ -5,11 +5,8 @@ function data() {
       return JSON.parse(window.localStorage.getItem('dark'))
     }
 
-    // else return their preferences
-    return (
-      !!window.matchMedia &&
-      window.matchMedia('(prefers-color-scheme: dark)').matches
-    )
+    // else return light mode by default
+    return false
   }
 
   function setThemeToLocalStorage(value) {
@@ -21,13 +18,6 @@ function data() {
     toggleTheme() {
       this.dark = !this.dark
       setThemeToLocalStorage(this.dark)
-    },
-    isSideMenuOpen: false,
-    toggleSideMenu() {
-      this.isSideMenuOpen = !this.isSideMenuOpen
-    },
-    closeSideMenu() {
-      this.isSideMenuOpen = false
     },
     isNotificationsMenuOpen: false,
     toggleNotificationsMenu() {
@@ -42,10 +32,6 @@ function data() {
     },
     closeProfileMenu() {
       this.isProfileMenuOpen = false
-    },
-    isPagesMenuOpen: false,
-    togglePagesMenu() {
-      this.isPagesMenuOpen = !this.isPagesMenuOpen
     },
     isProductsMenuOpen: false,
     toggleProductsMenu() {
