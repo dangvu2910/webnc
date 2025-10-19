@@ -61,4 +61,24 @@ class OrderController extends Controller
             return redirect()->back()->withErrors(['order' => 'Không thể tạo đơn hàng: '.$e->getMessage()]);
         }
     }
+
+    // Show order detail to owner
+    public function show(Request $request, $id)
+    {
+        $order = Order::with('items')->where('id', $id)->where('user_id', auth()->id())->first();
+        if (! $order) {
+            abort(404);
+        }
+        return view('user.order', ['order' => $order]);
+    }
+
+    // Demo pay action: mark order as paid
+    public function pay(Request $request, $id)
+    {
+        $order = Order::where('id', $id)->where('user_id', auth()->id())->first();
+        if (! $order) abort(404);
+        $order->status = 'paid';
+        $order->save();
+        return redirect()->route('account.orders.show', $order->id)->with('status', 'Thanh toán thành công');
+    }
 }

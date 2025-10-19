@@ -2,17 +2,9 @@
 <html lang="vi">
 
 <head>
-  <title>Stylish - Cửa hàng giày trực tuyến</title>
   <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="format-detection" content="telephone=no">
-  <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="csrf-token" content="{{ csrf_token() }}">
-  <meta name="author" content="TemplatesJungle">
-  <meta name="keywords" content="Cửa hàng trực tuyến, giày dép">
-  <meta name="description" content="Stylish - Mẫu cửa hàng giày trực tuyến">
-
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="{{ asset('user/css/vendor.css') }}">
   <link rel="stylesheet" type="text/css" href="{{ asset('user/css/style.css') }}">
 
@@ -561,102 +553,10 @@
       </div>
     </div>
   </footer>
-
+  @include('partials.add_toast')
   <script src="{{ asset('user/js/jquery-1.11.0.min.js') }}"></script>
   <script src="{{ asset('user/js/plugins.js') }}"></script>
   <script src="{{ asset('user/js/script.js') }}"></script>
 
-  <!-- Add-to-cart toast -->
-  <style>
-    #addToast {
-      position: fixed;
-      top: 16px;
-      right: 16px;
-      background: #e6ffed;
-      border: 1px solid #c6f6d5;
-      color: #0f5132;
-      padding: 12px 16px;
-      border-radius: 8px;
-      box-shadow: 0 6px 20px rgba(15,81,50,0.12);
-      display: none;
-      align-items: center;
-      gap: 12px;
-      z-index: 12000;
-      min-width: 220px;
-      font-weight:700;
-    }
-    #addToast .icon {
-      width:28px;height:28px;background:#0f5132;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:16px;
-    }
-    #addToast .close-toast { background: transparent; border: none; color: #0f5132; font-weight:700; cursor:pointer }
-  </style>
-
-  <div id="addToast" data-status="{{ e(session('status') ?? '') }}" role="status" aria-live="polite">
-    <div class="icon">✓</div>
-    <div class="msg">Sản phẩm đã được thêm</div>
-    <button class="close-toast" aria-label="Close" onclick="document.getElementById('addToast').style.display='none'">✕</button>
-  </div>
-
-  <script>
-    (function(){
-      // Read the flash message from the DOM attribute to avoid Blade in JS
-      var t = document.getElementById('addToast');
-      var status = t ? t.getAttribute('data-status') : '';
-      if (status) {
-        t.querySelector('.msg').textContent = status;
-        t.style.display = 'flex';
-        setTimeout(function(){ t.style.display = 'none'; }, 3500);
-      }
-    })();
-  </script>
-  <script>
-    // AJAX add-to-cart handler for product cards
-    (function(){
-      function showToast(message){
-        var t = document.getElementById('addToast');
-        if (!t) return;
-        t.querySelector('.msg').textContent = message;
-        t.style.display = 'flex';
-        setTimeout(function(){ t.style.display = 'none'; }, 3000);
-      }
-
-      function postJson(url, data) {
-        var token = document.querySelector('meta[name="csrf-token"]') ? document.querySelector('meta[name="csrf-token"]').getAttribute('content') : null;
-        var headers = {'Content-Type': 'application/json'};
-        if (token) headers['X-CSRF-TOKEN'] = token;
-        return fetch(url, {
-          method: 'POST',
-          credentials: 'same-origin',
-          headers: headers,
-          body: JSON.stringify(data)
-        }).then(function(r){ return r.json(); });
-      }
-
-      document.addEventListener('click', function(e){
-        var el = e.target.closest && e.target.closest('.ajax-add-cart');
-        if (!el) return;
-        e.preventDefault();
-        var sku = el.getAttribute('data-sku');
-        var name = el.getAttribute('data-name');
-        var price = el.getAttribute('data-price');
-
-  postJson("{{ url('/cart/add') }}", { id: sku, name: name, price: price, qty: 1 })
-          .then(function(json){
-            if (json && json.status === 'success') {
-              showToast(json.message || 'Đã thêm vào giỏ hàng');
-            } else if (json && json.message) {
-              showToast(json.message);
-            } else {
-              showToast('Đã có lỗi, vui lòng thử lại');
-            }
-          }).catch(function(){
-            showToast('đã thêm vào giỏ hàng');
-          });
-      });
-    })();
-  </script>
-  {{-- login modal moved to header partial --}}
-
-</body>
-
+  </body>
 </html>

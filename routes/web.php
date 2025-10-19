@@ -39,8 +39,13 @@ Route::get('/index', [ProductController::class, 'index']);
 Route::get('/product/{id}', [ProductController::class, 'show'])->name('product.show');
 
 Route::get('/account', function () {
-    return view('user.account');
+    $orders = \App\Models\Order::where('user_id', auth()->id())->orderBy('created_at', 'desc')->get();
+    return view('user.account', compact('orders'));
 })->middleware('auth')->name('account');
+
+// User-facing order detail
+Route::get('/account/orders/{order}', [OrderController::class, 'show'])->middleware('auth')->name('account.orders.show');
+Route::post('/account/orders/{order}/pay', [OrderController::class, 'pay'])->middleware('auth')->name('account.orders.pay');
 
 Route::get('/login', [AuthenticatedSessionController::class, 'create'])->name('login');
 Route::post('/login', [AuthenticatedSessionController::class, 'store']);

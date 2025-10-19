@@ -253,3 +253,26 @@
 </div>
 
 {{-- login modal removed: using standalone /login page only --}}
+
+  <!-- Site scripts -->
+  <script src="{{ asset('user/js/jquery-1.11.0.min.js') }}"></script>
+  <script src="{{ asset('user/js/plugins.js') }}"></script>
+  <script src="{{ asset('user/js/script.js') }}"></script>
+  {{-- Fallback: ensure preloader is hidden if scripts fail or load late --}}
+  <script>
+    (function(){
+      // If jQuery is available the script.js will handle fadeOut on window.load.
+      // As a fallback, hide the preloader after 5s or when DOMContentLoaded.
+      document.addEventListener('DOMContentLoaded', function(){
+        setTimeout(function(){
+          var p = document.querySelector('.preloader');
+          if(p){ p.style.display = 'none'; }
+        }, 5000);
+      });
+      // Also try on window load for non-jQuery fallback
+      window.addEventListener('load', function(){
+        var p = document.querySelector('.preloader');
+        if(p){ p.style.display = 'none'; }
+      });
+    })();
+  </script>

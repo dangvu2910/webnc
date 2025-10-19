@@ -42,6 +42,25 @@ class ProductController extends Controller
         }
 
         if (! $product) {
+            // support demo pages for static category templates (men-1, women-2, ...)
+            if (is_string($id) && preg_match('/^(men|women)-(\d+)$/', $id, $m)) {
+                $gender = $m[1];
+                $num = (int) $m[2];
+                $name = $gender === 'men' ? "Sản phẩm nam $num" : "Sản phẩm nữ $num";
+                $price = $gender === 'men' ? 99 : 89;
+                $imageIndex = ($num % 10) + 1;
+
+                $demo = [
+                    'id' => $id,
+                    'name' => $name,
+                    'price' => $price,
+                    'image' => "user/images/card-item{$imageIndex}.jpg",
+                    'description' => "Mô tả demo cho {$name}",
+                ];
+
+                return view('user.product', ['product' => $demo]);
+            }
+
             abort(404);
         }
 
