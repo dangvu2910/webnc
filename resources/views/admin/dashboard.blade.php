@@ -137,6 +137,6 @@
     </div>
 
     <p class="text-sm text-gray-600 dark:text-gray-400">
-        Chào mừng đến với trang quản trị Shoe Shop! Sử dụng menu bên trái để điều hướng đến các chức năng quản lý.
+        hào mừng đến vCới trang quản trị Shoe Shop! Sử dụng menu bên trái để điều hướng đến các chức năng quản lý.
     </p>
 @endsection
