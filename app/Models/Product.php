@@ -5,7 +5,17 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
+use App\Models\Category;
 
+/**
+ * App\Models\Product
+ *
+ * @property float $price
+ * @property float|null $sale_price
+ * @property array|null $images
+ * @property string $name
+ * @mixin \Illuminate\Database\Eloquent\Model
+ */
 class Product extends Model
 {
     use HasFactory;
