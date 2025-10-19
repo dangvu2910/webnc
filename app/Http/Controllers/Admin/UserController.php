@@ -25,10 +25,13 @@ class UserController extends Controller
         $validated = $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
+            'username' => 'nullable|string|max:255|unique:users',
             'password' => 'required|string|min:8|confirmed',
+            'is_admin' => 'nullable|boolean',
         ]);
 
         $validated['password'] = Hash::make($request->password);
+        $validated['is_admin'] = $request->has('is_admin') ? 1 : 0;
 
         User::create($validated);
 
@@ -45,7 +48,9 @@ class UserController extends Controller
         $validated = $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users,email,' . $user->id,
+            'username' => 'nullable|string|max:255|unique:users,username,' . $user->id,
             'password' => 'nullable|string|min:8|confirmed',
+            'is_admin' => 'nullable|boolean',
         ]);
 
         if ($request->filled('password')) {
@@ -53,6 +58,8 @@ class UserController extends Controller
         } else {
             unset($validated['password']);
         }
+
+        $validated['is_admin'] = $request->has('is_admin') ? 1 : 0;
 
         $user->update($validated);
 
