@@ -46,6 +46,7 @@ class OrderController extends Controller
                     'order_id' => $order->id,
                     'product_id' => $c['id'] ?? null,
                     'name' => $c['name'],
+                    'image' => $c['image'] ?? null,
                     'price' => $c['price'],
                     'qty' => $c['qty'],
                     'total' => $c['price'] * $c['qty'],

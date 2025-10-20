@@ -110,6 +110,8 @@ Route::prefix('admin')->name('admin.')->middleware(['auth','is_admin'])->group(f
     Route::get('orders', [AdminOrderController::class, 'index'])->name('orders.index');
     Route::get('orders/{order}', [AdminOrderController::class, 'show'])->name('orders.show');
     Route::post('orders/{order}/status', [AdminOrderController::class, 'updateStatus'])->name('orders.updateStatus');
+    Route::post('orders/{order}/approve', [AdminOrderController::class, 'approve'])->name('orders.approve');
+    Route::post('orders/{order}/reject', [AdminOrderController::class, 'reject'])->name('orders.reject');
 
     // Static pages / samples
     Route::view('charts', 'admin.charts');

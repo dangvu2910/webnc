@@ -20,6 +20,7 @@ class CartController extends Controller
             'name' => ['required'],
             'price' => ['required', 'numeric'],
             'qty' => ['nullable', 'integer', 'min:1'],
+            'image' => ['nullable', 'string'],
         ]);
 
         $id = (string) $data['id'];
@@ -35,6 +36,7 @@ class CartController extends Controller
                 'name' => $data['name'],
                 'price' => floatval($data['price']),
                 'qty' => $qty,
+                'image' => $data['image'] ?? null,
             ];
         }
 

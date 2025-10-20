@@ -19,6 +19,12 @@
             </div>
         @endif
 
+        @if(session('error'))
+            <div class="mb-4 px-4 py-3 rounded bg-red-100 border border-red-400 text-red-700">
+                {{ session('error') }}
+            </div>
+        @endif
+
         <div class="grid gap-6 mb-8 md:grid-cols-2">
             <!-- Order Info -->
             <div class="px-4 py-3 bg-white rounded-lg shadow-md dark:bg-gray-800">
@@ -60,7 +66,7 @@
                     </div>
                     <div class="flex justify-between">
                         <span class="text-gray-600 dark:text-gray-400">Tổng tiền:</span>
-                        <span class="font-bold text-lg text-purple-600 dark:text-purple-400">{{ number_format($order->total_amount, 0, ',', '.') }} ₫</span>
+                        <span class="font-bold text-lg text-purple-600 dark:text-purple-400">{{ number_format($order->total, 0, ',', '.') }} ₫</span>
                     </div>
                 </div>
 
@@ -83,6 +89,59 @@
                         </button>
                     </div>
                 </form>
+
+                <!-- Quick Actions: Approve/Reject -->
+                @if($order->status == 'pending')
+                    <div class="mt-4 pt-4 border-t dark:border-gray-600">
+                        <label class="block text-sm font-medium text-gray-700 dark:text-gray-400 mb-3">
+                            Thao tác nhanh
+                        </label>
+                        <div class="flex gap-3">
+                            <form action="{{ route('admin.orders.approve', $order) }}" method="POST" class="flex-1">
+                                @csrf
+                                <button type="submit" onclick="return confirm('Bạn có chắc muốn phê duyệt đơn hàng này?')" 
+                                    class="w-full px-4 py-3 text-sm font-bold leading-5 text-gray-800 bg-white transition-all duration-150 border-2 border-green-600 rounded-lg hover:bg-green-50 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2">
+                                    <span class="flex items-center justify-center">
+                                        <svg class="w-5 h-5 mr-2 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                        </svg>
+                                        Phê duyệt
+                                    </span>
+                                </button>
+                            </form>
+                            <form action="{{ route('admin.orders.reject', $order) }}" method="POST" class="flex-1">
+                                @csrf
+                                <button type="submit" onclick="return confirm('Bạn có chắc muốn từ chối đơn hàng này?')" 
+                                    class="w-full px-4 py-3 text-sm font-bold leading-5 text-gray-800 bg-white transition-all duration-150 border-2 border-red-600 rounded-lg hover:bg-red-50 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2">
+                                    <span class="flex items-center justify-center">
+                                        <svg class="w-5 h-5 mr-2 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                                        </svg>
+                                        Từ chối
+                                    </span>
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                @elseif(in_array($order->status, ['processing']))
+                    <div class="mt-4 pt-4 border-t dark:border-gray-600">
+                        <label class="block text-sm font-medium text-gray-700 dark:text-gray-400 mb-3">
+                            Thao tác
+                        </label>
+                        <form action="{{ route('admin.orders.reject', $order) }}" method="POST">
+                            @csrf
+                            <button type="submit" onclick="return confirm('Bạn có chắc muốn hủy đơn hàng này?')" 
+                                class="w-full px-4 py-3 text-sm font-bold leading-5 text-gray-800 bg-white transition-all duration-150 border-2 border-red-600 rounded-lg hover:bg-red-50 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2">
+                                <span class="flex items-center justify-center">
+                                    <svg class="w-5 h-5 mr-2 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                                    </svg>
+                                    Hủy đơn hàng
+                                </span>
+                            </button>
+                        </form>
+                    </div>
+                @endif
             </div>
 
             <!-- Customer Info -->
@@ -129,8 +188,10 @@
                                 <td class="px-4 py-3">
                                     <div class="flex items-center text-sm">
                                         <div class="relative hidden w-12 h-12 mr-3 rounded md:block">
-                                            @if($item->product && $item->product->image)
-                                                <img class="object-cover w-full h-full rounded" src="{{ asset('storage/' . $item->product->image) }}" alt="{{ $item->product_name }}" loading="lazy">
+                                            @if($item->image)
+                                                <img class="object-cover w-full h-full rounded" src="{{ asset('storage/' . $item->image) }}" alt="{{ $item->name }}" loading="lazy">
+                                            @elseif($item->product && $item->product->image)
+                                                <img class="object-cover w-full h-full rounded" src="{{ asset('storage/' . $item->product->image) }}" alt="{{ $item->name }}" loading="lazy">
                                             @else
                                                 <div class="w-full h-full bg-gray-300 rounded flex items-center justify-center">
                                                     <svg class="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
@@ -140,7 +201,7 @@
                                             @endif
                                         </div>
                                         <div>
-                                            <p class="font-semibold">{{ $item->product_name }}</p>
+                                            <p class="font-semibold">{{ $item->name }}</p>
                                             @if($item->product)
                                                 <p class="text-xs text-gray-600 dark:text-gray-400">SKU: {{ $item->product->sku }}</p>
                                             @endif
@@ -151,10 +212,10 @@
                                     {{ number_format($item->price, 0, ',', '.') }} ₫
                                 </td>
                                 <td class="px-4 py-3 text-sm">
-                                    {{ $item->quantity }}
+                                    {{ $item->qty }}
                                 </td>
                                 <td class="px-4 py-3 text-sm font-semibold">
-                                    {{ number_format($item->price * $item->quantity, 0, ',', '.') }} ₫
+                                    {{ number_format($item->total, 0, ',', '.') }} ₫
                                 </td>
                             </tr>
                         @endforeach
@@ -163,7 +224,7 @@
                                 Tổng cộng:
                             </td>
                             <td class="px-4 py-3 text-sm font-bold text-purple-600 dark:text-purple-400">
-                                {{ number_format($order->total_amount, 0, ',', '.') }} ₫
+                                {{ number_format($order->total, 0, ',', '.') }} ₫
                             </td>
                         </tr>
                     </tbody>

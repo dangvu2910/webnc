@@ -27,7 +27,8 @@
               <a href="#" class="btn btn-sm btn-black ajax-add-cart"
                  data-sku="men-{{ $i }}"
                  data-name="Sản phẩm nam {{ $i }}"
-                 data-price="99">Thêm vào giỏ</a>
+                 data-price="99"
+                 data-image="user/images/card-item{{ (($i%10)+1) }}.jpg">Thêm vào giỏ</a>
             </div>
           </div>
         </div>

@@ -66,8 +66,9 @@
       var sku = el.getAttribute('data-sku');
       var name = el.getAttribute('data-name');
       var price = el.getAttribute('data-price');
+      var image = el.getAttribute('data-image');
 
-      postJson("{{ url('/cart/add') }}", { id: sku, name: name, price: price, qty: 1 })
+      postJson("{{ url('/cart/add') }}", { id: sku, name: name, price: price, qty: 1, image: image })
         .then(function(json){
           if (json && json.status === 'success') {
             showToast(json.message || 'Đã thêm vào giỏ hàng');

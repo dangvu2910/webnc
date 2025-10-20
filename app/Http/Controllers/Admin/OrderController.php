@@ -30,4 +30,28 @@ class OrderController extends Controller
 
         return redirect()->back()->with('success', 'Trạng thái đơn hàng đã được cập nhật!');
     }
+
+    public function approve(Order $order)
+    {
+        // Chỉ phê duyệt đơn hàng đang chờ xử lý
+        if ($order->status !== 'pending') {
+            return redirect()->back()->with('error', 'Chỉ có thể phê duyệt đơn hàng đang chờ xử lý!');
+        }
+
+        $order->update(['status' => 'processing']);
+
+        return redirect()->back()->with('success', 'Đơn hàng đã được phê duyệt và chuyển sang trạng thái đang xử lý!');
+    }
+
+    public function reject(Order $order)
+    {
+        // Chỉ từ chối đơn hàng đang chờ xử lý hoặc đang xử lý
+        if (!in_array($order->status, ['pending', 'processing'])) {
+            return redirect()->back()->with('error', 'Không thể từ chối đơn hàng đã gửi hoặc đã giao!');
+        }
+
+        $order->update(['status' => 'cancelled']);
+
+        return redirect()->back()->with('success', 'Đơn hàng đã bị từ chối!');
+    }
 }

@@ -5,7 +5,17 @@
 <div class="container mt-4">
   <div class="row bg-white rounded shadow p-4 g-4 align-items-start">
     <div class="col-12 col-md-6">
-      <img src="{{ asset($product['image']) }}" alt="{{ $product['name'] }}" class="img-fluid rounded w-100">
+      @php
+        $imagePath = $product['image'];
+        // Nếu đường dẫn bắt đầu bằng 'products/', đây là file upload từ storage
+        if (str_starts_with($imagePath, 'products/')) {
+            $imageUrl = asset('storage/' . $imagePath);
+        } else {
+            // Ngược lại, đây là ảnh tĩnh trong public
+            $imageUrl = asset($imagePath);
+        }
+      @endphp
+      <img src="{{ $imageUrl }}" alt="{{ $product['name'] }}" class="img-fluid rounded w-100">
     </div>
 
     <div class="col-12 col-md-6">
@@ -22,6 +32,7 @@
           <input type="hidden" name="id" value="{{ $product['id'] }}">
           <input type="hidden" name="name" value="{{ $product['name'] }}">
           <input type="hidden" name="price" value="{{ $product['price'] }}">
+          <input type="hidden" name="image" value="{{ $product['image'] }}">
 
           <div class="d-flex flex-column flex-sm-row align-items-start align-items-sm-center gap-3">
             <div class="d-flex align-items-center gap-2">

@@ -41,7 +41,7 @@
                                     </div>
                                 </td>
                                 <td class="px-4 py-3 text-sm font-semibold">
-                                    {{ number_format($order->total_amount, 0, ',', '.') }} ₫
+                                    {{ number_format($order->total, 0, ',', '.') }} ₫
                                 </td>
                                 <td class="px-4 py-3 text-xs">
                                     @php
