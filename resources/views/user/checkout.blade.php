@@ -1,24 +1,13 @@
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Checkout - Thanh toán</title>
-  <link rel="stylesheet" href="{{ asset('user/css/vendor.css') }}">
-  <link rel="stylesheet" href="{{ asset('user/css/style.css') }}">
-</head>
-<body>
+@extends('layouts.user')
+@section('title', 'Thanh toán')
+
+@section('content')
   <div class="container-lg py-5">
     <h1 class="mb-4">Thanh toán</h1>
 
     @if(session('status'))
       <div class="mb-4 p-3 bg-green-50 border border-green-100 text-green-700 rounded">{{ session('status') }}</div>
     @endif
-
-    @php
-      // Import helper to resolve product images
-      use App\Helpers\ImageHelper;
-    @endphp
 
     <div class="row">
       <div class="col-md-7">
@@ -47,7 +36,7 @@
             </div>
 
             <div class="d-flex gap-2">
-              <button type="submit" class="btn btn-black">Đặt hàng (demo)</button>
+              <button type="submit" class="btn btn-black">Đặt hàng</button>
               <a href="{{ url('/') }}" class="btn btn-outline-gray">Quay về trang chủ</a>
             </div>
           </form>
@@ -136,5 +125,4 @@
 
     <!-- Form submits to server; server will create order and redirect -->
   </div>
-</body>
-</html>
+@endsection
