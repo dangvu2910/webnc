@@ -171,13 +171,26 @@
                 $id = $product->sku ?? $product->id;
                 $title = $product->name ?? 'Sản phẩm';
                 $price = $product->price ?? 0;
-                $image = $product->image ?? 'user/images/card-item1.jpg';
+                
+                // Handle both uploaded images (products/) and static images (user/images/)
+                if ($product->image) {
+                    if (str_starts_with($product->image, 'products/')) {
+                        // New uploaded image - use Storage::url
+                        $image = \Illuminate\Support\Facades\Storage::url($product->image);
+                    } else {
+                        // Old static image - use asset
+                        $image = asset($product->image);
+                    }
+                } else {
+                    // Fallback placeholder
+                    $image = asset('user/images/card-item1.jpg');
+                }
               @endphp
               <div class="col mb-4">
                 <div class="product-card position-relative">
                   <div class="card-img">
                     <a href="{{ route('product.show', $id) }}">
-                      <img src="{{ asset($image) }}" alt="product-item" class="product-image img-fluid">
+                      <img src="{{ $image }}" alt="product-item" class="product-image img-fluid">
                     </a>
                     <div class="cart-concern position-absolute d-flex justify-content-center">
                       <div class="cart-button d-flex gap-2 justify-content-center align-items-center">

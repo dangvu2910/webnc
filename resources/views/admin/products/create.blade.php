@@ -52,9 +52,9 @@
                             <div class="grid gap-6 mt-4 mb-4 md:grid-cols-2">
                                 <label class="block text-sm">
                                     <span class="text-gray-700 dark:text-gray-400">Giá gốc (₫) <span class="text-red-600">*</span></span>
-                                    <input type="number" name="price" value="{{ old('price') }}" required min="0" step="1000"
+                                    <input type="number" name="price" value="{{ old('price') }}" required min="0" step="any"
                                         class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
-                                        placeholder="500000" />
+                                        placeholder="99" />
                                     @error('price')
                                         <span class="text-xs text-red-600">{{ $message }}</span>
                                     @enderror
@@ -62,9 +62,9 @@
 
                                 <label class="block text-sm">
                                     <span class="text-gray-700 dark:text-gray-400">Giá khuyến mãi (₫)</span>
-                                    <input type="number" name="sale_price" value="{{ old('sale_price') }}" min="0" step="1000"
+                                    <input type="number" name="sale_price" value="{{ old('sale_price') }}" min="0" step="any"
                                         class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
-                                        placeholder="450000" />
+                                        placeholder="89" />
                                     @error('sale_price')
                                         <span class="text-xs text-red-600">{{ $message }}</span>
                                     @enderror
