@@ -15,6 +15,11 @@
       <div class="mb-4 p-3 bg-green-50 border border-green-100 text-green-700 rounded">{{ session('status') }}</div>
     @endif
 
+    @php
+      // Import helper to resolve product images
+      use App\Helpers\ImageHelper;
+    @endphp
+
     <div class="row">
       <div class="col-md-7">
         <div class="card p-4 mb-4">
@@ -58,11 +63,55 @@
           @else
             <ul class="list-unstyled mb-3">
               @foreach($cart as $item)
-                @php $line = $item['price'] * $item['qty']; $subtotal += $line; @endphp
-                <li class="d-flex justify-content-between mb-2">
-                  <div>
-                    <div class="fw-bold">{{ $item['name'] }}</div>
-                    <div class="text-muted">Qty: {{ $item['qty'] }}</div>
+        @php
+          $line = $item['price'] * $item['qty'];
+          $subtotal += $line;
+          // Resolve image inline (supports session-stored image, uploaded 'products/' storage paths, and demo ids)
+          $img = null;
+          if (is_array($item) && array_key_exists('image', $item) && $item['image']) {
+            if (str_starts_with($item['image'], 'products/')) {
+              $img = \Illuminate\Support\Facades\Storage::url($item['image']);
+            } else {
+              $img = asset($item['image']);
+            }
+          } else {
+            try {
+              $lookupId = $item['id'] ?? null;
+              $product = null;
+              if ($lookupId) {
+                if (!is_numeric($lookupId)) {
+                  $product = \App\Models\Product::where('sku', $lookupId)->orWhere('slug', $lookupId)->first();
+                } else {
+                  $product = \App\Models\Product::find($lookupId);
+                }
+              }
+
+              if ($product && !empty($product->image)) {
+                if (str_starts_with($product->image, 'products/')) {
+                  $img = \Illuminate\Support\Facades\Storage::url($product->image);
+                } else {
+                  $img = asset($product->image);
+                }
+              } else {
+                if (is_string($lookupId) && preg_match('/^(men|women)-(\d+)$/', $lookupId, $m)) {
+                  $num = (int) $m[2];
+                  $imageIndex = ($num % 10) + 1;
+                  $img = asset("user/images/card-item{$imageIndex}.jpg");
+                }
+              }
+            } catch (\Throwable $e) {
+              $img = null;
+            }
+          }
+          $img = $img ?? asset('user/images/card-item1.jpg');
+        @endphp
+                <li class="d-flex justify-content-between align-items-center mb-3">
+                  <div class="d-flex align-items-center">
+                    <img src="{{ $img }}" alt="{{ $item['name'] }}" style="width:60px;height:60px;object-fit:cover;border-radius:6px;margin-right:12px;">
+                    <div>
+                      <div class="fw-bold">{{ $item['name'] }}</div>
+                      <div class="text-muted">Qty: {{ $item['qty'] }}</div>
+                    </div>
                   </div>
                   <div>${{ number_format($line,2) }}</div>
                 </li>

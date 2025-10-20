@@ -11,7 +11,10 @@
         @foreach(session('cart') as $item)
           <div class="cart-item d-flex align-items-center justify-content-between border-bottom py-3">
             <div class="d-flex align-items-center">
-              <img src="{{ asset('user/images/card-item1.jpg') }}" alt="{{ $item['name'] }}" style="width:80px;height:80px;object-fit:cover;border-radius:6px;margin-right:16px;">
+        @php
+        $img = \App\Helpers\ImageHelper::productImageUrl($item['image'] ?? null, null, $item['id'] ?? null);
+        @endphp
+        <img src="{{ $img }}" alt="{{ $item['name'] }}" style="width:80px;height:80px;object-fit:cover;border-radius:6px;margin-right:16px;">
               <div>
                 <div class="fw-bold">{{ $item['name'] }}</div>
                 <div class="text-muted">SKU: {{ $item['id'] }}</div>

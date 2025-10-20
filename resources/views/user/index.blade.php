@@ -172,19 +172,8 @@
                 $title = $product->name ?? 'Sản phẩm';
                 $price = $product->price ?? 0;
                 
-                // Handle both uploaded images (products/) and static images (user/images/)
-                if ($product->image) {
-                    if (str_starts_with($product->image, 'products/')) {
-                        // New uploaded image - use Storage::url
-                        $image = \Illuminate\Support\Facades\Storage::url($product->image);
-                    } else {
-                        // Old static image - use asset
-                        $image = asset($product->image);
-                    }
-                } else {
-                    // Fallback placeholder
-                    $image = asset('user/images/card-item1.jpg');
-                }
+        // Resolve image via helper
+        $image = \App\Helpers\ImageHelper::productImageUrl(null, $product);
               @endphp
               <div class="col mb-4">
                 <div class="product-card position-relative">
@@ -194,7 +183,7 @@
                     </a>
                     <div class="cart-concern position-absolute d-flex justify-content-center">
                       <div class="cart-button d-flex gap-2 justify-content-center align-items-center">
-                        <a href="#" data-sku="{{ $id }}" data-name="{{ e($title) }}" data-price="{{ $price }}" data-image="{{ $product->image }}" class="btn btn-light ajax-add-cart">
+                        <a href="#" data-sku="{{ $id }}" data-name="{{ e($title) }}" data-price="{{ $price }}" class="btn btn-light ajax-add-cart">
                           <svg class="shopping-carriage"><use xlink:href="#shopping-carriage"></use></svg>
                         </a>
                         <a href="{{ route('product.show', $id) }}" class="btn btn-light">
