@@ -13,7 +13,20 @@ class Order extends Model
         'user_id', 'fullname', 'email', 'address', 'payment_method', 'subtotal', 'shipping', 'total', 'status'
     ];
 
+    // Relationship: Order belongs to a User
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    // Relationship: Order has many OrderItems
     public function items()
+    {
+        return $this->hasMany(OrderItem::class);
+    }
+
+    // Alias for items (for compatibility)
+    public function orderItems()
     {
         return $this->hasMany(OrderItem::class);
     }
