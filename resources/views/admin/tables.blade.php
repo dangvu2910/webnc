@@ -37,8 +37,8 @@
                                 </div>
                             </div>
                         </td>
-                        <td class="px-4 py-3 text-sm">Nike Air Max 2024</td>
-                        <td class="px-4 py-3 text-sm">₫ 3,500,000</td>
+                        <td class="px-4 py-3 text-sm">Nike</td>
+                        <td class="px-4 py-3 text-sm">99$</td>
                         <td class="px-4 py-3 text-xs">
                             <span class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100">
                                 Đã giao
@@ -60,8 +60,8 @@
                                 </div>
                             </div>
                         </td>
-                        <td class="px-4 py-3 text-sm">Nike Cortez</td>
-                        <td class="px-4 py-3 text-sm">₫ 2,250,000</td>
+                        <td class="px-4 py-3 text-sm">Puma</td>
+                        <td class="px-4 py-3 text-sm">80$</td>
                         <td class="px-4 py-3 text-xs">
                             <span class="px-2 py-1 font-semibold leading-tight text-orange-700 bg-orange-100 rounded-full dark:text-orange-100 dark:bg-orange-600">
                                 Đang chờ
@@ -83,8 +83,8 @@
                                 </div>
                             </div>
                         </td>
-                        <td class="px-4 py-3 text-sm">Adidas Ultraboost</td>
-                        <td class="px-4 py-3 text-sm">₫ 4,200,000</td>
+                        <td class="px-4 py-3 text-sm">Adidas</td>
+                        <td class="px-4 py-3 text-sm">70$</td>
                         <td class="px-4 py-3 text-xs">
                             <span class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100">
                                 Đã giao
@@ -106,8 +106,8 @@
                                 </div>
                             </div>
                         </td>
-                        <td class="px-4 py-3 text-sm">Puma RS-X</td>
-                        <td class="px-4 py-3 text-sm">₫ 2,800,000</td>
+                        <td class="px-4 py-3 text-sm">Puma</td>
+                        <td class="px-4 py-3 text-sm">100$</td>
                         <td class="px-4 py-3 text-xs">
                             <span class="px-2 py-1 font-semibold leading-tight text-red-700 bg-red-100 rounded-full dark:text-red-100 dark:bg-red-600">
                                 Đã hủy
@@ -129,8 +129,8 @@
                                 </div>
                             </div>
                         </td>
-                        <td class="px-4 py-3 text-sm">Reebok Classic</td>
-                        <td class="px-4 py-3 text-sm">₫ 1,950,000</td>
+                        <td class="px-4 py-3 text-sm">Nike</td>
+                        <td class="px-4 py-3 text-sm">80$</td>
                         <td class="px-4 py-3 text-xs">
                             <span class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100">
                                 Đã giao
@@ -177,6 +177,5 @@
     </div>
 
     <p class="text-sm text-gray-600 dark:text-gray-400">
-        Đây là trang ví dụ về bảng (tables). Trong thực tế, bạn sẽ thay thế nội dung này bằng dữ liệu thực từ database.
     </p>
 @endsection
