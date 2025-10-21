@@ -29,10 +29,17 @@
             </div>
             <div class="mb-3">
               <label class="form-label">Phương thức thanh toán</label>
-              <select class="form-control" name="payment_method">
+              <select id="payment-method" class="form-control" name="payment_method">
                 <option value="cod">Thanh toán khi nhận hàng</option>
                 <option value="card">Thẻ ngân hàng</option>
               </select>
+            </div>
+
+            <div id="bank-pay-block" class="mb-3" style="display:none;">
+              <label class="form-label">Quét mã QR để thanh toán bằng thẻ ngân hàng</label>
+              <div class="card p-3" style="max-width:260px;border-radius:8px;">
+                <img src="{{ asset('user/images/qr.jpg') }}" alt="QR Bank" style="width:100%;height:auto;border-radius:6px;display:block;margin-bottom:10px;">
+              </div>
             </div>
 
             <div class="d-flex gap-2">
@@ -126,3 +133,20 @@
     <!-- Form submits to server; server will create order and redirect -->
   </div>
 @endsection
+
+@push('scripts')
+<script>
+  (function(){
+    var sel = document.getElementById('payment-method');
+    var block = document.getElementById('bank-pay-block');
+    if(!sel || !block) return;
+    function update(){
+      if(sel.value === 'card') block.style.display = '';
+      else block.style.display = 'none';
+    }
+    sel.addEventListener('change', update);
+    // init
+    update();
+  })();
+</script>
+@endpush

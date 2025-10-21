@@ -64,3 +64,12 @@
 
   {{-- Content from child views --}}
   @yield('content')
+
+  <!-- Site scripts -->
+  <script src="{{ asset('user/js/jquery-1.11.0.min.js') }}"></script>
+  <script src="{{ asset('user/js/plugins.js') }}"></script>
+  <script src="{{ asset('user/js/script.js') }}"></script>
+  @stack('scripts')
+
+  </body>
+</html>
