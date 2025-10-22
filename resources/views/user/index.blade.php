@@ -1,59 +1,8 @@
-<!DOCTYPE html>
-<html lang="vi">
+@extends('layouts.user')
 
-<head>
-  <meta charset="utf-8">
-  <meta name="csrf-token" content="{{ csrf_token() }}">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="{{ asset('user/css/vendor.css') }}">
-  <link rel="stylesheet" type="text/css" href="{{ asset('user/css/style.css') }}">
+@section('title', 'Trang chủ')
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,900;1,900&family=Source+Sans+Pro:wght@400;600;700;900&display=swap"
-    rel="stylesheet">
-</head>
-
-<body>
-  {{-- SVG symbols moved to header partial --}}
-  <!-- Loader 4 -->
-
-  <div class="preloader" style="position: fixed;top:0;left:0;width: 100%;height: 100%;background-color: #fff;display: flex;align-items: center;justify-content: center;z-index: 9999;">
-    <svg version="1.1" id="L4" width="100" height="100" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-    viewBox="0 0 50 100" enable-background="new 0 0 0 0" xml:space="preserve">
-    <circle fill="#111" stroke="none" cx="6" cy="50" r="6">
-      <animate
-        attributeName="opacity"
-        dur="1s"
-        values="0;1;0"
-        repeatCount="indefinite"
-        begin="0.1"/>
-    </circle>
-    <circle fill="#111" stroke="none" cx="26" cy="50" r="6">
-      <animate
-        attributeName="opacity"
-        dur="1s"
-        values="0;1;0"
-        repeatCount="indefinite"
-        begin="0.2"/>
-    </circle>
-    <circle fill="#111" stroke="none" cx="46" cy="50" r="6">
-      <animate
-        attributeName="opacity"
-        dur="1s"
-        values="0;1;0"
-        repeatCount="indefinite"
-        begin="0.3"/>
-    </circle>
-    </svg>
-  </div>
-
-  {{-- search overlay moved to header partial --}}
-
-  <!-- quick view -->
-  @include('partials.header')
-
+@section('content')
   <section id="intro" class="position-relative mt-4">
     <div class="container-lg">
       <div class="swiper main-swiper">
@@ -63,8 +12,7 @@
               <img src="{{ asset('user/images/card-image1.jpg') }}" alt="shoes" class="img-fluid jarallax-img">
               <div class="cart-concern p-3 m-3 p-lg-5 m-lg-5">
                 <h2 class="card-title display-3 light">Giày kiểu dáng nữ</h2>
-                <a href="#"
-                  class="text-uppercase light mt-3 d-inline-block text-hover fw-bold light-border">Mua ngay</a>
+                <a href="#" class="text-uppercase light mt-3 d-inline-block text-hover fw-bold light-border">Mua ngay</a>
               </div>
             </div>
           </div>
@@ -72,21 +20,19 @@
             <div class="row g-4">
               <div class="col-lg-12 mb-4">
                 <div class="card d-flex flex-row align-items-end border-0 jarallax-keep-img">
-                  <img src="{{ asset('user/images/card-image2.jpg') }}"" alt="shoes" class="img-fluid jarallax-img">
+                  <img src="{{ asset('user/images/card-image2.jpg') }}" alt="shoes" class="img-fluid jarallax-img">
                   <div class="cart-concern p-3 m-3 p-lg-5 m-lg-5">
                     <h2 class="card-title style-2 display-4 light">Đồ thể thao</h2>
-                    <a href="#"
-                      class="text-uppercase light mt-3 d-inline-block text-hover fw-bold light-border">Mua ngay</a>
+                    <a href="#" class="text-uppercase light mt-3 d-inline-block text-hover fw-bold light-border">Mua ngay</a>
                   </div>
                 </div>
               </div>
               <div class="col-lg-12">
                 <div class="card d-flex flex-row align-items-end border-0 jarallax-keep-img">
-                  <img src="{{ asset('user/images/card-image3.jpg') }}"" alt="shoes" class="img-fluid jarallax-img">
+                  <img src="{{ asset('user/images/card-image3.jpg') }}" alt="shoes" class="img-fluid jarallax-img">
                   <div class="cart-concern p-3 m-3 p-lg-5 m-lg-5">
                     <h2 class="card-title style-2 display-4 light">Giày thời trang</h2>
-                    <a href="#"
-                      class="text-uppercase light mt-3 d-inline-block text-hover fw-bold light-border">Mua ngay</a>
+                    <a href="#" class="text-uppercase light mt-3 d-inline-block text-hover fw-bold light-border">Mua ngay</a>
                   </div>
                 </div>
               </div>
@@ -94,11 +40,10 @@
           </div>
           <div class="swiper-slide">
             <div class="card d-flex flex-row align-items-end border-0 large jarallax-keep-img">
-              <img src="{{ asset('user/images/card-image4.jpg') }}"" alt="shoes" class="img-fluid jarallax-img">
+              <img src="{{ asset('user/images/card-image4.jpg') }}" alt="shoes" class="img-fluid jarallax-img">
               <div class="cart-concern p-3 m-3 p-lg-5 m-lg-5">
                 <h2 class="card-title display-3 light">Giày kiểu dáng nam</h2>
-                <a href="index.html"
-                  class="text-uppercase light mt-3 d-inline-block text-hover fw-bold light-border">Mua ngay</a>
+                <a href="index.html" class="text-uppercase light mt-3 d-inline-block text-hover fw-bold light-border">Mua ngay</a>
               </div>
             </div>
           </div>
@@ -106,21 +51,19 @@
             <div class="row g-4">
               <div class="col-lg-12 mb-4">
                 <div class="card d-flex flex-row align-items-end border-0 jarallax-keep-img">
-                  <img src="{{ asset('user/images/card-image5.jpg') }}"" alt="shoes" class="img-fluid jarallax-img">
+                  <img src="{{ asset('user/images/card-image5.jpg') }}" alt="shoes" class="img-fluid jarallax-img">
                   <div class="cart-concern p-3 m-3 p-lg-5 m-lg-5">
                     <h2 class="card-title style-2 display-4 light">Giày nam</h2>
-                    <a href="index.html"
-                      class="text-uppercase light mt-3 d-inline-block text-hover fw-bold light-border">Mua ngay</a>
+                    <a href="index.html" class="text-uppercase light mt-3 d-inline-block text-hover fw-bold light-border">Mua ngay</a>
                   </div>
                 </div>
               </div>
               <div class="col-lg-12">
                 <div class="card d-flex flex-row align-items-end border-0 jarallax-keep-img">
-                  <img src="{{ asset('user/images/card-image6.jpg') }}"" alt="shoes" class="img-fluid jarallax-img">
+                  <img src="{{ asset('user/images/card-image6.jpg') }}" alt="shoes" class="img-fluid jarallax-img">
                   <div class="cart-concern p-3 m-3 p-lg-5 m-lg-5">
                     <h2 class="card-title style-2 display-4 light">Giày nữ</h2>
-                    <a href="index.html"
-                      class="text-uppercase light mt-3 d-inline-block text-hover fw-bold light-border">Mua ngay</a>
+                    <a href="index.html" class="text-uppercase light mt-3 d-inline-block text-hover fw-bold light-border">Mua ngay</a>
                   </div>
                 </div>
               </div>
@@ -131,10 +74,11 @@
       <div class="swiper-pagination"></div>
     </div>
   </section>
+
   <section class="discount-coupon py-2 my-2 py-md-5 my-md-5">
     <div class="container">
-  <div class="bg-gray coupon position-relative p-5">
-  <div class="bold-text position-absolute">Giảm 10%</div>
+      <div class="bg-gray coupon position-relative p-5">
+        <div class="bold-text position-absolute">Giảm 10%</div>
         <div class="row justify-content-between align-items-center">
           <div class="col-lg-7 col-md-12 mb-3">
             <div class="coupon-header">
@@ -151,29 +95,24 @@
       </div>
     </div>
   </section>
+
   <section id="featured-products" class="product-store">
     <div class="container-md">
       <div class="display-header d-flex align-items-center justify-content-between">
-  <h2 class="section-title text-uppercase">Sản phẩm nổi bật</h2>
+        <h2 class="section-title text-uppercase">Sản phẩm nổi bật</h2>
         <div class="btn-right">
           <a href="index.html" class="d-inline-block text-uppercase text-hover fw-bold">Xem tất cả</a>
         </div>
       </div>
       <div class="product-content padding-small">
         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-5">
-          @php
-            // Accept either a collection keyed by numeric id or associative array (legacy)
-            $list = $products ?? (isset($products) ? $products : null);
-          @endphp
-          @if(isset($products) && count($products))
+          @if(!empty($products) && count($products))
             @foreach($products as $product)
               @php
                 $id = $product->sku ?? $product->id;
                 $title = $product->name ?? 'Sản phẩm';
                 $price = $product->price ?? 0;
-                
-        // Resolve image via helper
-        $image = \App\Helpers\ImageHelper::productImageUrl(null, $product);
+                $image = \App\Helpers\ImageHelper::productImageUrl(null, $product);
               @endphp
               <div class="col mb-4">
                 <div class="product-card position-relative">
@@ -203,19 +142,19 @@
               </div>
             @endforeach
           @else
-            {{-- fallback: keep static items if DB not seeded --}}
             <div class="col mb-4">No products available.</div>
           @endif
         </div>
       </div>
     </div>
   </section>
+
   <section id="collection-products" class="py-2 my-2 py-md-5 my-md-5">
     <div class="container-md">
       <div class="row">
         <div class="col-lg-6 col-md-6 mb-4">
           <div class="collection-card card border-0 d-flex flex-row align-items-end jarallax-keep-img">
-            <img src="{{ asset('user/images/collection-item1.jpg') }}"" alt="product-item" class="border-rounded-10 img-fluid jarallax-img">
+            <img src="{{ asset('user/images/collection-item1.jpg') }}" alt="product-item" class="border-rounded-10 img-fluid jarallax-img">
             <div class="card-detail p-3 m-3 p-lg-5 m-lg-5">
               <h3 class="card-title display-3">
                 <a href="#">Bộ sưu tập Tối giản</a>
@@ -226,7 +165,7 @@
         </div>
         <div class="col-lg-6 col-md-6">
           <div class="collection-card card border-0 d-flex flex-row jarallax-keep-img">
-            <img src="{{ asset('user/images/collection-item2.jpg') }}"" alt="product-item" class="border-rounded-10 img-fluid jarallax-img">
+            <img src="{{ asset('user/images/collection-item2.jpg') }}" alt="product-item" class="border-rounded-10 img-fluid jarallax-img">
             <div class="card-detail p-3 m-3 p-lg-5 m-lg-5">
               <h3 class="card-title display-3">
                 <a href="#">Bộ sưu tập Sneaker</a>
@@ -238,10 +177,11 @@
       </div>
     </div>
   </section>
+
   <section id="latest-products" class="product-store py-2 my-2 py-md-5 my-md-5 pt-0">
     <div class="container-md">
       <div class="display-header d-flex align-items-center justify-content-between">
-  <h2 class="section-title text-uppercase">Sản phẩm mới</h2>
+        <h2 class="section-title text-uppercase">Sản phẩm mới</h2>
         <div class="btn-right">
           <a href="index.html" class="d-inline-block text-uppercase text-hover fw-bold">Xem tất cả</a>
         </div>
@@ -408,135 +348,73 @@
       <div class="row">
         <div class="col-lg-2 pb-3">
           <div class="footer-menu">
-              <h5 class="widget-title pb-2">Thông tin</h5>
+            <h5 class="widget-title pb-2">Thông tin</h5>
             <ul class="menu-list list-unstyled">
-              <li class="pb-2">
-                <a href="#">Theo dõi đơn hàng</a>
-              </li>
-              <li class="pb-2">
-                <a href="{{ url('/') }}">Blog của chúng tôi</a>
-              </li>
-              <li class="pb-2">
-                <a href="#">Chính sách bảo mật</a>
-              </li>
-              <li class="pb-2">
-                <a href="#">Giao hàng</a>
-              </li>
-              <li class="pb-2">
-                <a href="#">Liên hệ</a>
-              </li>
-              <li class="pb-2">
-                <a href="#">Trợ giúp</a>
-              </li>
-              <li class="pb-2">
-                <a href="#">Cộng đồng</a>
-              </li>
+              <li class="pb-2"><a href="#">Theo dõi đơn hàng</a></li>
+              <li class="pb-2"><a href="{{ url('/') }}">Blog của chúng tôi</a></li>
+              <li class="pb-2"><a href="#">Chính sách bảo mật</a></li>
+              <li class="pb-2"><a href="#">Giao hàng</a></li>
+              <li class="pb-2"><a href="#">Liên hệ</a></li>
+              <li class="pb-2"><a href="#">Trợ giúp</a></li>
+              <li class="pb-2"><a href="#">Cộng đồng</a></li>
             </ul>
           </div>
         </div>
         <div class="col-lg-2 pb-3">
           <div class="footer-menu">
-              <h5 class="widget-title pb-2">Về</h5>
+            <h5 class="widget-title pb-2">Về</h5>
             <ul class="menu-list list-unstyled">
-              <li class="pb-2">
-                <a href="#">Lịch sử</a>
-              </li>
-              <li class="pb-2">
-                <a href="#">Đội ngũ</a>
-              </li>
-              <li class="pb-2">
-                <a href="#">Dịch vụ</a>
-              </li>
-              <li class="pb-2">
-                <a href="#">Công ty</a>
-              </li>
-              <li class="pb-2">
-                <a href="#">Sản xuất</a>
-              </li>
-              <li class="pb-2">
-                <a href="#">Bán sỉ</a>
-              </li>
-              <li class="pb-2">
-                <a href="#">Bán lẻ</a>
-              </li>
+              <li class="pb-2"><a href="#">Lịch sử</a></li>
+              <li class="pb-2"><a href="#">Đội ngũ</a></li>
+              <li class="pb-2"><a href="#">Dịch vụ</a></li>
+              <li class="pb-2"><a href="#">Công ty</a></li>
+              <li class="pb-2"><a href="#">Sản xuất</a></li>
+              <li class="pb-2"><a href="#">Bán sỉ</a></li>
+              <li class="pb-2"><a href="#">Bán lẻ</a></li>
             </ul>
           </div>
         </div>
         <div class="col-lg-2 pb-3">
           <div class="footer-menu">
-              <h5 class="widget-title pb-2">Giày nữ</h5>
+            <h5 class="widget-title pb-2">Giày nữ</h5>
             <ul class="menu-list list-unstyled">
-              <li class="pb-2">
-                <a href="#">Theo dõi đơn hàng</a>
-              </li>
-              <li class="pb-2">
-                <a href="{{ url('/') }}">Blog của chúng tôi</a>
-              </li>
-              <li class="pb-2">
-                <a href="#">Chính sách bảo mật</a>
-              </li>
-              <li class="pb-2">
-                <a href="#">Shipping</a>
-              </li>
-              <li class="pb-2">
-                <a href="#">Liên hệ</a>
-              </li>
-              <li class="pb-2">
-                <a href="#">Trợ giúp</a>
-              </li>
-              <li class="pb-2">
-                <a href="#">Cộng đồng</a>
-              </li>
+              <li class="pb-2"><a href="#">Theo dõi đơn hàng</a></li>
+              <li class="pb-2"><a href="{{ url('/') }}">Blog của chúng tôi</a></li>
+              <li class="pb-2"><a href="#">Chính sách bảo mật</a></li>
+              <li class="pb-2"><a href="#">Shipping</a></li>
+              <li class="pb-2"><a href="#">Liên hệ</a></li>
+              <li class="pb-2"><a href="#">Trợ giúp</a></li>
+              <li class="pb-2"><a href="#">Cộng đồng</a></li>
             </ul>
           </div>
         </div>
         <div class="col-lg-2 pb-3">
           <div class="footer-menu">
-              <h5 class="widget-title pb-2">Phổ biến</h5>
+            <h5 class="widget-title pb-2">Phổ biến</h5>
             <ul class="menu-list list-unstyled">
-              <li class="pb-2">
-                <a href="#">Giảm giá</a>
-              </li>
-              <li class="pb-2">
-                <a href="#">Sản phẩm mới</a>
-              </li>
-              <li class="pb-2">
-                <a href="#">Bán chạy</a>
-              </li>
-              <li class="pb-2">
-                <a href="index.html">Cửa hàng</a>
-              </li>
-              <li class="pb-2">
-                <a href="{{ route('login') }}">Đăng nhập</a>
-              </li>
-              <li class="pb-2">
-                <a href="#" data-bs-toggle="modal" data-bs-target="#modallong">Giỏ hàng</a>
-              </li>
+              <li class="pb-2"><a href="#">Giảm giá</a></li>
+              <li class="pb-2"><a href="#">Sản phẩm mới</a></li>
+              <li class="pb-2"><a href="#">Bán chạy</a></li>
+              <li class="pb-2"><a href="index.html">Cửa hàng</a></li>
+              <li class="pb-2"><a href="{{ route('login') }}">Đăng nhập</a></li>
+              <li class="pb-2"><a href="#" data-bs-toggle="modal" data-bs-target="#modallong">Giỏ hàng</a></li>
             </ul>
           </div>
         </div>
         <div class="col-lg-2 pb-3">
           <div class="footer-menu">
-              <h5 class="widget-title pb-3">Bộ sưu tập nam</h5>
+            <h5 class="widget-title pb-3">Bộ sưu tập nam</h5>
             <ul class="menu-list list-unstyled">
-              <li class="pb-2">
-                <a href="#">Giao hàng</a>
-              </li>
-              <li class="pb-2">
-                <a href="{{ url('/') }}">Về chúng tôi</a>
-              </li>
-              <li class="pb-2">
-                <a href="#">Giày</a>
-              </li>
-              <li class="pb-2">
-                <a href="#">Liên hệ</a>
-              </li>
+              <li class="pb-2"><a href="#">Giao hàng</a></li>
+              <li class="pb-2"><a href="{{ url('/') }}">Về chúng tôi</a></li>
+              <li class="pb-2"><a href="#">Giày</a></li>
+              <li class="pb-2"><a href="#">Liên hệ</a></li>
             </ul>
           </div>
         </div>
         <div class="col-lg-2 pb-3">
           <div class="footer-menu">
-              <h5 class="widget-title pb-3">Liên hệ</h5>
+            <h5 class="widget-title pb-3">Liên hệ</h5>
             <div class="footer-contact-text">
               <span>Stylish Online Store, Yên Nghĩa, Hà Đông - Hà Nội.</span>
               <span> Hotline: (+33) 800 456 789-987</span>
@@ -555,10 +433,8 @@
       </div>
     </div>
   </footer>
-  @include('partials.add_toast')
-  <script src="{{ asset('user/js/jquery-1.11.0.min.js') }}"></script>
-  <script src="{{ asset('user/js/plugins.js') }}"></script>
-  <script src="{{ asset('user/js/script.js') }}"></script>
 
-  </body>
-</html>
+  @include('partials.add_toast')
+
+@endsection
+            <ul class="menu-list list-unstyled">

@@ -1,16 +1,7 @@
-<!doctype html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="csrf-token" content="{{ csrf_token() }}">
-  <title>Nữ - Sản phẩm</title>
-  <link rel="stylesheet" href="{{ asset('user/css/vendor.css') }}">
-  <link rel="stylesheet" href="{{ asset('user/css/style.css') }}">
-</head>
-<body>
-  @include('partials.header')
-  <div class="container-lg py-5">
+@extends('layouts.user')
+@section('title', 'Sản phẩm nữ')
+@section('content')
+
     <h1 class="mb-4">Nữ</h1>
     <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4">
       @for($i=1;$i<=9;$i++)
@@ -37,8 +28,10 @@
   </div>
   @include('partials.add_toast')
 
+@push('scripts')
   <script src="{{ asset('user/js/jquery-1.11.0.min.js') }}"></script>
   <script src="{{ asset('user/js/plugins.js') }}"></script>
   <script src="{{ asset('user/js/script.js') }}"></script>
-</body>
-</html>
+@endpush
+
+@endsection
