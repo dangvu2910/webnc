@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'Quản lý Danh mục')
+@section('title', 'Quản lý Danh mục loại giày')
 
 @section('content')
     <div class="flex justify-between items-center my-6">
