@@ -20,6 +20,8 @@ class Product extends Model
 {
     use HasFactory;
 
+    protected $table = 'webnc_products';
+
     protected $fillable = [
         'name',
         'slug',
@@ -32,6 +34,15 @@ class Product extends Model
         'stock',
         'size',
         'color',
+        'brand',
+        'material',
+        'specifications',
+        'rating',
+        'reviews_count',
+        'views_count',
+        'sales_count',
+        'warranty',
+        'care_instructions',
         'is_featured',
         'is_active',
     ];
@@ -40,6 +51,7 @@ class Product extends Model
         'images' => 'array',
         'price' => 'decimal:2',
         'sale_price' => 'decimal:2',
+        'rating' => 'decimal:2',
         'is_featured' => 'boolean',
         'is_active' => 'boolean',
     ];

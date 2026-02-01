@@ -28,39 +28,54 @@ class ProductController extends Controller
     // Show single product
     public function show(Request $request, $id)
     {
-        // support lookup by numeric id, slug, or sku (legacy p1..p10)
         $product = null;
 
-        // look by id if numeric
-        if (is_numeric($id)) {
+        // Try finding by SKU first (most common)
+        $product = Product::where('sku', $id)->first();
+
+        // Try finding by slug
+        if (!$product) {
+            $product = Product::where('slug', $id)->first();
+        }
+
+        // Try finding by numeric ID
+        if (!$product && is_numeric($id)) {
             $product = Product::find($id);
         }
 
-        // fallback to slug or sku
-        if (! $product) {
-            $product = Product::where('slug', $id)->orWhere('sku', $id)->first();
+        // Handle demo pages for men-X and women-X format
+        if (!$product && preg_match('/^(men|women)-(\d+)$/', $id, $matches)) {
+            $gender = $matches[1];
+            $num = (int) $matches[2];
+            
+            // Define product names and prices (same as in men/women views)
+            $names = ['Nike Dunk Low Blue', 'Nike Air Force 1', 'Nike Free RN', 'Nike Revolution', 'Nike Court Borough', 'Adidas Stan Smith', 'Adidas NMD R1', 'New Balance 990', 'Puma RS-X'];
+            $prices = [499000, 599000, 699000, 799000, 899000];
+            $stocks = [5, 10, 8, 3, 15, 12, 7, 6, 4]; // Stock for each product
+            $salePrices = [399000, 499000, 599000, 699000, 799000]; // Sale prices (some products have discounts)
+            
+            $name = $names[$num - 1] ?? "Sản phẩm $gender $num";
+            $price = $prices[($num - 1) % 5];
+            $stock = $stocks[$num - 1] ?? 10;
+            $salePrice = $salePrices[($num - 1) % 5] < $price ? $salePrices[($num - 1) % 5] : null; // Only show sale price if it's lower
+            $imageIndex = ($num % 10) + 1;
+            if ($imageIndex == 0) $imageIndex = 10;
+
+            $demo = [
+                'id' => $id,
+                'sku' => $id,
+                'name' => $name,
+                'price' => $price,
+                'sale_price' => $salePrice,
+                'stock' => $stock,
+                'image' => "user/images/card-item{$imageIndex}.jpg",
+                'description' => "Mô tả demo cho {$name}",
+            ];
+
+            return view('user.product', ['product' => $demo]);
         }
 
-        if (! $product) {
-            // support demo pages for static category templates (men-1, women-2, ...)
-            if (is_string($id) && preg_match('/^(men|women)-(\d+)$/', $id, $m)) {
-                $gender = $m[1];
-                $num = (int) $m[2];
-                $name = $gender === 'men' ? "Sản phẩm nam $num" : "Sản phẩm nữ $num";
-                $price = $gender === 'men' ? 99 : 89;
-                $imageIndex = ($num % 10) + 1;
-
-                $demo = [
-                    'id' => $id,
-                    'name' => $name,
-                    'price' => $price,
-                    'image' => "user/images/card-item{$imageIndex}.jpg",
-                    'description' => "Mô tả demo cho {$name}",
-                ];
-
-                return view('user.product', ['product' => $demo]);
-            }
-
+        if (!$product) {
             abort(404);
         }
 

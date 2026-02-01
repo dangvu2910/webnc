@@ -102,6 +102,70 @@
                                 </label>
                             </div>
 
+                            <div class="grid gap-6 mt-4 mb-4 md:grid-cols-2">
+                                <label class="block text-sm">
+                                    <span class="text-gray-700 dark:text-gray-400">Thương hiệu</span>
+                                    <input type="text" name="brand" value="{{ old('brand') }}"
+                                        class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
+                                        placeholder="VD: Nike, Adidas, Puma" />
+                                    @error('brand')
+                                        <span class="text-xs text-red-600">{{ $message }}</span>
+                                    @enderror
+                                </label>
+
+                                <label class="block text-sm">
+                                    <span class="text-gray-700 dark:text-gray-400">Chất liệu</span>
+                                    <input type="text" name="material" value="{{ old('material') }}"
+                                        class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
+                                        placeholder="VD: Da thật, Vải canvas, Cao su" />
+                                    @error('material')
+                                        <span class="text-xs text-red-600">{{ $message }}</span>
+                                    @enderror
+                                </label>
+                            </div>
+
+                            <label class="block text-sm mt-4">
+                                <span class="text-gray-700 dark:text-gray-400">Thông số kỹ thuật</span>
+                                <textarea name="specifications" rows="2"
+                                    class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-textarea focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray"
+                                    placeholder="VD: Trọng lượng, Kích thước, Công nghệ...">{{ old('specifications') }}</textarea>
+                                @error('specifications')
+                                    <span class="text-xs text-red-600">{{ $message }}</span>
+                                @enderror
+                            </label>
+
+                            <div class="grid gap-6 mt-4 mb-4 md:grid-cols-2">
+                                <label class="block text-sm">
+                                    <span class="text-gray-700 dark:text-gray-400">Đánh giá (0-5 sao)</span>
+                                    <input type="number" name="rating" value="{{ old('rating', 0) }}" min="0" max="5" step="0.1"
+                                        class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
+                                        placeholder="4.5" />
+                                    @error('rating')
+                                        <span class="text-xs text-red-600">{{ $message }}</span>
+                                    @enderror
+                                </label>
+                            </div>
+
+                            <label class="block text-sm mt-4">
+                                <span class="text-gray-700 dark:text-gray-400">Bảo hành</span>
+                                <textarea name="warranty" rows="2"
+                                    class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-textarea focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray"
+                                    placeholder="VD: Bảo hành 1 năm, Bảo hành toàn bộ sản phẩm...">{{ old('warranty') }}</textarea>
+                                @error('warranty')
+                                    <span class="text-xs text-red-600">{{ $message }}</span>
+                                @enderror
+                            </label>
+
+                            <label class="block text-sm mt-4">
+                                <span class="text-gray-700 dark:text-gray-400">Hướng dẫn bảo quản</span>
+                                <textarea name="care_instructions" rows="2"
+                                    class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-textarea focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray"
+                                    placeholder="VD: Vệ sinh sạch sẽ bằng nước ấm, Lưu trữ ở nơi khô ráo...">{{ old('care_instructions') }}</textarea>
+                                @error('care_instructions')
+                                    <span class="text-xs text-red-600">{{ $message }}</span>
+                                @enderror
+                            </label>
+
                             <label class="block text-sm mt-4">
                                 <span class="text-gray-700 dark:text-gray-400">Hình ảnh</span>
                                 <input type="file" name="image" accept="image/*"

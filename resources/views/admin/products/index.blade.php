@@ -33,11 +33,21 @@
                         <tr class="text-gray-700 dark:text-gray-400">
                             <td class="px-4 py-3">
                                 <div class="flex items-center text-sm">
-                                    @if($product->image)
-                                        <div class="relative hidden w-12 h-12 mr-3 rounded-full md:block">
-                                            <img class="object-cover w-full h-full rounded" src="{{ Storage::url($product->image) }}" alt="{{ $product->name }}" loading="lazy" />
-                                        </div>
-                                    @endif
+                                    <div class="relative hidden w-12 h-12 mr-3 rounded-full md:block">
+                                        @php
+                                          // Always use demo images based on product SKU or ID
+                                          $imageIndex = 1;
+                                          $id = $product->sku ?? $product->id;
+                                          if ($id && preg_match('/^(men|women)-(\d+)$/', (string)$id, $m)) {
+                                            $num = (int)$m[2];
+                                            $imageIndex = ($num % 10) + 1;
+                                          } elseif ($product->id) {
+                                            $imageIndex = (($product->id % 10) + 1);
+                                          }
+                                          $imageUrl = asset("user/images/card-item{$imageIndex}.jpg");
+                                        @endphp
+                                        <img class="object-cover w-full h-full rounded" src="{{ $imageUrl }}" alt="{{ $product->name }}" loading="lazy" />
+                                    </div>
                                     <div>
                                         <p class="font-semibold">{{ $product->name }}</p>
                                         <p class="text-xs text-gray-600 dark:text-gray-400">{{ Str::limit($product->description, 50) }}</p>
@@ -47,10 +57,10 @@
                             <td class="px-4 py-3 text-sm">{{ $product->category->name ?? 'N/A' }}</td>
                             <td class="px-4 py-3 text-sm">
                                 @if($product->sale_price)
-                                    <span class="line-through text-gray-400">{{ number_format($product->price, 0, ',', '.') }}₫</span><br>
-                                    <span class="text-red-600 font-semibold">{{ number_format($product->sale_price, 0, ',', '.') }}₫</span>
+                                    <span class="line-through text-gray-400">{{ number_format($product->price, 0, ',', '.') }} ₫</span><br>
+                                    <span class="text-red-600 font-semibold">{{ number_format($product->sale_price, 0, ',', '.') }} ₫</span>
                                 @else
-                                    <span class="font-semibold">{{ number_format($product->price, 0, ',', '.') }}₫</span>
+                                    <span class="font-semibold">{{ number_format($product->price, 0, ',', '.') }} ₫</span>
                                 @endif
                             </td>
                             <td class="px-4 py-3 text-sm">{{ $product->stock }}</td>

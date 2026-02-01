@@ -42,26 +42,8 @@
                     </div>
                     <div class="flex justify-between">
                         <span class="text-gray-600 dark:text-gray-400">Trạng thái:</span>
-                        <span>
-                            @php
-                                $statusColors = [
-                                    'pending' => 'bg-yellow-200 text-yellow-900 dark:bg-yellow-600 dark:text-white',
-                                    'processing' => 'bg-blue-200 text-blue-900 dark:bg-blue-600 dark:text-white',
-                                    'shipped' => 'bg-purple-200 text-purple-900 dark:bg-purple-600 dark:text-white',
-                                    'delivered' => 'bg-green-200 text-green-900 dark:bg-green-600 dark:text-white',
-                                    'cancelled' => 'bg-red-200 text-red-900 dark:bg-red-600 dark:text-white',
-                                ];
-                                $statusLabels = [
-                                    'pending' => 'Chờ xử lý',
-                                    'processing' => 'Đang xử lý',
-                                    'shipped' => 'Đã gửi hàng',
-                                    'delivered' => 'Đã giao',
-                                    'cancelled' => 'Đã hủy',
-                                ];
-                            @endphp
-                            <span class="px-2 py-1 text-xs font-semibold rounded-full {{ $statusColors[$order->status] ?? 'bg-gray-200 text-gray-900 dark:bg-gray-600 dark:text-white' }}">
-                                {{ $statusLabels[$order->status] ?? $order->status }}
-                            </span>
+                        <span class="px-2 py-1 text-xs font-semibold rounded-full {{ \App\Helpers\OrderHelper::getStatusBadgeTailwind($order->status) }}">
+                            {{ \App\Helpers\OrderHelper::getStatusLabel($order->status) }}
                         </span>
                     </div>
                     <div class="flex justify-between">
@@ -188,10 +170,23 @@
                                 <td class="px-4 py-3">
                                     <div class="flex items-center text-sm">
                                         <div class="relative hidden w-12 h-12 mr-3 rounded md:block">
-                                            @if($item->image)
-                                                <img class="object-cover w-full h-full rounded" src="{{ asset('storage/' . $item->image) }}" alt="{{ $item->name }}" loading="lazy">
-                                            @elseif($item->product && $item->product->image)
-                                                <img class="object-cover w-full h-full rounded" src="{{ asset('storage/' . $item->product->image) }}" alt="{{ $item->name }}" loading="lazy">
+                                            @php
+                                                $imageUrl = null;
+                                                // Try to get image from product object
+                                                if ($item->product && $item->product->image) {
+                                                    $imageUrl = \App\Helpers\ImageHelper::productImageUrl(null, $item->product);
+                                                } 
+                                                // Try to look up product by product_id
+                                                else if ($item->product_id) {
+                                                    $imageUrl = \App\Helpers\ImageHelper::productImageUrl(null, null, $item->product_id);
+                                                }
+                                                // Fall back to stored image
+                                                if (!$imageUrl && $item->image) {
+                                                    $imageUrl = \App\Helpers\ImageHelper::productImageUrl($item->image);
+                                                }
+                                            @endphp
+                                            @if($imageUrl)
+                                                <img class="object-cover w-full h-full rounded" src="{{ $imageUrl }}" alt="{{ $item->name }}" loading="lazy">
                                             @else
                                                 <div class="w-full h-full bg-gray-300 rounded flex items-center justify-center">
                                                     <svg class="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20">

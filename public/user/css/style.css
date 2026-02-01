@@ -191,8 +191,9 @@ a {
   --bs-accordion-active-color: var(--bs-primary);
 } */
 
-/* form control */
-.form-control:focus {
+.header-top {
+  display: none !important;
+}
   border-color: #ccc;
   box-shadow: 0 0 0 0.25rem rgba(200, 200, 200, .25);
 }
@@ -880,6 +881,21 @@ a.text-hover:focus:after {
   }
 }
 
+/* Navbar Search Form */
+#searchForm .form-control {
+  border-radius: 25px !important;
+  box-shadow: none !important;
+}
+
+#searchForm .form-control:focus {
+  border-color: #ccc;
+  box-shadow: none !important;
+}
+
+#searchForm .btn {
+  border-radius: 6px;
+}
+
 /* - Modal Structure
 /*----------------------------------------------*/
 
@@ -1035,7 +1051,16 @@ a.text-hover:focus:after {
 }
 
 .swiper .card.large {
-  min-height: 43rem;
+  min-height: 30rem;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.swiper .card.large img.jarallax-img {
+  height: 30rem;
+  width: 100%;
+  object-fit: cover;
+  display: block;
 }
 
 /* 
@@ -1055,7 +1080,10 @@ a.text-hover:focus:after {
   font-weight: 900;
 } */
 
-#intro span.swiper-pagination-bullet {
+#intro {
+  position: relative;
+  overflow: hidden;
+}
   width: 12px;
   height: 12px;
   color: var(--gray-color-200);
@@ -1107,8 +1135,8 @@ a.text-hover:focus:after {
   }
 }
 
-/* - Discount Coupon
-/*----------------------------------------------*/
+/* Banner Sale Styling */
+
 .bold-text {
   right: 0;
   bottom: -42px;
@@ -1196,10 +1224,10 @@ a.text-hover:focus:after {
 .sidebar input.search-field {
   width: 100%;
   height: 50px;
-  box-shadow: 5px 5px 15px 5px #eee;
   border: 1px solid #eee;
   padding-left: 20px;
   outline-offset: 0;
+  border-radius: 25px;
 }
 
 .sidebar .search-icon {

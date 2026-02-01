@@ -19,9 +19,15 @@ class ImageHelper
 	{
 		// 1) explicit image provided
 		if ($image) {
+			// If already starts with storage/ or is a URL, return as asset
+			if (str_starts_with($image, 'storage/')) {
+				return asset($image);
+			}
+			// If starts with products/ (storage disk path), use Storage::url
 			if (str_starts_with($image, 'products/')) {
 				return Storage::url($image);
 			}
+			// Otherwise assume it's an asset path
 			return asset($image);
 		}
 
@@ -29,9 +35,15 @@ class ImageHelper
 		if ($product) {
 			$pImage = is_array($product) ? ($product['image'] ?? null) : ($product->image ?? null);
 			if ($pImage) {
+				// If already starts with storage/ or is a URL, return as asset
+				if (str_starts_with($pImage, 'storage/')) {
+					return asset($pImage);
+				}
+				// If starts with products/ (storage disk path), use Storage::url
 				if (str_starts_with($pImage, 'products/')) {
 					return Storage::url($pImage);
 				}
+				// Otherwise assume it's an asset path
 				return asset($pImage);
 			}
 		}
@@ -66,3 +78,4 @@ class ImageHelper
 		return asset('user/images/card-item1.jpg');
 	}
 }
+

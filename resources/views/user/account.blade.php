@@ -27,6 +27,9 @@
                 <div class="d-grid gap-2">
                     <a href="{{ url('/account/edit') }}" class="btn btn-outline-secondary">Chỉnh sửa thông tin</a>
                     <a href="{{ url('/account/password') }}" class="btn btn-outline-primary">Đổi mật khẩu</a>
+                    <a href="{{ route('support.index') }}" class="btn btn-outline-info">
+                        <i class="fas fa-headset"></i> Hỗ trợ khách hàng
+                    </a>
                     <form method="POST" action="{{ route('logout') }}">
                         @csrf
                         <button type="submit" class="btn btn-danger">Đăng xuất</button>
@@ -47,17 +50,10 @@
                                     <small class="text-muted">Ngày đặt: {{ $order->created_at->format('d/m/Y') }}</small>
                                 </div>
                                 <div class="text-end">
-                                    <div class="fw-bold">${{ number_format($order->total, 2) }}</div>
-                                    @php
-                                      $status = $order->status;
-                                      $label = 'Chưa rõ';
-                                      $badge = 'secondary';
-                                      if ($status === 'processing') { $label = 'Đang xử lý'; $badge = 'warning'; }
-                                      if ($status === 'paid') { $label = 'Đã thanh toán'; $badge = 'success'; }
-                                      if ($status === 'cancelled' || $status === 'canceled') { $label = 'Đã hủy'; $badge = 'danger'; }
-                                      if ($status === 'shipped' || $status === 'delivered') { $label = 'Đã giao'; $badge = 'info'; }
-                                    @endphp
-                                    <span class="badge bg-{{ $badge }}">{{ $label }}</span>
+                                    <div class="fw-bold">{{ number_format($order->total, 0, ',', '.') }} ₫</div>
+                                    <span class="badge bg-{{ \App\Helpers\OrderHelper::getStatusBadgeColor($order->status) }}">
+                                        {{ \App\Helpers\OrderHelper::getStatusLabel($order->status) }}
+                                    </span>
                                 </div>
                             </li>
                         @endforeach

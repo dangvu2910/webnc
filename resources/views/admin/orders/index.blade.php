@@ -44,24 +44,8 @@
                                     {{ number_format($order->total, 0, ',', '.') }} ₫
                                 </td>
                                 <td class="px-4 py-3 text-xs">
-                                    @php
-                                        $statusColors = [
-                                            'pending' => 'bg-yellow-200 text-yellow-900 dark:bg-yellow-600 dark:text-white',
-                                            'processing' => 'bg-blue-200 text-blue-900 dark:bg-blue-600 dark:text-white',
-                                            'shipped' => 'bg-purple-200 text-purple-900 dark:bg-purple-600 dark:text-white',
-                                            'delivered' => 'bg-green-200 text-green-900 dark:bg-green-600 dark:text-white',
-                                            'cancelled' => 'bg-red-200 text-red-900 dark:bg-red-600 dark:text-white',
-                                        ];
-                                        $statusLabels = [
-                                            'pending' => 'Chờ xử lý',
-                                            'processing' => 'Đang xử lý',
-                                            'shipped' => 'Đã gửi hàng',
-                                            'delivered' => 'Đã giao',
-                                            'cancelled' => 'Đã hủy',
-                                        ];
-                                    @endphp
-                                    <span class="px-2 py-1 font-semibold leading-tight rounded-full {{ $statusColors[$order->status] ?? 'bg-gray-200 text-gray-900 dark:bg-gray-600 dark:text-white' }}">
-                                        {{ $statusLabels[$order->status] ?? $order->status }}
+                                    <span class="px-2 py-1 font-semibold leading-tight rounded-full {{ \App\Helpers\OrderHelper::getStatusBadgeTailwind($order->status) }}">
+                                        {{ \App\Helpers\OrderHelper::getStatusLabel($order->status) }}
                                     </span>
                                 </td>
                                 <td class="px-4 py-3 text-sm">

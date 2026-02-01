@@ -30,9 +30,22 @@ class AuthenticatedSessionController extends Controller
         if (Auth::attempt($credentials, $request->filled('remember'))) {
             $request->session()->regenerate();
             $user = Auth::user();
-            // Redirect admins to admin dashboard
-            if ($user && $user->is_admin) {
-                return redirect()->intended('/admin');
+            
+            // Check if user is banned
+            if ($user && ($user->status ?? 'active') === 'banned') {
+                Auth::logout();
+                return back()->withErrors([
+                    'login' => 'Tài khoản của bạn đã bị khóa.',
+                ])->onlyInput('login');
+            }
+            
+            // Redirect based on user role
+            if ($user) {
+                if ($user->role === 'admin' || $user->is_admin) {
+                    return redirect()->intended('/admin');
+                } elseif ($user->role === 'staff') {
+                    return redirect()->intended('/staff');
+                }
             }
 
             // Redirect regular users to homepage so they can continue shopping

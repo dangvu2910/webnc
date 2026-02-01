@@ -13,11 +13,21 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\SearchController;
 
+// Support controllers
+use App\Http\Controllers\SupportController;
+
 // Admin controllers
+use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 use App\Http\Controllers\Admin\ProductController as AdminProductController;
 use App\Http\Controllers\Admin\CategoryController as AdminCategoryController;
 use App\Http\Controllers\Admin\UserController as AdminUserController;
 use App\Http\Controllers\Admin\OrderController as AdminOrderController;
+use App\Http\Controllers\Admin\SupportController as AdminSupportController;
+
+// Staff controllers
+use App\Http\Controllers\Staff\DashboardController as StaffDashboardController;
+use App\Http\Controllers\Staff\OrderController as StaffOrderController;
+use App\Http\Controllers\Staff\SupportController as StaffSupportController;
 
 /*
 |--------------------------------------------------------------------------
@@ -65,6 +75,17 @@ Route::view('/men', 'user.men');
 Route::view('/women', 'user.women');
 
 Route::get('/search', [SearchController::class, 'index'])->name('search');
+Route::get('/api/search/autocomplete', [SearchController::class, 'autocomplete'])->name('search.autocomplete');
+
+// Support routes (protected by auth)
+Route::middleware('auth')->group(function () {
+    Route::get('/support', [SupportController::class, 'index'])->name('support.index');
+    Route::get('/support/create', [SupportController::class, 'create'])->name('support.create');
+    Route::post('/support', [SupportController::class, 'store'])->name('support.store');
+    Route::get('/support/{ticket}', [SupportController::class, 'show'])->name('support.show');
+    Route::post('/support/{ticket}/response', [SupportController::class, 'addResponse'])->name('support.addResponse');
+    Route::post('/support/{ticket}/close', [SupportController::class, 'close'])->name('support.close');
+});
 
 // Register
 Route::get('/register', [RegisteredUserController::class, 'create'])->name('register');
@@ -79,8 +100,8 @@ Route::redirect('/admin', '/admin/dashboard')->name('admin');
 
 Route::prefix('admin')->name('admin.')->middleware(['auth','is_admin'])->group(function () {
     // Dashboard
-    Route::view('/', 'admin.index')->name('dashboard');
-    Route::view('/dashboard', 'admin.index');
+    Route::get('/', [AdminDashboardController::class, 'index'])->name('dashboard');
+    Route::get('/dashboard', [AdminDashboardController::class, 'index']);
 
     // Products
     Route::get('products', [AdminProductController::class, 'index'])->name('products.index');
@@ -105,6 +126,8 @@ Route::prefix('admin')->name('admin.')->middleware(['auth','is_admin'])->group(f
     Route::get('users/{user}/edit', [AdminUserController::class, 'edit'])->name('users.edit');
     Route::put('users/{user}', [AdminUserController::class, 'update'])->name('users.update');
     Route::delete('users/{user}', [AdminUserController::class, 'destroy'])->name('users.destroy');
+    Route::post('users/{user}/ban', [AdminUserController::class, 'ban'])->name('users.ban');
+    Route::post('users/{user}/unban', [AdminUserController::class, 'unban'])->name('users.unban');
 
     // Orders
     Route::get('orders', [AdminOrderController::class, 'index'])->name('orders.index');
@@ -113,9 +136,43 @@ Route::prefix('admin')->name('admin.')->middleware(['auth','is_admin'])->group(f
     Route::post('orders/{order}/approve', [AdminOrderController::class, 'approve'])->name('orders.approve');
     Route::post('orders/{order}/reject', [AdminOrderController::class, 'reject'])->name('orders.reject');
 
+    // Support tickets (admin)
+    Route::get('support', [AdminSupportController::class, 'index'])->name('support.index');
+    Route::get('support/{ticket}', [AdminSupportController::class, 'show'])->name('support.show');
+    Route::post('support/{ticket}/status', [AdminSupportController::class, 'updateStatus'])->name('support.updateStatus');
+    Route::post('support/{ticket}/priority', [AdminSupportController::class, 'updatePriority'])->name('support.updatePriority');
+    Route::delete('support/{ticket}', [AdminSupportController::class, 'destroy'])->name('support.destroy');
+
     // Static pages / samples
     Route::view('charts', 'admin.charts');
     Route::view('tables', 'admin.tables');
+});
+
+/*
+|--------------------------------------------------------------------------
+| Staff routes
+|--------------------------------------------------------------------------
+*/
+Route::redirect('/staff', '/staff/dashboard')->name('staff');
+
+Route::prefix('staff')->name('staff.')->middleware(['auth', 'is_staff'])->group(function () {
+    // Dashboard
+    Route::get('/', [StaffDashboardController::class, 'index'])->name('dashboard');
+    Route::get('dashboard', [StaffDashboardController::class, 'index']);
+
+    // Orders
+    Route::get('orders', [StaffOrderController::class, 'index'])->name('orders.index');
+    Route::get('orders/{order}', [StaffOrderController::class, 'show'])->name('orders.show');
+    Route::post('orders/{order}/status', [StaffOrderController::class, 'updateStatus'])->name('orders.updateStatus');
+    Route::post('orders/{order}/approve', [StaffOrderController::class, 'approve'])->name('orders.approve');
+    Route::post('orders/{order}/reject', [StaffOrderController::class, 'reject'])->name('orders.reject');
+
+    // Support tickets (staff)
+    Route::get('support', [StaffSupportController::class, 'index'])->name('support.index');
+    Route::get('support/{ticket}', [StaffSupportController::class, 'show'])->name('support.show');
+    Route::post('support/{ticket}/response', [StaffSupportController::class, 'addResponse'])->name('support.addResponse');
+    Route::post('support/{ticket}/status', [StaffSupportController::class, 'updateStatus'])->name('support.updateStatus');
+    Route::post('support/{ticket}/priority', [StaffSupportController::class, 'updatePriority'])->name('support.updatePriority');
 });
 
 /*

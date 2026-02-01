@@ -21,7 +21,7 @@
                     Tổng khách hàng
                 </p>
                 <p class="text-lg font-semibold text-gray-700 dark:text-gray-200">
-                    6,389
+                    {{ number_format($totalCustomers) }}
                 </p>
             </div>
         </div>
@@ -37,7 +37,7 @@
                     Doanh thu
                 </p>
                 <p class="text-lg font-semibold text-gray-700 dark:text-gray-200">
-                    ₫ 46,500,000
+                    ₫ {{ number_format($totalRevenue, 0, ',', '.') }}
                 </p>
             </div>
         </div>
@@ -53,7 +53,7 @@
                     Đơn hàng mới
                 </p>
                 <p class="text-lg font-semibold text-gray-700 dark:text-gray-200">
-                    376
+                    {{ $newOrders }}
                 </p>
             </div>
         </div>
@@ -69,7 +69,7 @@
                     Đang chờ xử lý
                 </p>
                 <p class="text-lg font-semibold text-gray-700 dark:text-gray-200">
-                    35
+                    {{ $pendingSupport }}
                 </p>
             </div>
         </div>
@@ -81,32 +81,6 @@
             Truy cập nhanh
         </h4>
         <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-            <a href="{{ route('admin.products.index') }}" class="flex items-center p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800 hover:shadow-md transition-shadow">
-                <div class="p-3 mr-4 text-purple-500 bg-purple-100 rounded-full dark:text-purple-100 dark:bg-purple-500">
-                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                        <path d="M3 1a1 1 0 000 2h1.22l.305 1.222a.997.997 0 00.01.042l1.358 5.43-.893.892C3.74 11.846 4.632 14 6.414 14H15a1 1 0 000-2H6.414l1-1H14a1 1 0 00.894-.553l3-6A1 1 0 0017 3H6.28l-.31-1.243A1 1 0 005 1H3z"></path>
-                    </svg>
-                </div>
-                <div>
-                    <p class="text-sm font-semibold text-gray-700 dark:text-gray-200">
-                        Quản lý Sản phẩm
-                    </p>
-                </div>
-            </a>
-
-            <a href="{{ route('admin.categories.index') }}" class="flex items-center p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800 hover:shadow-md transition-shadow">
-                <div class="p-3 mr-4 text-indigo-500 bg-indigo-100 rounded-full dark:text-indigo-100 dark:bg-indigo-500">
-                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                        <path d="M7 3a1 1 0 000 2h6a1 1 0 100-2H7zM4 7a1 1 0 011-1h10a1 1 0 110 2H5a1 1 0 01-1-1zM2 11a2 2 0 012-2h12a2 2 0 012 2v4a2 2 0 01-2 2H4a2 2 0 01-2-2v-4z"></path>
-                    </svg>
-                </div>
-                <div>
-                    <p class="text-sm font-semibold text-gray-700 dark:text-gray-200">
-                        Quản lý Danh mục
-                    </p>
-                </div>
-            </a>
-
             <a href="{{ route('admin.orders.index') }}" class="flex items-center p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800 hover:shadow-md transition-shadow">
                 <div class="p-3 mr-4 text-pink-500 bg-pink-100 rounded-full dark:text-pink-100 dark:bg-pink-500">
                     <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
@@ -117,6 +91,20 @@
                 <div>
                     <p class="text-sm font-semibold text-gray-700 dark:text-gray-200">
                         Quản lý Đơn hàng
+                    </p>
+                </div>
+            </a>
+
+            <a href="{{ route('admin.support.index') }}" class="flex items-center p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800 hover:shadow-md transition-shadow">
+                <div class="p-3 mr-4 text-green-500 bg-green-100 rounded-full dark:text-green-100 dark:bg-green-500">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M2 5a2 2 0 012-2h12a2 2 0 012 2v10a2 2 0 01-2 2H4a2 2 0 01-2-2V5z"></path>
+                        <path fill-rule="evenodd" d="M3 4a1 1 0 00-1 1v10a1 1 0 001 1h12a1 1 0 001-1V5a1 1 0 00-1-1H3z" clip-rule="evenodd"></path>
+                    </svg>
+                </div>
+                <div>
+                    <p class="text-sm font-semibold text-gray-700 dark:text-gray-200">
+                        Hỗ trợ khách hàng
                     </p>
                 </div>
             </a>

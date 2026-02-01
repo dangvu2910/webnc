@@ -3,69 +3,27 @@
 @section('title', 'Trang chủ')
 
 @section('content')
-  <section id="intro" class="position-relative mt-4">
+  <section id="intro" class="position-relative">
     <div class="container-lg">
       <div class="swiper main-swiper">
         <div class="swiper-wrapper">
           <div class="swiper-slide">
             <div class="card d-flex flex-row align-items-end border-0 large jarallax-keep-img">
-              <img src="{{ asset('user/images/card-image1.jpg') }}" alt="shoes" class="img-fluid jarallax-img">
+              <img src="{{ asset('user/images/banner1.png') }}" alt="Banner 1" class="img-fluid jarallax-img">
               <div class="cart-concern p-3 m-3 p-lg-5 m-lg-5">
-                <h2 class="card-title display-3 light">Giày kiểu dáng nữ</h2>
-                <a href="#" class="text-uppercase light mt-3 d-inline-block text-hover fw-bold light-border">Mua ngay</a>
-              </div>
-            </div>
-          </div>
-          <div class="swiper-slide">
-            <div class="row g-4">
-              <div class="col-lg-12 mb-4">
-                <div class="card d-flex flex-row align-items-end border-0 jarallax-keep-img">
-                  <img src="{{ asset('user/images/card-image2.jpg') }}" alt="shoes" class="img-fluid jarallax-img">
-                  <div class="cart-concern p-3 m-3 p-lg-5 m-lg-5">
-                    <h2 class="card-title style-2 display-4 light">Đồ thể thao</h2>
-                    <a href="#" class="text-uppercase light mt-3 d-inline-block text-hover fw-bold light-border">Mua ngay</a>
-                  </div>
-                </div>
-              </div>
-              <div class="col-lg-12">
-                <div class="card d-flex flex-row align-items-end border-0 jarallax-keep-img">
-                  <img src="{{ asset('user/images/card-image3.jpg') }}" alt="shoes" class="img-fluid jarallax-img">
-                  <div class="cart-concern p-3 m-3 p-lg-5 m-lg-5">
-                    <h2 class="card-title style-2 display-4 light">Giày thời trang</h2>
-                    <a href="#" class="text-uppercase light mt-3 d-inline-block text-hover fw-bold light-border">Mua ngay</a>
-                  </div>
-                </div>
+                <h2 class="card-title display-3 light">Banner 1</h2>
+                <p class="light mb-3">Bộ sưu tập mới nhất với công nghệ tiên tiến</p>
+                <a href="#" class="text-uppercase light mt-3 d-inline-block text-hover fw-bold light-border">Khám phá ngay</a>
               </div>
             </div>
           </div>
           <div class="swiper-slide">
             <div class="card d-flex flex-row align-items-end border-0 large jarallax-keep-img">
-              <img src="{{ asset('user/images/card-image4.jpg') }}" alt="shoes" class="img-fluid jarallax-img">
+              <img src="{{ asset('user/images/banner3.png') }}" alt="Banner 2" class="img-fluid jarallax-img">
               <div class="cart-concern p-3 m-3 p-lg-5 m-lg-5">
-                <h2 class="card-title display-3 light">Giày kiểu dáng nam</h2>
-                <a href="index.html" class="text-uppercase light mt-3 d-inline-block text-hover fw-bold light-border">Mua ngay</a>
-              </div>
-            </div>
-          </div>
-          <div class="swiper-slide">
-            <div class="row g-4">
-              <div class="col-lg-12 mb-4">
-                <div class="card d-flex flex-row align-items-end border-0 jarallax-keep-img">
-                  <img src="{{ asset('user/images/card-image5.jpg') }}" alt="shoes" class="img-fluid jarallax-img">
-                  <div class="cart-concern p-3 m-3 p-lg-5 m-lg-5">
-                    <h2 class="card-title style-2 display-4 light">Giày nam</h2>
-                    <a href="index.html" class="text-uppercase light mt-3 d-inline-block text-hover fw-bold light-border">Mua ngay</a>
-                  </div>
-                </div>
-              </div>
-              <div class="col-lg-12">
-                <div class="card d-flex flex-row align-items-end border-0 jarallax-keep-img">
-                  <img src="{{ asset('user/images/card-image6.jpg') }}" alt="shoes" class="img-fluid jarallax-img">
-                  <div class="cart-concern p-3 m-3 p-lg-5 m-lg-5">
-                    <h2 class="card-title style-2 display-4 light">Giày nữ</h2>
-                    <a href="index.html" class="text-uppercase light mt-3 d-inline-block text-hover fw-bold light-border">Mua ngay</a>
-                  </div>
-                </div>
+                <h2 class="card-title display-3 light">Banner 2</h2>
+                <p class="light mb-3">Chất lượng tốt nhất, giá cả hợp lý</p>
+                <a href="#" class="text-uppercase light mt-3 d-inline-block text-hover fw-bold light-border">Khám phá ngay</a>
               </div>
             </div>
           </div>
@@ -75,15 +33,15 @@
     </div>
   </section>
 
-  <section class="discount-coupon py-2 my-2 py-md-5 my-md-5">
-    <div class="container">
-      <div class="bg-gray coupon position-relative p-5">
+  <section class="discount-coupon py-3 px-4">
+    <div class="container-fluid">
+      <div class="bg-gray coupon position-relative p-5 rounded-4">
         <div class="bold-text position-absolute">Giảm 10%</div>
         <div class="row justify-content-between align-items-center">
           <div class="col-lg-7 col-md-12 mb-3">
             <div class="coupon-header">
-              <h2 class="display-7">Mã giảm 10%</h2>
-              <p class="m-0">Đăng ký để nhận mã giảm 10% cho mọi đơn hàng</p>
+              <h2 class="display-7 fw-bold mb-2">Mã giảm 10%</h2>
+              <p class="m-0 text-muted">Đăng ký để nhận mã giảm 10% cho mọi đơn hàng</p>
             </div>
           </div>
           <div class="col-lg-3 col-md-12">
@@ -96,245 +54,218 @@
     </div>
   </section>
 
-  <section id="featured-products" class="product-store">
-    <div class="container-md">
-      <div class="display-header d-flex align-items-center justify-content-between">
-        <h2 class="section-title text-uppercase">Sản phẩm nổi bật</h2>
+  <section id="featured-products" class="product-store py-3 px-4">
+    <div class="container-fluid">
+      <div class="display-header d-flex align-items-center justify-content-between mb-5">
+        <h2 class="section-title text-uppercase fw-bold">Sản phẩm nổi bật</h2>
         <div class="btn-right">
-          <a href="index.html" class="d-inline-block text-uppercase text-hover fw-bold">Xem tất cả</a>
+          <a href="index.html" class="d-inline-block text-uppercase text-hover fw-bold">Xem tất cả →</a>
         </div>
       </div>
-      <div class="product-content padding-small">
-        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-5">
+      <div class="product-content">
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-5 g-4">
           @if(!empty($products) && count($products))
-            @foreach($products as $product)
+            @foreach($products->take(5) as $product)
               @php
                 $id = $product->sku ?? $product->id;
                 $title = $product->name ?? 'Sản phẩm';
                 $price = $product->price ?? 0;
-                $image = \App\Helpers\ImageHelper::productImageUrl(null, $product);
+                // Always use demo images based on product SKU or ID
+                $imageIndex = 1;
+                if ($id && preg_match('/^(men|women)-(\d+)$/', (string)$id, $m)) {
+                  $num = (int)$m[2];
+                  $imageIndex = ($num % 10) + 1;
+                } else {
+                  $imageIndex = (($product->id % 10) + 1);
+                }
+                $image = asset("user/images/card-item{$imageIndex}.jpg");
               @endphp
-              <div class="col mb-4">
-                <div class="product-card position-relative">
-                  <div class="card-img">
+              <div class="col">
+                <div class="product-card position-relative h-100">
+                  <div class="card-img rounded-4 overflow-hidden position-relative">
                     <a href="{{ route('product.show', $id) }}">
-                      <img src="{{ $image }}" alt="product-item" class="product-image img-fluid">
+                      <img src="{{ $image }}" alt="product-item" class="product-image img-fluid w-100" style="object-fit: cover; height: 280px;">
                     </a>
-                    <div class="cart-concern position-absolute d-flex justify-content-center">
+                    <div class="cart-concern position-absolute d-flex justify-content-center w-100 h-100">
                       <div class="cart-button d-flex gap-2 justify-content-center align-items-center">
-                        <a href="#" data-sku="{{ $id }}" data-name="{{ e($title) }}" data-price="{{ $price }}" class="btn btn-light ajax-add-cart">
+                        <a href="#" data-sku="{{ $id }}" data-name="{{ e($title) }}" data-price="{{ $price }}" data-image="{{ $image }}" class="btn btn-light ajax-add-cart rounded-circle">
                           <svg class="shopping-carriage"><use xlink:href="#shopping-carriage"></use></svg>
                         </a>
-                        <a href="{{ route('product.show', $id) }}" class="btn btn-light">
+                        <a href="{{ route('product.show', $id) }}" class="btn btn-light rounded-circle">
                           <svg class="quick-view"><use xlink:href="#quick-view"></use></svg>
                         </a>
                       </div>
                     </div>
-                    <!-- cart-concern -->
                   </div>
-                  <div class="card-detail d-flex justify-content-between align-items-center mt-3">
+                  <div class="card-detail d-flex flex-column justify-content-between align-items-start mt-3">
                     <h3 class="card-title fs-6 fw-normal m-0">
-                      <a href="{{ route('product.show', $id) }}">{{ $title }}</a>
+                      <a href="{{ route('product.show', $id) }}" class="text-dark text-decoration-none">{{ $title }}</a>
                     </h3>
-                    <span class="card-price fw-bold">${{ number_format($price, 2) }}</span>
+                    <span class="card-price fw-bold mt-2">{{ number_format($price, 0, ',', '.') }} ₫</span>
                   </div>
                 </div>
               </div>
             @endforeach
           @else
-            <div class="col mb-4">No products available.</div>
+            <div class="col">No products available.</div>
           @endif
         </div>
       </div>
     </div>
   </section>
 
-  <section id="collection-products" class="py-2 my-2 py-md-5 my-md-5">
-    <div class="container-md">
-      <div class="row">
-        <div class="col-lg-6 col-md-6 mb-4">
-          <div class="collection-card card border-0 d-flex flex-row align-items-end jarallax-keep-img">
-            <img src="{{ asset('user/images/collection-item1.jpg') }}" alt="product-item" class="border-rounded-10 img-fluid jarallax-img">
-            <div class="card-detail p-3 m-3 p-lg-5 m-lg-5">
-              <h3 class="card-title display-3">
-                <a href="#">Bộ sưu tập Tối giản</a>
-              </h3>
-              <a href="index.html" class="text-uppercase mt-3 d-inline-block text-hover fw-bold">Mua ngay</a>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-6 col-md-6">
-          <div class="collection-card card border-0 d-flex flex-row jarallax-keep-img">
-            <img src="{{ asset('user/images/collection-item2.jpg') }}" alt="product-item" class="border-rounded-10 img-fluid jarallax-img">
-            <div class="card-detail p-3 m-3 p-lg-5 m-lg-5">
-              <h3 class="card-title display-3">
-                <a href="#">Bộ sưu tập Sneaker</a>
-              </h3>
-              <a href="index.html" class="text-uppercase mt-3 d-inline-block text-hover fw-bold">Mua ngay</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="latest-products" class="product-store py-2 my-2 py-md-5 my-md-5 pt-0">
-    <div class="container-md">
-      <div class="display-header d-flex align-items-center justify-content-between">
-        <h2 class="section-title text-uppercase">Sản phẩm mới</h2>
+  <section id="latest-products" class="product-store py-3 px-4">
+    <div class="container-fluid">
+      <div class="display-header d-flex align-items-center justify-content-between mb-5">
+        <h2 class="section-title text-uppercase fw-bold">Sản phẩm mới</h2>
         <div class="btn-right">
-          <a href="index.html" class="d-inline-block text-uppercase text-hover fw-bold">Xem tất cả</a>
+          <a href="index.html" class="d-inline-block text-uppercase text-hover fw-bold">Xem tất cả →</a>
         </div>
       </div>
-      <div class="product-content padding-small">
-        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-5">
-          <div class="col mb-4 mb-3">
-            <div class="product-card position-relative">
-              <div class="card-img">
+      <div class="product-content">
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-5 g-4">
+          <div class="col">
+            <div class="product-card position-relative h-100">
+              <div class="card-img rounded-4 overflow-hidden position-relative">
                 <a href="{{ url('/product/p6') }}">
-                  <img src="{{ asset('user/images/card-item6.jpg') }}" alt="product-item" class="product-image img-fluid">
+                  <img src="{{ asset('user/images/card-item6.jpg') }}" alt="product-item" class="product-image img-fluid w-100" style="object-fit: cover; height: 280px;">
                 </a>
-                <div class="cart-concern position-absolute d-flex justify-content-center">
+                <div class="cart-concern position-absolute d-flex justify-content-center w-100 h-100">
                   <div class="cart-button d-flex gap-2 justify-content-center align-items-center">
-                    <a href="{{ url('/product/p6') }}" class="btn btn-light">
+                    <a href="{{ url('/product/p6') }}" class="btn btn-light rounded-circle">
                       <svg class="shopping-carriage">
                         <use xlink:href="#shopping-carriage"></use>
                       </svg>
                     </a>
-                    <a href="{{ url('/product/p6') }}" class="btn btn-light">
+                    <a href="{{ url('/product/p6') }}" class="btn btn-light rounded-circle">
                       <svg class="quick-view">
                         <use xlink:href="#quick-view"></use>
                       </svg>
                     </a>
                   </div>
                 </div>
-                <!-- cart-concern -->
               </div>
-              <div class="card-detail d-flex justify-content-between align-items-center mt-3">
+              <div class="card-detail d-flex flex-column justify-content-between align-items-start mt-3">
                 <h3 class="card-title fs-6 fw-normal m-0">
-                  <a href="{{ url('/product/p6') }}">Giày chạy bộ nam</a>
+                  <a href="{{ url('/product/p6') }}" class="text-dark text-decoration-none">Adidas Stan Smith</a>
                 </h3>
-                <span class="card-price fw-bold">$99</span>
+                <span class="card-price fw-bold mt-2">{{ number_format(499000, 0, ',', '.') }} ₫</span>
               </div>
             </div>
           </div>
-          <div class="col mb-4 mb-3">
-            <div class="product-card position-relative">
-              <div class="card-img">
+          <div class="col">
+            <div class="product-card position-relative h-100">
+              <div class="card-img rounded-4 overflow-hidden position-relative">
                 <a href="{{ url('/product/p7') }}">
-                  <img src="{{ asset('user/images/card-item7.jpg') }}" alt="product-item" class="product-image img-fluid">
+                  <img src="{{ asset('user/images/card-item7.jpg') }}" alt="product-item" class="product-image img-fluid w-100" style="object-fit: cover; height: 280px;">
                 </a>
-                <div class="cart-concern position-absolute d-flex justify-content-center">
+                <div class="cart-concern position-absolute d-flex justify-content-center w-100 h-100">
                   <div class="cart-button d-flex gap-2 justify-content-center align-items-center">
-                    <a href="{{ url('/product/p7') }}" class="btn btn-light">
+                    <a href="{{ url('/product/p7') }}" class="btn btn-light rounded-circle">
                       <svg class="shopping-carriage">
                         <use xlink:href="#shopping-carriage"></use>
                       </svg>
                     </a>
-                    <a href="{{ url('/product/p7') }}" class="btn btn-light">
+                    <a href="{{ url('/product/p7') }}" class="btn btn-light rounded-circle">
                       <svg class="quick-view">
                         <use xlink:href="#quick-view"></use>
                       </svg>
                     </a>
                   </div>
                 </div>
-                <!-- cart-concern -->
               </div>
-              <div class="card-detail d-flex justify-content-between align-items-center mt-3">
+              <div class="card-detail d-flex flex-column justify-content-between align-items-start mt-3">
                 <h3 class="card-title fs-6 fw-normal m-0">
-                  <a href="{{ url('/product/p7') }}">Giày chạy bộ nam</a>
+                  <a href="{{ url('/product/p7') }}" class="text-dark text-decoration-none">Adidas NMD R1</a>
                 </h3>
-                <span class="card-price fw-bold">$99</span>
+                <span class="card-price fw-bold mt-2">{{ number_format(599000, 0, ',', '.') }} ₫</span>
               </div>
             </div>
           </div>
-          <div class="col mb-4 mb-3">
-            <div class="product-card position-relative">
-              <div class="card-img">
+          <div class="col">
+            <div class="product-card position-relative h-100">
+              <div class="card-img rounded-4 overflow-hidden position-relative">
                 <a href="{{ url('/product/p8') }}">
-                  <img src="{{ asset('user/images/card-item8.jpg') }}" alt="product-item" class="product-image img-fluid">
+                  <img src="{{ asset('user/images/card-item8.jpg') }}" alt="product-item" class="product-image img-fluid w-100" style="object-fit: cover; height: 280px;">
                 </a>
-                <div class="cart-concern position-absolute d-flex justify-content-center">
+                <div class="cart-concern position-absolute d-flex justify-content-center w-100 h-100">
                   <div class="cart-button d-flex gap-2 justify-content-center align-items-center">
-                    <a href="{{ url('/product/p8') }}" class="btn btn-light">
+                    <a href="{{ url('/product/p8') }}" class="btn btn-light rounded-circle">
                       <svg class="shopping-carriage">
                         <use xlink:href="#shopping-carriage"></use>
                       </svg>
                     </a>
-                    <a href="{{ url('/product/p8') }}" class="btn btn-light">
+                    <a href="{{ url('/product/p8') }}" class="btn btn-light rounded-circle">
                       <svg class="quick-view">
                         <use xlink:href="#quick-view"></use>
                       </svg>
                     </a>
                   </div>
                 </div>
-                <!-- cart-concern -->
               </div>
-              <div class="card-detail d-flex justify-content-between align-items-center mt-3">
+              <div class="card-detail d-flex flex-column justify-content-between align-items-start mt-3">
                 <h3 class="card-title fs-6 fw-normal m-0">
-                  <a href="{{ url('/product/p8') }}">Giày chạy bộ nam</a>
+                  <a href="{{ url('/product/p8') }}" class="text-dark text-decoration-none">New Balance 990</a>
                 </h3>
-                <span class="card-price fw-bold">$99</span>
+                <span class="card-price fw-bold mt-2">{{ number_format(699000, 0, ',', '.') }} ₫</span>
               </div>
             </div>
           </div>
-          <div class="col mb-4 mb-3">
-            <div class="product-card position-relative">
-              <div class="card-img">
+          <div class="col">
+            <div class="product-card position-relative h-100">
+              <div class="card-img rounded-4 overflow-hidden position-relative">
                 <a href="{{ url('/product/p9') }}">
-                  <img src="{{ asset('user/images/card-item9.jpg') }}" alt="product-item" class="product-image img-fluid">
+                  <img src="{{ asset('user/images/card-item9.jpg') }}" alt="product-item" class="product-image img-fluid w-100" style="object-fit: cover; height: 280px;">
                 </a>
-                <div class="cart-concern position-absolute d-flex justify-content-center">
+                <div class="cart-concern position-absolute d-flex justify-content-center w-100 h-100">
                   <div class="cart-button d-flex gap-2 justify-content-center align-items-center">
-                    <a href="{{ url('/product/p9') }}" class="btn btn-light">
+                    <a href="{{ url('/product/p9') }}" class="btn btn-light rounded-circle">
                       <svg class="shopping-carriage">
                         <use xlink:href="#shopping-carriage"></use>
                       </svg>
                     </a>
-                    <a href="{{ url('/product/p9') }}" class="btn btn-light">
+                    <a href="{{ url('/product/p9') }}" class="btn btn-light rounded-circle">
                       <svg class="quick-view">
                         <use xlink:href="#quick-view"></use>
                       </svg>
                     </a>
                   </div>
                 </div>
-                <!-- cart-concern -->
               </div>
-              <div class="card-detail d-flex justify-content-between align-items-center mt-3">
+              <div class="card-detail d-flex flex-column justify-content-between align-items-start mt-3">
                 <h3 class="card-title fs-6 fw-normal m-0">
-                  <a href="{{ url('/product/p9') }}">Giày chạy bộ nam</a>
+                  <a href="{{ url('/product/p9') }}" class="text-dark text-decoration-none">Puma RS-X Reinvention</a>
                 </h3>
-                <span class="card-price fw-bold">$99</span>
+                <span class="card-price fw-bold mt-2">{{ number_format(799000, 0, ',', '.') }} ₫</span>
               </div>
             </div>
           </div>
-          <div class="col mb-4 mb-3">
-            <div class="product-card position-relative">
-              <div class="card-img">
+          <div class="col">
+            <div class="product-card position-relative h-100">
+              <div class="card-img rounded-4 overflow-hidden position-relative">
                 <a href="{{ url('/product/p10') }}">
-                  <img src="{{ asset('user/images/card-item10.jpg') }}" alt="product-item" class="product-image img-fluid">
+                  <img src="{{ asset('user/images/card-item10.jpg') }}" alt="product-item" class="product-image img-fluid w-100" style="object-fit: cover; height: 280px;">
                 </a>
-                <div class="cart-concern position-absolute d-flex justify-content-center">
+                <div class="cart-concern position-absolute d-flex justify-content-center w-100 h-100">
                   <div class="cart-button d-flex gap-2 justify-content-center align-items-center">
-                    <a href="{{ url('/product/p10') }}" class="btn btn-light">
+                    <a href="{{ url('/product/p10') }}" class="btn btn-light rounded-circle">
                       <svg class="shopping-carriage">
                         <use xlink:href="#shopping-carriage"></use>
                       </svg>
                     </a>
-                    <a href="{{ url('/product/p10') }}" class="btn btn-light">
+                    <a href="{{ url('/product/p10') }}" class="btn btn-light rounded-circle">
                       <svg class="quick-view">
                         <use xlink:href="#quick-view"></use>
                       </svg>
                     </a>
                   </div>
                 </div>
-                <!-- cart-concern -->
               </div>
-              <div class="card-detail d-flex justify-content-between align-items-center mt-3">
+              <div class="card-detail d-flex flex-column justify-content-between align-items-start mt-3">
                 <h3 class="card-title fs-6 fw-normal m-0">
-                  <a href="{{ url('/product/p10') }}">Giày chạy bộ nam</a>
+                  <a href="{{ url('/product/p10') }}" class="text-dark text-decoration-none">New Balance 574</a>
                 </h3>
-                <span class="card-price fw-bold">$99</span>
+                <span class="card-price fw-bold mt-2">{{ number_format(599000, 0, ',', '.') }} ₫</span>
               </div>
             </div>
           </div>
@@ -343,92 +274,119 @@
     </div>
   </section>
 
-  <footer id="footer" class="py-5 border-top">
+  <footer id="footer" class="py-3 border-top bg-light">
     <div class="container-lg">
-      <div class="row">
-        <div class="col-lg-2 pb-3">
+      <div class="row mb-4">
+        <div class="col-lg-2 pb-4">
           <div class="footer-menu">
-            <h5 class="widget-title pb-2">Thông tin</h5>
+            <h5 class="widget-title pb-3 fw-bold">Thông tin</h5>
             <ul class="menu-list list-unstyled">
-              <li class="pb-2"><a href="#">Theo dõi đơn hàng</a></li>
-              <li class="pb-2"><a href="{{ url('/') }}">Blog của chúng tôi</a></li>
-              <li class="pb-2"><a href="#">Chính sách bảo mật</a></li>
-              <li class="pb-2"><a href="#">Giao hàng</a></li>
-              <li class="pb-2"><a href="#">Liên hệ</a></li>
-              <li class="pb-2"><a href="#">Trợ giúp</a></li>
-              <li class="pb-2"><a href="#">Cộng đồng</a></li>
+              <li class="pb-2"><a href="#" class="text-decoration-none">Theo dõi đơn hàng</a></li>
+              <li class="pb-2"><a href="{{ url('/') }}" class="text-decoration-none">Blog của chúng tôi</a></li>
+              <li class="pb-2"><a href="#" class="text-decoration-none">Chính sách bảo mật</a></li>
+              <li class="pb-2"><a href="#" class="text-decoration-none">Giao hàng</a></li>
+              <li class="pb-2"><a href="#" class="text-decoration-none">Liên hệ</a></li>
+              <li class="pb-2"><a href="#" class="text-decoration-none">Trợ giúp</a></li>
+              <li class="pb-2"><a href="#" class="text-decoration-none">Cộng đồng</a></li>
             </ul>
           </div>
         </div>
-        <div class="col-lg-2 pb-3">
+        <div class="col-lg-2 pb-4">
           <div class="footer-menu">
-            <h5 class="widget-title pb-2">Về</h5>
+            <h5 class="widget-title pb-3 fw-bold">Về chúng tôi</h5>
             <ul class="menu-list list-unstyled">
-              <li class="pb-2"><a href="#">Lịch sử</a></li>
-              <li class="pb-2"><a href="#">Đội ngũ</a></li>
-              <li class="pb-2"><a href="#">Dịch vụ</a></li>
-              <li class="pb-2"><a href="#">Công ty</a></li>
-              <li class="pb-2"><a href="#">Sản xuất</a></li>
-              <li class="pb-2"><a href="#">Bán sỉ</a></li>
-              <li class="pb-2"><a href="#">Bán lẻ</a></li>
+              <li class="pb-2"><a href="#" class="text-decoration-none">Lịch sử</a></li>
+              <li class="pb-2"><a href="#" class="text-decoration-none">Đội ngũ</a></li>
+              <li class="pb-2"><a href="#" class="text-decoration-none">Dịch vụ</a></li>
+              <li class="pb-2"><a href="#" class="text-decoration-none">Công ty</a></li>
+              <li class="pb-2"><a href="#" class="text-decoration-none">Sản xuất</a></li>
+              <li class="pb-2"><a href="#" class="text-decoration-none">Bán sỉ</a></li>
+              <li class="pb-2"><a href="#" class="text-decoration-none">Bán lẻ</a></li>
             </ul>
           </div>
         </div>
-        <div class="col-lg-2 pb-3">
+        <div class="col-lg-2 pb-4">
           <div class="footer-menu">
-            <h5 class="widget-title pb-2">Giày nữ</h5>
+            <h5 class="widget-title pb-3 fw-bold">Danh mục</h5>
             <ul class="menu-list list-unstyled">
-              <li class="pb-2"><a href="#">Theo dõi đơn hàng</a></li>
-              <li class="pb-2"><a href="{{ url('/') }}">Blog của chúng tôi</a></li>
-              <li class="pb-2"><a href="#">Chính sách bảo mật</a></li>
-              <li class="pb-2"><a href="#">Shipping</a></li>
-              <li class="pb-2"><a href="#">Liên hệ</a></li>
-              <li class="pb-2"><a href="#">Trợ giúp</a></li>
-              <li class="pb-2"><a href="#">Cộng đồng</a></li>
+              <li class="pb-2"><a href="{{ url('/women') }}" class="text-decoration-none">Giày nữ</a></li>
+              <li class="pb-2"><a href="{{ url('/men') }}" class="text-decoration-none">Giày nam</a></li>
+              <li class="pb-2"><a href="#" class="text-decoration-none">Giày thể thao</a></li>
+              <li class="pb-2"><a href="#" class="text-decoration-none">Giày casual</a></li>
+              <li class="pb-2"><a href="#" class="text-decoration-none">Giày cao gót</a></li>
+              <li class="pb-2"><a href="#" class="text-decoration-none">Tất cả sản phẩm</a></li>
             </ul>
           </div>
         </div>
-        <div class="col-lg-2 pb-3">
+        <div class="col-lg-2 pb-4">
           <div class="footer-menu">
-            <h5 class="widget-title pb-2">Phổ biến</h5>
+            <h5 class="widget-title pb-3 fw-bold">Phổ biến</h5>
             <ul class="menu-list list-unstyled">
-              <li class="pb-2"><a href="#">Giảm giá</a></li>
-              <li class="pb-2"><a href="#">Sản phẩm mới</a></li>
-              <li class="pb-2"><a href="#">Bán chạy</a></li>
-              <li class="pb-2"><a href="index.html">Cửa hàng</a></li>
-              <li class="pb-2"><a href="{{ route('login') }}">Đăng nhập</a></li>
-              <li class="pb-2"><a href="#" data-bs-toggle="modal" data-bs-target="#modallong">Giỏ hàng</a></li>
+              <li class="pb-2"><a href="#" class="text-decoration-none">Sản phẩm mới</a></li>
+              <li class="pb-2"><a href="#" class="text-decoration-none">Bán chạy nhất</a></li>
+              <li class="pb-2"><a href="{{ route('login') }}" class="text-decoration-none">Đăng nhập</a></li>
+              <li class="pb-2"><a href="#" data-bs-toggle="modal" data-bs-target="#modallong" class="text-decoration-none">Giỏ hàng</a></li>
             </ul>
           </div>
         </div>
-        <div class="col-lg-2 pb-3">
+        <div class="col-lg-4 pb-4">
           <div class="footer-menu">
-            <h5 class="widget-title pb-3">Bộ sưu tập nam</h5>
-            <ul class="menu-list list-unstyled">
-              <li class="pb-2"><a href="#">Giao hàng</a></li>
-              <li class="pb-2"><a href="{{ url('/') }}">Về chúng tôi</a></li>
-              <li class="pb-2"><a href="#">Giày</a></li>
-              <li class="pb-2"><a href="#">Liên hệ</a></li>
-            </ul>
-          </div>
-        </div>
-        <div class="col-lg-2 pb-3">
-          <div class="footer-menu">
-            <h5 class="widget-title pb-3">Liên hệ</h5>
+            <h5 class="widget-title pb-3 fw-bold">Liên hệ</h5>
             <div class="footer-contact-text">
-              <span>Stylish Online Store, Yên Nghĩa, Hà Đông - Hà Nội.</span>
-              <span> Hotline: (+33) 800 456 789-987</span>
-              <span class="text-hover fw-bold light-border"><a href="mailto:contact@yourwebsite.com">contact@yourwebsite.com</a></span>
+              <p class="mb-2"><strong>Địa chỉ:</strong> Stylish Online Store, Yên Nghĩa, Hà Đông - Hà Nội</p>
+              <p class="mb-2"><strong>Hotline:</strong> <a href="tel:+84388123456" class="text-decoration-none">(+84) 388 123 456</a></p>
+              <p class="mb-0"><strong>Email:</strong> <a href="mailto:contact@stylish.com" class="text-decoration-none">contact@stylish.com</a></p>
             </div>
           </div>
         </div>
       </div>
-      <div class="row">
+
+      <div class="row py-4 border-top">
         <div class="col-md-6">
-          <p>© Bản quyền Stylish 2023.</p>
+          <p class="m-0">© 2026 Stylish Store. Bản quyền được bảo lưu.</p>
         </div>
         <div class="col-md-6 text-lg-end">
-          <p>Free HTML by <a href="https://templatesjungle.com/" target="_blank">TemplatesJungle</a><br> Distributed by <a href="https://themewagon.com" target="blank">ThemeWagon</a> </p>
+          <p class="m-0">Thiết kế bởi <a href="https://stylish.com/" target="_blank" class="text-decoration-none">Stylish Team</a></p>
+        </div>
+      </div>
+
+      <div class="row mt-4 pt-4 border-top">
+        <div class="col-12">
+          <div class="social-links-footer text-center mb-3">
+            <ul class="social-links list-unstyled d-flex justify-content-center gap-3 m-0">
+              <li>
+                <a href="#" class="d-flex align-items-center justify-content-center" style="width: 40px; height: 40px; border-radius: 50%; background-color: #f0f0f0; transition: all 0.3s;">
+                  <svg class="facebook" width="20" height="20">
+                    <use xlink:href="#facebook"></use>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="#" class="d-flex align-items-center justify-content-center" style="width: 40px; height: 40px; border-radius: 50%; background-color: #f0f0f0; transition: all 0.3s;">
+                  <svg class="instagram" width="20" height="20">
+                    <use xlink:href="#instagram"></use>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="#" class="d-flex align-items-center justify-content-center" style="width: 40px; height: 40px; border-radius: 50%; background-color: #f0f0f0; transition: all 0.3s;">
+                  <svg class="youtube" width="20" height="20">
+                    <use xlink:href="#youtube"></use>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="#" class="d-flex align-items-center justify-content-center" style="width: 40px; height: 40px; border-radius: 50%; background-color: #f0f0f0; transition: all 0.3s;">
+                  <svg class="pinterest" width="20" height="20">
+                    <use xlink:href="#pinterest"></use>
+                  </svg>
+                </a>
+              </li>
+            </ul>
+          </div>
+          <div class="alert alert-info py-3 rounded-3 mt-4 text-center">
+            <strong>🎉 Khuyến mãi:</strong> Miễn phí vận chuyển cho đơn hàng trên 2.000.000 ₫
+          </div>
         </div>
       </div>
     </div>

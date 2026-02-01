@@ -16,16 +16,25 @@
           <form id="checkout-form" method="POST" action="{{ route('checkout.store') }}">
             @csrf
             <div class="mb-3">
-              <label class="form-label">Họ và tên</label>
-              <input type="text" class="form-control" name="fullname" required>
+              <label class="form-label">Họ và tên <span class="text-danger">*</span></label>
+              <input type="text" class="form-control" name="fullname" 
+                     placeholder="Nhập họ và tên của bạn" 
+                     title="Vui lòng nhập họ và tên" 
+                     required>
             </div>
             <div class="mb-3">
-              <label class="form-label">Email</label>
-              <input type="email" class="form-control" name="email" required>
+              <label class="form-label">Email <span class="text-danger">*</span></label>
+              <input type="email" class="form-control" name="email" 
+                     placeholder="Nhập địa chỉ email của bạn" 
+                     title="Vui lòng nhập email hợp lệ" 
+                     required>
             </div>
             <div class="mb-3">
-              <label class="form-label">Địa chỉ</label>
-              <input type="text" class="form-control" name="address" required>
+              <label class="form-label">Địa chỉ <span class="text-danger">*</span></label>
+              <input type="text" class="form-control" name="address" 
+                     placeholder="Nhập địa chỉ giao hàng đầy đủ" 
+                     title="Vui lòng nhập địa chỉ giao hàng" 
+                     required>
             </div>
             <div class="mb-3">
               <label class="form-label">Phương thức thanh toán</label>
@@ -109,13 +118,13 @@
                       <div class="text-muted">Qty: {{ $item['qty'] }}</div>
                     </div>
                   </div>
-                  <div>${{ number_format($line,2) }}</div>
+                  <div>{{ number_format($line, 0, ',', '.') }} ₫</div>
                 </li>
               @endforeach
             </ul>
             <div class="d-flex justify-content-between fw-bold mb-2">
               <div>Tạm tính</div>
-              <div>${{ number_format($subtotal,2) }}</div>
+              <div>{{ number_format($subtotal, 0, ',', '.') }} ₫</div>
             </div>
             <div class="d-flex justify-content-between mb-3">
               <div>Vận chuyển</div>
@@ -123,7 +132,7 @@
             </div>
             <div class="d-flex justify-content-between fw-bold mb-3">
               <div>Tổng</div>
-              <div>${{ number_format($subtotal,2) }}</div>
+              <div>{{ number_format($subtotal, 0, ',', '.') }} ₫</div>
             </div>
           @endif
         </div>

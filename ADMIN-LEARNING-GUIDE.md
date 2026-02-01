@@ -17,7 +17,7 @@ Sau khi học xong, bạn sẽ:
 
 ### **1. KIẾN TRÚC MVC**
 
-```
+
 REQUEST (URL: /admin/products)
     ↓
 ROUTE (routes/web.php)
@@ -36,7 +36,7 @@ VIEW (admin.products.index.blade.php)
     → Hiển thị HTML
     ↓
 RESPONSE (HTML trả về browser)
-```
+
 
 ---
 
@@ -53,7 +53,7 @@ RESPONSE (HTML trả về browser)
 
 **Ví dụ đầy đủ Routes:**
 
-```php
+php
 Route::prefix('admin')->middleware(['auth','is_admin'])->group(function () {
     // Products CRUD
     Route::get('products', [ProductController::class, 'index']);

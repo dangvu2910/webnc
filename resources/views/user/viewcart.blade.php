@@ -31,7 +31,7 @@
                 <button class="btn btn-sm btn-black ms-2" type="submit">Cập nhật</button>
               </form>
               <div style="width:120px;text-align:right;margin-left:24px;">
-                <div class="fw-bold">${{ number_format($item['price'] * $item['qty'],2) }}</div>
+                <div class="fw-bold">{{ number_format($item['price'] * $item['qty'], 0, ',', '.') }} ₫</div>
                 <form method="POST" action="{{ route('cart.remove') }}">
                   @csrf
                   <input type="hidden" name="id" value="{{ $item['id'] }}">
@@ -51,7 +51,7 @@
         @endforeach
         <div class="d-flex justify-content-between mb-2">
           <div>Tạm tính</div>
-          <div class="fw-bold">${{ number_format($subtotal,2) }}</div>
+          <div class="fw-bold">{{ number_format($subtotal, 0, ',', '.') }} ₫</div>
         </div>
         <div class="d-flex justify-content-between mb-3">
           <div>Vận chuyển</div>
@@ -59,7 +59,7 @@
         </div>
         <div class="d-flex justify-content-between mb-3">
           <div>Tổng</div>
-          <div class="fw-bold">${{ number_format($subtotal,2) }}</div>
+          <div class="fw-bold">{{ number_format($subtotal, 0, ',', '.') }} ₫</div>
         </div>
 
         <div class="d-flex gap-2">

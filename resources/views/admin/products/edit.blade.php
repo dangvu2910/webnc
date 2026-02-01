@@ -149,21 +149,132 @@
                     </div>
                 </div>
 
-                <!-- Current Image -->
-                @if($product->image)
-                    <div class="mb-4">
-                        <label class="block text-sm font-medium text-gray-700 dark:text-gray-400">
-                            Ảnh hiện tại
-                        </label>
-                        <div class="mt-2">
-                            @if(str_starts_with($product->image, 'products/'))
-                                <img src="{{ \Illuminate\Support\Facades\Storage::url($product->image) }}" alt="{{ $product->name }}" class="h-32 w-32 object-cover rounded-lg">
-                            @else
-                                <img src="{{ asset($product->image) }}" alt="{{ $product->name }}" class="h-32 w-32 object-cover rounded-lg">
-                            @endif
+                <!-- New Fields Section -->
+                <div class="mb-4 p-4 bg-gray-50 dark:bg-gray-700 rounded-lg">
+                    <h3 class="text-lg font-semibold text-gray-700 dark:text-gray-400 mb-4">Thông tin bổ sung</h3>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <!-- Brand -->
+                        <div class="mb-4">
+                            <label class="block text-sm font-medium text-gray-700 dark:text-gray-400" for="brand">
+                                Thương hiệu
+                            </label>
+                            <input class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input @error('brand') border-red-600 @enderror" 
+                                   type="text" 
+                                   id="brand" 
+                                   name="brand" 
+                                   value="{{ old('brand', $product->brand) }}"
+                                   placeholder="VD: Nike, Adidas">
+                            @error('brand')
+                                <span class="text-xs text-red-600 dark:text-red-400">{{ $message }}</span>
+                            @enderror
+                        </div>
+
+                        <!-- Material -->
+                        <div class="mb-4">
+                            <label class="block text-sm font-medium text-gray-700 dark:text-gray-400" for="material">
+                                Chất liệu
+                            </label>
+                            <input class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input @error('material') border-red-600 @enderror" 
+                                   type="text" 
+                                   id="material" 
+                                   name="material" 
+                                   value="{{ old('material', $product->material) }}"
+                                   placeholder="VD: Da thật, Vải canvas">
+                            @error('material')
+                                <span class="text-xs text-red-600 dark:text-red-400">{{ $message }}</span>
+                            @enderror
                         </div>
                     </div>
-                @endif
+
+                    <!-- Specifications -->
+                    <div class="mb-4">
+                        <label class="block text-sm font-medium text-gray-700 dark:text-gray-400" for="specifications">
+                            Thông số kỹ thuật
+                        </label>
+                        <textarea class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-textarea @error('specifications') border-red-600 @enderror" 
+                                  id="specifications" 
+                                  name="specifications" 
+                                  rows="2"
+                                  placeholder="VD: Trọng lượng, Kích thước, Công nghệ...">{{ old('specifications', $product->specifications) }}</textarea>
+                        @error('specifications')
+                            <span class="text-xs text-red-600 dark:text-red-400">{{ $message }}</span>
+                        @enderror
+                    </div>
+
+                    <!-- Rating -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="mb-4">
+                            <label class="block text-sm font-medium text-gray-700 dark:text-gray-400" for="rating">
+                                Đánh giá (0-5 sao)
+                            </label>
+                            <input class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input @error('rating') border-red-600 @enderror" 
+                                   type="number" 
+                                   id="rating" 
+                                   name="rating" 
+                                   value="{{ old('rating', $product->rating ?? 0) }}" 
+                                   min="0" 
+                                   max="5" 
+                                   step="0.1"
+                                   placeholder="4.5">
+                            @error('rating')
+                                <span class="text-xs text-red-600 dark:text-red-400">{{ $message }}</span>
+                            @enderror
+                        </div>
+                    </div>
+
+                    <!-- Warranty -->
+                    <div class="mb-4">
+                        <label class="block text-sm font-medium text-gray-700 dark:text-gray-400" for="warranty">
+                            Bảo hành
+                        </label>
+                        <textarea class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-textarea @error('warranty') border-red-600 @enderror" 
+                                  id="warranty" 
+                                  name="warranty" 
+                                  rows="2"
+                                  placeholder="VD: Bảo hành 1 năm...">{{ old('warranty', $product->warranty) }}</textarea>
+                        @error('warranty')
+                            <span class="text-xs text-red-600 dark:text-red-400">{{ $message }}</span>
+                        @enderror
+                    </div>
+
+                    <!-- Care Instructions -->
+                    <div class="mb-4">
+                        <label class="block text-sm font-medium text-gray-700 dark:text-gray-400" for="care_instructions">
+                            Hướng dẫn bảo quản
+                        </label>
+                        <textarea class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-textarea @error('care_instructions') border-red-600 @enderror" 
+                                  id="care_instructions" 
+                                  name="care_instructions" 
+                                  rows="2"
+                                  placeholder="VD: Vệ sinh sạch sẽ bằng nước ấm...">{{ old('care_instructions', $product->care_instructions) }}</textarea>
+                        @error('care_instructions')
+                            <span class="text-xs text-red-600 dark:text-red-400">{{ $message }}</span>
+                        @enderror
+                    </div>
+                </div>
+
+                <!-- Current Image -->
+                <div class="mb-4">
+                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-400">
+                        Ảnh hiện tại
+                    </label>
+                    <div class="mt-2">
+                        @php
+                          // Always use demo images based on product SKU or ID
+                          $imageIndex = 1;
+                          $id = $product->sku ?? $product->id;
+                          if ($id && preg_match('/^(men|women)-(\d+)$/', (string)$id, $m)) {
+                            $num = (int)$m[2];
+                            $imageIndex = ($num % 10) + 1;
+                          } elseif ($product->id) {
+                            $imageIndex = (($product->id % 10) + 1);
+                          }
+                          $imageUrl = asset("user/images/card-item{$imageIndex}.jpg");
+                        @endphp
+                        <img src="{{ $imageUrl }}" alt="{{ $product->name }}" class="h-32 w-32 object-cover rounded-lg">
+                    </div>
+                </div>
 
                 <!-- Image Upload -->
                 <div class="mb-4">

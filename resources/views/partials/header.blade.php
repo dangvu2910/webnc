@@ -79,40 +79,6 @@
     <div class="container-lg">
       <div class="row justify-content-evenly">
         <div class="col">
-          <ul class="social-links list-unstyled d-flex m-0">
-            <li class="pe-2">
-              <a href="#">
-                <svg class="facebook" width="20" height="20">
-                  <use xlink:href="#facebook"></use>
-                </svg>
-              </a>
-            </li>
-            <li class="pe-2">
-              <a href="#">
-                <svg class="instagram" width="20" height="20">
-                  <use xlink:href="#instagram"></use>
-                </svg>
-              </a>
-            </li>
-            <li class="pe-2">
-              <a href="#">
-                <svg class="youtube" width="20" height="20">
-                  <use xlink:href="#youtube"></use>
-                </svg>
-              </a>
-            </li>
-            <li>
-              <a href="#">
-                <svg class="pinterest" width="20" height="20">
-                  <use xlink:href="#pinterest"></use>
-                </svg>
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div class="col d-none d-md-block">
-          <p class="text-center text-black m-0"><strong>Khuyến mãi</strong>: Miễn phí vận chuyển cho đơn hàng trên $100
-          </p>
         </div>
         <div class="col">
           <!-- Removed: Liên hệ, Giỏ hàng, Đăng nhập, Đăng ký - Available in footer logo section -->
@@ -159,47 +125,32 @@
             <li class="nav-item">
               <a class="nav-link me-5" href="{{ url('/women') }}">Nữ</a>
             </li>
-            <li class="nav-item dropdown">
-              <a class="nav-link me-5 active dropdown-toggle border-0" href="#" data-bs-toggle="dropdown"
-                aria-expanded="false">Trang</a>
-              <ul class="dropdown-menu fw-bold">
-                <li>
-                  <a href="{{ url('/about') }}" class="dropdown-item">Về chúng tôi</a>
-                </li>
-                <li>
-                  <a class="dropdown-item" href="{{ url('/') }}">Cửa hàng</a>
-                </li>
-                <li>
-                  <a class="dropdown-item" href="{{ url('/blog') }}">Blog</a>
-                </li>
-                <li>
-                  <a class="dropdown-item" href="{{ url('/products') }}">Sản phẩm</a>
-                </li>
-                <li>
-                  <a class="dropdown-item" href="{{ url('/posts') }}">Bài viết</a>
-                </li>
-                <li>
-                  <a class="dropdown-item" href="#">Kiểu dáng</a>
-                </li>
-                <li>
-                  <a href="{{ url('/cart') }}" class="dropdown-item">Giỏ hàng</a>
-                </li>
-                <li>
-                  <a href="{{ url('login') }}" class="dropdown-item">Đăng nhập</a>
-                </li>
-              </ul>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link me-5" href="{{ url('/') }}">Cửa hàng</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link me-5" href="#">Giảm giá</a>
+            <li class="nav-item w-100 me-5">
+              <form action="{{ url('/search') }}" method="get" id="searchForm" class="d-flex gap-2 position-relative">
+                <div class="flex-grow-1 position-relative">
+                  <input type="text" id="searchInput" name="q" class="form-control form-control-sm" 
+                         placeholder="Tìm kiếm..." value="{{ request('q', '') }}" autocomplete="off">
+                  <ul id="searchSuggestions" class="list-group position-absolute w-100" style="display: none; top: 100%; z-index: 1000; max-height: 300px; overflow-y: auto;">
+                  </ul>
+                </div>
+                <button class="btn btn-sm btn-primary" type="submit">Tìm</button>
+              </form>
             </li>
           </ul>
         </div>
       </div>
       <div class="user-items ps-0 ps-md-5">
           <ul class="d-flex justify-content-end list-unstyled align-item-center m-0">
+          <li class="pe-3">
+            @if(auth()->check())
+              <a href="{{ route('support.index') }}" class="border-0" title="Hỗ trợ khách hàng">
+                <svg width="24" height="24" fill="currentColor" viewBox="0 0 16 16">
+                  <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                  <path d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.881v.5h-.916V8.7c0-.35.282-.574.663-.574.424 0 .674-.375.674-.eurosol375 0-.297.171-.563.45-.563.528 0 1.063.197 1.07.859.003.144-.007.365-.102.542-.083.217-.27.316-.458.316h-.83c-.112 0-.214-.08-.22-.176a.657.657 0 0 1 .092-.539c.087-.155.136-.392.136-.826 0-.763-.492-1.300-1.514-1.300-.989 0-1.565.667-1.565 1.397z"/>
+                </svg>
+              </a>
+            @endif
+          </li>
           <li class="pe-3">
             @if(auth()->check())
               <a href="{{ url('account') }}" class="border-0">
@@ -226,29 +177,59 @@
               @endif
             </a>
           </li>
-          <li>
-            <a href="#" class="search-item border-0" data-bs-toggle="collapse" data-bs-target="#search-box" aria-label="Toggle navigation">
-              <svg class="search" width="24" height="24">
-                <use xlink:href="#search"></use>
-              </svg>
-            </a>
-          </li>
         </ul>
       </div>
     </div>
   </nav>
 </header>
 
-<!-- Search overlay and Login modal (moved here so they're available site-wide) -->
-<div class="search-box bg-dark position-relative collapse" id="search-box">
-  <div class="search-wrap p-4">
-    <div class="close-button">
-      <button class="btn btn-close btn-close-white" data-bs-toggle="collapse" data-bs-target="#search-box" aria-label="Close"></button>
+<!-- Search Modal -->
+<div class="modal fade" id="searchModal" tabindex="-1" aria-labelledby="searchModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-fullscreen-sm-down">
+    <div class="modal-content">
+      <div class="modal-header border-0">
+        <h5 class="modal-title" id="searchModalLabel">Tìm kiếm sản phẩm</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form id="search-form" action="{{ url('/search') }}" method="get">
+          <div class="input-group input-group-lg mb-3">
+            <input type="text" name="q" class="form-control search-input" placeholder="Nhập tên sản phẩm, thương hiệu, chất liệu..." autofocus value="{{ request('q', '') }}">
+            <button class="btn btn-primary" type="submit">
+              <svg class="search" width="24" height="24">
+                <use xlink:href="#search"></use>
+              </svg>
+            </button>
+          </div>
+
+          <!-- Category Filter -->
+          <div class="mb-3">
+            <label for="categoryFilter" class="form-label">Lọc theo danh mục</label>
+            <select id="categoryFilter" name="category_id" class="form-select">
+              <option value="">-- Tất cả danh mục --</option>
+              @php
+                $categories = \App\Models\Category::all();
+              @endphp
+              @foreach($categories as $cat)
+                <option value="{{ $cat->id }}" {{ request('category_id') == $cat->id ? 'selected' : '' }}>
+                  {{ $cat->name }}
+                </option>
+              @endforeach
+            </select>
+          </div>
+
+          <div class="d-grid">
+            <button type="submit" class="btn btn-primary btn-lg">Tìm Kiếm</button>
+          </div>
+
+          <div class="mt-3">
+            <p class="text-muted small">
+              <strong>💡 Mẹo:</strong> Tìm kiếm theo Tên sản phẩm, Thương hiệu, Chất liệu, hoặc SKU. Chọn danh mục để lọc thêm.
+            </p>
+          </div>
+        </form>
+      </div>
     </div>
-    <form id="search-form" class="text-lg-center text-md-left pt-3" action="{{ url('/search') }}" method="get">
-      <input name="q" type="text" class="search-input" placeholder="Tìm kiếm...">
-      <button class="btn btn-light ms-2" type="submit">Tìm</button>
-    </form>
   </div>
 </div>
 
@@ -276,3 +257,61 @@
       });
     })();
   </script>
+  <script>
+    // Search autocomplete
+    const searchInput = document.getElementById('searchInput');
+    const suggestionsContainer = document.getElementById('searchSuggestions');
+    
+    searchInput.addEventListener('input', function() {
+      const query = this.value.trim();
+      
+      if (query.length < 1) {
+        suggestionsContainer.style.display = 'none';
+        return;
+      }
+      
+      // Fetch suggestions from API
+      fetch(`{{ url('/api/search/autocomplete') }}?q=${encodeURIComponent(query)}`)
+        .then(response => response.json())
+        .then(products => {
+          suggestionsContainer.innerHTML = '';
+          
+          if (products.length === 0) {
+            suggestionsContainer.style.display = 'none';
+            return;
+          }
+          
+          products.forEach(product => {
+            const displayPrice = product.sale_price && product.sale_price < product.price 
+              ? product.sale_price 
+              : product.price;
+            const li = document.createElement('li');
+            li.className = 'list-group-item list-group-item-action cursor-pointer';
+            li.style.cursor = 'pointer';
+            li.innerHTML = `
+              <div class="d-flex align-items-center gap-2">
+                <small class="text-muted">${product.name}</small>
+                <small class="text-primary fw-bold">${(displayPrice).toLocaleString('vi-VN')} ₫</small>
+              </div>
+            `;
+            li.addEventListener('click', function() {
+              searchInput.value = product.name;
+              suggestionsContainer.style.display = 'none';
+              document.getElementById('searchForm').submit();
+            });
+            suggestionsContainer.appendChild(li);
+          });
+          
+          suggestionsContainer.style.display = 'block';
+        })
+        .catch(error => console.error('Error:', error));
+    });
+    
+    // Close suggestions when clicking outside
+    document.addEventListener('click', function(event) {
+      if (!event.target.closest('#searchForm')) {
+        suggestionsContainer.style.display = 'none';
+      }
+    });
+  </script>
+

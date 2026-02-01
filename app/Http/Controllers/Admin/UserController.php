@@ -28,10 +28,14 @@ class UserController extends Controller
             'username' => 'nullable|string|max:255|unique:users',
             'password' => 'required|string|min:8|confirmed',
             'is_admin' => 'nullable|boolean',
+            'role' => 'nullable|in:customer,staff,admin',
+            'status' => 'nullable|in:active,banned',
         ]);
 
         $validated['password'] = Hash::make($request->password);
         $validated['is_admin'] = $request->has('is_admin') ? 1 : 0;
+        $validated['role'] = $request->input('role', 'customer');
+        $validated['status'] = $request->input('status', 'active');
 
         User::create($validated);
 
@@ -51,6 +55,8 @@ class UserController extends Controller
             'username' => 'nullable|string|max:255|unique:users,username,' . $user->id,
             'password' => 'nullable|string|min:8|confirmed',
             'is_admin' => 'nullable|boolean',
+            'role' => 'nullable|in:customer,staff,admin',
+            'status' => 'nullable|in:active,banned',
         ]);
 
         if ($request->filled('password')) {
@@ -60,6 +66,8 @@ class UserController extends Controller
         }
 
         $validated['is_admin'] = $request->has('is_admin') ? 1 : 0;
+        $validated['role'] = $request->input('role', $user->role ?? 'customer');
+        $validated['status'] = $request->input('status', $user->status ?? 'active');
 
         $user->update($validated);
 
@@ -70,5 +78,27 @@ class UserController extends Controller
     {
         $user->delete();
         return redirect()->route('admin.users.index')->with('success', 'Người dùng đã được xóa!');
+    }
+
+    /**
+     * Ban a user
+     */
+    public function ban(User $user)
+    {
+        if ($user->isAdmin()) {
+            return back()->withErrors('Không thể khóa tài khoản admin!');
+        }
+
+        $user->update(['status' => 'banned']);
+        return back()->with('success', 'Tài khoản đã bị khóa!');
+    }
+
+    /**
+     * Unban a user
+     */
+    public function unban(User $user)
+    {
+        $user->update(['status' => 'active']);
+        return back()->with('success', 'Tài khoản đã được mở khóa!');
     }
 }
