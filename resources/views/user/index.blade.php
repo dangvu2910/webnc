@@ -274,7 +274,7 @@
     </div>
   </section>
 
-  <footer id="footer" class="py-3 border-top bg-light">
+  <footer id="footer" class="py-5 border-top bg-light" style="margin-top: 150px;">
     <div class="container-lg">
       <div class="row mb-4">
         <div class="col-lg-2 pb-4">
@@ -347,46 +347,6 @@
         </div>
         <div class="col-md-6 text-lg-end">
           <p class="m-0">Thiết kế bởi <a href="https://stylish.com/" target="_blank" class="text-decoration-none">Stylish Team</a></p>
-        </div>
-      </div>
-
-      <div class="row mt-4 pt-4 border-top">
-        <div class="col-12">
-          <div class="social-links-footer text-center mb-3">
-            <ul class="social-links list-unstyled d-flex justify-content-center gap-3 m-0">
-              <li>
-                <a href="#" class="d-flex align-items-center justify-content-center" style="width: 40px; height: 40px; border-radius: 50%; background-color: #f0f0f0; transition: all 0.3s;">
-                  <svg class="facebook" width="20" height="20">
-                    <use xlink:href="#facebook"></use>
-                  </svg>
-                </a>
-              </li>
-              <li>
-                <a href="#" class="d-flex align-items-center justify-content-center" style="width: 40px; height: 40px; border-radius: 50%; background-color: #f0f0f0; transition: all 0.3s;">
-                  <svg class="instagram" width="20" height="20">
-                    <use xlink:href="#instagram"></use>
-                  </svg>
-                </a>
-              </li>
-              <li>
-                <a href="#" class="d-flex align-items-center justify-content-center" style="width: 40px; height: 40px; border-radius: 50%; background-color: #f0f0f0; transition: all 0.3s;">
-                  <svg class="youtube" width="20" height="20">
-                    <use xlink:href="#youtube"></use>
-                  </svg>
-                </a>
-              </li>
-              <li>
-                <a href="#" class="d-flex align-items-center justify-content-center" style="width: 40px; height: 40px; border-radius: 50%; background-color: #f0f0f0; transition: all 0.3s;">
-                  <svg class="pinterest" width="20" height="20">
-                    <use xlink:href="#pinterest"></use>
-                  </svg>
-                </a>
-              </li>
-            </ul>
-          </div>
-          <div class="alert alert-info py-3 rounded-3 mt-4 text-center">
-            <strong>🎉 Khuyến mãi:</strong> Miễn phí vận chuyển cho đơn hàng trên 2.000.000 ₫
-          </div>
         </div>
       </div>
     </div>
