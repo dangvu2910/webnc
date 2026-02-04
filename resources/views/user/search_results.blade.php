@@ -65,7 +65,7 @@
               <div class="card rounded-0 shadow-sm border-0 overflow-hidden h-100">
                 <!-- Product Image -->
                 <div class="card-image position-relative overflow-hidden">
-                  <a href="{{ route('product.show', $product->id) }}">
+                  <a href="{{ route('product.show', $product->sku ?? $product->id) }}">
                     @php
                       // Always use demo images based on product ID or SKU
                       $imageIndex = 1;
@@ -98,7 +98,7 @@
                 <!-- Product Info -->
                 <div class="card-body d-flex flex-column">
                   <h5 class="card-title">
-                    <a href="{{ route('product.show', $product->id) }}" class="text-dark text-decoration-none">{{ $product->name }}</a>
+                    <a href="{{ route('product.show', $product->sku ?? $product->id) }}" class="text-dark text-decoration-none">{{ $product->name }}</a>
                   </h5>
 
                   <!-- Brand & Material -->
@@ -166,7 +166,7 @@
 
                   <!-- Action Buttons -->
                   <div class="d-grid gap-2">
-                    <a href="{{ route('product.show', $product->id) }}" class="btn btn-outline-dark btn-sm">
+                    <a href="{{ route('product.show', $product->sku ?? $product->id) }}" class="btn btn-outline-dark btn-sm">
                       Xem chi tiết
                     </a>
                   </div>
@@ -191,5 +191,4 @@
   @endif
 </div>
 
-@include('partials.footer')
 @endsection

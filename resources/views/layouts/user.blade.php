@@ -65,6 +65,8 @@
   {{-- Content from child views --}}
   @yield('content')
 
+  @include('partials.footer')
+
   <!-- Site scripts -->
   <script src="{{ asset('user/js/jquery-1.11.0.min.js') }}"></script>
   <script src="{{ asset('user/js/plugins.js') }}"></script>

@@ -54,26 +54,6 @@
           </div>
         </div>
 
-        <!-- Rating -->
-        @if($prod['rating'] ?? 0 > 0)
-          <div class="mb-3">
-            <div class="d-flex align-items-center gap-2">
-              @for($i = 1; $i <= 5; $i++)
-                <span class="text-warning">
-                  @if($i <= floor($prod['rating']))
-                    ★
-                  @elseif($i - 0.5 <= $prod['rating'])
-                    ★
-                  @else
-                    ☆
-                  @endif
-                </span>
-              @endfor
-              <span class="text-muted small">({{ $prod['reviews_count'] ?? 0 }} đánh giá)</span>
-            </div>
-          </div>
-        @endif
-
         <!-- Stock Status -->
         @if(($prod['stock'] ?? 0) > 0)
           <div class="alert alert-success py-2 mb-3">✓ Còn hàng ({{ $prod['stock'] }} sản phẩm)</div>
@@ -82,6 +62,48 @@
         @endif
 
         <p class="mb-4">{{ $prod['description'] ?? '' }}</p>
+
+        <!-- Add to Cart Form - Color & Quantity -->
+        <form method="POST" action="{{ url('/cart/add') }}" class="mb-4 p-3 bg-light rounded">
+          @csrf
+          <input type="hidden" name="id" value="{{ $prod['id'] ?? ($prod['sku'] ?? '') }}">
+          <input type="hidden" name="name" value="{{ $prod['name'] ?? '' }}">
+          <input type="hidden" name="price" value="{{ $prodPrice }}">
+
+          <h6 class="fw-bold mb-3">Chọn thông tin sản phẩm</h6>
+
+          <!-- Color Selection -->
+          <div class="mb-3">
+            <label for="color" class="form-label">Màu sắc</label>
+            <select id="color" name="color" class="form-select">
+              <option value="">-- Chọn màu sắc --</option>
+              <option value="Đen">Đen</option>
+              <option value="Trắng">Trắng</option>
+              <option value="Xanh">Xanh</option>
+              <option value="Đỏ">Đỏ</option>
+              <option value="Xám">Xám</option>
+              <option value="Vàng">Vàng</option>
+            </select>
+          </div>
+
+          <!-- Quantity Selection -->
+          <div class="mb-3">
+            <label for="qty" class="form-label">Số lượng</label>
+            <input id="qty" name="qty" type="number" value="1" min="1" max="{{ $prod['stock'] ?? 1 }}" class="form-control" style="width:100px;">
+          </div>
+
+          <!-- Add to Cart Button -->
+          <div class="d-flex gap-2">
+            <button type="submit" class="btn btn-warning fw-bold" @if(($prod['stock'] ?? 0) <= 0) disabled @endif>
+              @if(($prod['stock'] ?? 0) > 0)
+                Thêm vào giỏ
+              @else
+                Hết hàng
+              @endif
+            </button>
+            <a href="{{ url('/') }}" class="btn btn-secondary">Tiếp tục mua hàng</a>
+          </div>
+        </form>
 
         <!-- Shoe Information -->
         <div class="mb-4 p-3 bg-light rounded">
@@ -119,110 +141,34 @@
           </div>
         @endif
 
-        <form method="POST" action="{{ url('/cart/add') }}" class="mt-auto">
-          @csrf
-          <input type="hidden" name="id" value="{{ $prod['id'] ?? ($prod['sku'] ?? '') }}">
-          <input type="hidden" name="name" value="{{ $prod['name'] ?? '' }}">
-          <input type="hidden" name="price" value="{{ $prodPrice }}">
-
-          <div class="d-flex flex-column flex-sm-row align-items-start align-items-sm-center gap-3">
-            <div class="d-flex align-items-center gap-2">
-              <label for="qty" class="mb-0">Số lượng</label>
-              <input id="qty" name="qty" type="number" value="1" min="1" max="{{ $prod['stock'] ?? 1 }}" class="form-control" style="width:80px;">
+        <!-- Rating & Reviews Section -->
+        <div class="card p-4 mt-4 border-0">
+          <h6 class="text-dark mb-3" style="word-spacing: 0.1em;">Đánh giá & Nhận xét</h6>
+          @if($prod['rating'] ?? 0 > 0)
+            <div class="mb-3">
+              <div class="d-flex align-items-center gap-2 mb-2">
+                @for($i = 1; $i <= 5; $i++)
+                  <span class="text-warning" style="font-size: 20px;">
+                    @if($i <= floor($prod['rating']))
+                      ★
+                    @elseif($i - 0.5 <= $prod['rating'])
+                      ★
+                    @else
+                      ☆
+                    @endif
+                  </span>
+                @endfor
+                <span class="ms-2"><strong class="text-dark">{{ $prod['rating'] ?? 0 }}/5</strong> <span class="text-dark">({{ $prod['reviews_count'] ?? 0 }} đánh giá)</span></span>
+              </div>
+              <p class="text-dark small mb-0">Được đánh giá cao bởi khách hàng của chúng tôi</p>
             </div>
-
-            <div class="d-flex gap-2">
-              <button type="submit" class="btn btn-warning fw-bold" @if(($prod['stock'] ?? 0) <= 0) disabled @endif>
-                @if(($prod['stock'] ?? 0) > 0)
-                  Thêm vào giỏ
-                @else
-                  Hết hàng
-                @endif
-              </button>
-              <a href="{{ url('/') }}" class="btn btn-secondary">Tiếp tục mua hàng</a>
-            </div>
-          </div>
-        </form>
+          @else
+            <p class="text-dark mb-0">Chưa có đánh giá. Hãy là người đầu tiên đánh giá sản phẩm này!</p>
+          @endif
+        </div>
       </div>
     </div>
   </div>
 </div>
 
-<footer id="footer" class="py-5 border-top bg-light" style="margin-top: 150px;">
-  <div class="container-lg">
-    <div class="row mb-4">
-      <div class="col-lg-2 pb-4">
-        <div class="footer-menu">
-          <h5 class="widget-title pb-3 fw-bold">Thông tin</h5>
-          <ul class="menu-list list-unstyled">
-            <li class="pb-2"><a href="#" class="text-decoration-none">Theo dõi đơn hàng</a></li>
-            <li class="pb-2"><a href="{{ url('/') }}" class="text-decoration-none">Blog của chúng tôi</a></li>
-            <li class="pb-2"><a href="#" class="text-decoration-none">Chính sách bảo mật</a></li>
-            <li class="pb-2"><a href="#" class="text-decoration-none">Giao hàng</a></li>
-            <li class="pb-2"><a href="#" class="text-decoration-none">Liên hệ</a></li>
-            <li class="pb-2"><a href="#" class="text-decoration-none">Trợ giúp</a></li>
-            <li class="pb-2"><a href="#" class="text-decoration-none">Cộng đồng</a></li>
-          </ul>
-        </div>
-      </div>
-      <div class="col-lg-2 pb-4">
-        <div class="footer-menu">
-          <h5 class="widget-title pb-3 fw-bold">Về chúng tôi</h5>
-          <ul class="menu-list list-unstyled">
-            <li class="pb-2"><a href="#" class="text-decoration-none">Lịch sử</a></li>
-            <li class="pb-2"><a href="#" class="text-decoration-none">Đội ngũ</a></li>
-            <li class="pb-2"><a href="#" class="text-decoration-none">Dịch vụ</a></li>
-            <li class="pb-2"><a href="#" class="text-decoration-none">Công ty</a></li>
-            <li class="pb-2"><a href="#" class="text-decoration-none">Sản xuất</a></li>
-            <li class="pb-2"><a href="#" class="text-decoration-none">Bán sỉ</a></li>
-            <li class="pb-2"><a href="#" class="text-decoration-none">Bán lẻ</a></li>
-          </ul>
-        </div>
-      </div>
-      <div class="col-lg-2 pb-4">
-        <div class="footer-menu">
-          <h5 class="widget-title pb-3 fw-bold">Danh mục</h5>
-          <ul class="menu-list list-unstyled">
-            <li class="pb-2"><a href="{{ url('/women') }}" class="text-decoration-none">Giày nữ</a></li>
-            <li class="pb-2"><a href="{{ url('/men') }}" class="text-decoration-none">Giày nam</a></li>
-            <li class="pb-2"><a href="#" class="text-decoration-none">Giày thể thao</a></li>
-            <li class="pb-2"><a href="#" class="text-decoration-none">Giày casual</a></li>
-            <li class="pb-2"><a href="#" class="text-decoration-none">Giày cao gót</a></li>
-            <li class="pb-2"><a href="#" class="text-decoration-none">Tất cả sản phẩm</a></li>
-          </ul>
-        </div>
-      </div>
-      <div class="col-lg-2 pb-4">
-        <div class="footer-menu">
-          <h5 class="widget-title pb-3 fw-bold">Phổ biến</h5>
-          <ul class="menu-list list-unstyled">
-            <li class="pb-2"><a href="#" class="text-decoration-none">Sản phẩm mới</a></li>
-            <li class="pb-2"><a href="#" class="text-decoration-none">Bán chạy nhất</a></li>
-            <li class="pb-2"><a href="{{ route('login') }}" class="text-decoration-none">Đăng nhập</a></li>
-            <li class="pb-2"><a href="#" data-bs-toggle="modal" data-bs-target="#modallong" class="text-decoration-none">Giỏ hàng</a></li>
-          </ul>
-        </div>
-      </div>
-      <div class="col-lg-4 pb-4">
-        <div class="footer-menu">
-          <h5 class="widget-title pb-3 fw-bold">Liên hệ</h5>
-          <div class="footer-contact-text">
-            <p class="mb-2"><strong>Địa chỉ:</strong> Stylish Online Store, Yên Nghĩa, Hà Đông - Hà Nội</p>
-            <p class="mb-2"><strong>Hotline:</strong> <a href="tel:+84388123456" class="text-decoration-none">(+84) 388 123 456</a></p>
-            <p class="mb-0"><strong>Email:</strong> <a href="mailto:contact@stylish.com" class="text-decoration-none">contact@stylish.com</a></p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="row py-4 border-top">
-      <div class="col-md-6">
-        <p class="m-0">© 2026 Stylish Store. Bản quyền được bảo lưu.</p>
-      </div>
-      <div class="col-md-6 text-lg-end">
-        <p class="m-0">Thiết kế bởi <a href="https://stylish.com/" target="_blank" class="text-decoration-none">Stylish Team</a></p>
-      </div>
-    </div>
-  </div>
-</footer>
 @endsection
